@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_release_need"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.example.everyoneassist.Activity.ReleaseNeedActivity">
+
+    <include layout="@layout/header_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.everyoneassist.Layout.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/skill_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="技能类型：宠物"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_normal" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="预约时间："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_normal" />
+
+                    <TextView
+                        android:id="@+id/def_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/fram_auth_bg"
+                        android:drawablePadding="12dp"
+                        android:drawableRight="@drawable/ic_arrow_drop_down_black_12dp"
+                        android:gravity="center_vertical"
+                        android:padding="5dp"
+                        android:text=" 默认当前时间"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_normal" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/thin_white" />
+
+            <com.example.everyoneassist.Layout.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="需求有效期"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_normal" />
+
+                <com.example.everyoneassist.View.MyGridView
+                    android:id="@+id/setver_time_gridview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:horizontalSpacing="15dp"
+                    android:numColumns="4"
+                    android:padding="10dp"
+                    android:verticalSpacing="15dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="性别要求"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_normal" />
+
+                <!--android:listSelector="@drawable/skill_item_orange"-->
+                <com.example.everyoneassist.View.MyGridView
+                    android:id="@+id/sex_gridview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:horizontalSpacing="15dp"
+                    android:numColumns="4"
+                    android:padding="10dp"
+                    android:verticalSpacing="15dp" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="服务方式"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_normal" />
+
+                <!--android:listSelector="@drawable/skill_item_orange"-->
+                <com.example.everyoneassist.View.MyGridView
+                    android:id="@+id/server_type_gridview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:horizontalSpacing="15dp"
+                    android:numColumns="4"
+                    android:padding="10dp"
+                    android:verticalSpacing="15dp" />
+
+            </com.example.everyoneassist.Layout.PercentLinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/thin_white" />
+
+            <com.example.everyoneassist.View.MyListView2
+                android:id="@+id/server_Item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@color/thin_white"
+                android:paddingBottom="10dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/thin_white" />
+
+            <com.example.everyoneassist.Layout.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="技能介绍"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_normal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="right"
+                        android:text="0/120"
+                        android:textColor="@color/deep_gray"
+                        android:textSize="@dimen/text_small" />
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/skill_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/fram_auth_bg"
+                    android:gravity="left"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_normal"
+                    app:layout_minHeightPercent="26%w">
+
+                </EditText>
+
+            </com.example.everyoneassist.Layout.PercentLinearLayout>
+
+            <TextView
+                android:id="@+id/release"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/skill_item_orange1"
+                android:gravity="center"
+                android:text="立即发布"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_big"
+                app:layout_marginBottomPercent="8%w"
+                app:layout_marginLeftPercent="20%w"
+                app:layout_marginRightPercent="20%w"
+                app:layout_marginTopPercent="10%w" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="注：为了防止用户隐私受到打扰，请在交易意向大成前不要留下电话和其他联系方式"
+                app:layout_marginBottomPercent="8%w" />
+
+        </com.example.everyoneassist.Layout.PercentLinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

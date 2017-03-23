@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.everyoneassist.Layout.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_my_wallet_deposit"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.everyoneassist.Activity.MyWalletDepositActivity">
+
+    <include layout="@layout/header_title" />
+
+    <com.example.everyoneassist.Layout.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/orange"
+            android:gravity="bottom|left"
+            android:orientation="vertical"
+            app:layout_heightPercent="22%h"
+            app:layout_paddingPercent="3%h"
+            app:layout_widthPercent="100%w">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="账户余额（元）"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_normal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="120.05"
+                android:textColor="@color/white"
+                android:textSize="35sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/mywallet_deposit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:text="请选择充值方式"
+            android:textColor="@color/deep_gray"
+            android:textSize="@dimen/text_big"
+            app:layout_paddingLeftPercent="5%w" />
+
+        <com.example.everyoneassist.Layout.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:drawableTop="@mipmap/recharge_03"
+                android:gravity="center_horizontal"
+                android:text="支付宝充值"
+                app:layout_marginPercent="5%w" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:drawableTop="@mipmap/recharge_05"
+                android:gravity="center_horizontal"
+                android:text="微信充值"
+                app:layout_marginPercent="5%w" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:drawableTop="@mipmap/recharge_07"
+                android:gravity="center_horizontal"
+                android:text="银行卡充值"
+                app:layout_marginPercent="5%w" />
+
+        </com.example.everyoneassist.Layout.PercentLinearLayout>
+
+    </com.example.everyoneassist.Layout.PercentLinearLayout>
+
+</com.example.everyoneassist.Layout.PercentLinearLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF71BFB1</color>
+    <color name="colorPrimaryDark">#6DBAB4</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <color name="theme">#FF71BFB1</color>
+    <color name="table_bg">#6DBAB4</color>
+    <color name="white">#FFFFFF</color>
+    <color name="thin_white">#EFEFEF</color>
+    <color name="listview_divider_bg">#EDEDED</color>
+    <color name="black">#666666</color>
+    <color name="gray">#BBBBBB</color>
+    <color name="deep_gray">#AAAAAA</color>
+    <color name="authcode_bg">#FFECECEC</color>
+    <color name="orange">#f59803</color>
+    <color name="auth_green">#33b16a</color>
+
+    <color name="white_transparent">#66FFFFFF</color>
+
+</resources>

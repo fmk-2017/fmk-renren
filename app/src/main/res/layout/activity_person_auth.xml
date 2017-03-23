@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_person_auth"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.everyoneassist.Activity.PersonAuthActivity">
+
+    <include layout="@layout/header_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="15dp"
+            android:padding="3dp"
+            android:text="实名认证"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_big" />
+
+        <com.example.everyoneassist.Layout.PercentLinearLayout
+            android:id="@+id/auth_autonym"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/fram_auth_bg"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/autonym_is"
+                app:layout_heightPercent="18%w"
+                app:layout_widthPercent="18%w" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/green_or_gray"
+                    android:drawablePadding="3dp"
+                    android:gravity="center_vertical"
+                    android:padding="2dp"
+                    android:text="官方认证"
+                    android:textColor="@color/auth_green"
+                    android:textSize="@dimen/text_normal" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="认证后大把大把的钱往你口袋送，任务做不停，钞票拿到你不要不要的"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_normal" />
+
+            </LinearLayout>
+
+        </com.example.everyoneassist.Layout.PercentLinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="15dp"
+            android:padding="3dp"
+            android:text="手机认证"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_big" />
+
+        <com.example.everyoneassist.Layout.PercentLinearLayout
+            android:id="@+id/auth_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/fram_auth_bg"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/auth_phone_is"
+                app:layout_heightPercent="18%w"
+                app:layout_widthPercent="18%w" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/green_or_gray"
+                    android:drawablePadding="3dp"
+                    android:gravity="center_vertical"
+                    android:padding="2dp"
+                    android:text="未认证"
+                    android:textColor="@color/deep_gray"
+                    android:textSize="@dimen/text_normal" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="认证后大把大把的钱往你口袋送，任务做不停，钞票拿到你不要不要的"
+                    android:textColor="@color/deep_gray"
+                    android:textSize="@dimen/text_normal" />
+
+            </LinearLayout>
+
+        </com.example.everyoneassist.Layout.PercentLinearLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="15dp"
+            android:padding="3dp"
+            android:text="信用认证"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_big" />
+
+        <com.example.everyoneassist.Layout.PercentLinearLayout
+            android:id="@+id/auth_credit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/fram_auth_bg"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/auth_credit_is"
+                app:layout_heightPercent="18%w"
+                app:layout_widthPercent="18%w" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/green_or_gray"
+                    android:drawablePadding="3dp"
+                    android:gravity="center_vertical"
+                    android:padding="2dp"
+                    android:text="未认证"
+                    android:textColor="@color/deep_gray"
+                    android:textSize="@dimen/text_normal" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="认证后大把大把的钱往你口袋送，任务做不停，钞票拿到你不要不要的"
+                    android:textColor="@color/deep_gray"
+                    android:textSize="@dimen/text_normal" />
+
+            </LinearLayout>
+
+        </com.example.everyoneassist.Layout.PercentLinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

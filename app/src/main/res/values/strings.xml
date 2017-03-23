@@ -1,0 +1,105 @@
+<resources>
+    <string name="app_name">人人帮</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+
+    <string name="home">首页</string>
+    <string name="receiving">我要接单</string>
+    <string name="skill">技能管理</string>
+    <string name="me">我的</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="header_gridview_item">
+        <item>随意购</item>
+        <item>同城快送</item>
+        <item>情感咨询</item>
+        <item>手机维修</item>
+        <item>搬家服务</item>
+        <item>我要借钱</item>
+        <item>家电维修</item>
+        <item>查看全部</item>
+    </string-array>
+
+    <!--homefragment-->
+    <string name="nearby_store">附近商家</string>
+    <string name="minute_old">%s分钟前</string>
+    <string name="kilometer">%s公里</string>
+
+    <!--mefragment-->
+    <string name="me_order">我的订单</string>
+    <string name="me_demand">需求管理</string>
+    <string name="me_skill">技能管理</string>
+    <string name="me_wallet">我的钱包</string>
+    <string name="me_auth">个人认证</string>
+    <string name="me_collect">我的收藏</string>
+    <string name="me_use_manual">使用手册</string>
+    <string name="me_system_setting">系统设置</string>
+
+    <!--skillfragment-->
+    <string name="skill_manager">技能管理</string>
+
+    <!--receivingfragment-->
+    <string name="nearby_need">附近需求</string>
+
+    <!--releaseneedactivity-->
+    <string name="releaseneed">发布需求</string>
+    <string-array name="need_item">
+        <item>保洁服务</item>
+        <item>开锁换锁</item>
+        <item>手机维修</item>
+        <item>保姆</item>
+        <item>搬家服务</item>
+        <item>管道疏通</item>
+        <item>家电维修</item>
+        <item>电脑维修</item>
+        <item>数码维修</item>
+        <item>房屋维修</item>
+        <item>家具维修</item>
+        <item>锁具购买</item>
+    </string-array>
+
+    <!--loginactivity-->
+    <string name="user_login">账号登录</string>
+    <string name="phone_are">+86</string>
+    <string name="phone_tips">请输入手机号码</string>
+    <string name="password">密码</string>
+    <string name="password_tips">请输入密码</string>
+    <string name="login">登录</string>
+
+    <!--registeractivity-->
+    <string name="user_register">注册</string>
+    <string name="auth_code_tips">请输入验证码</string>
+    <string name="get_auth_code">获取验证码</string>
+
+    <!--addskillactivity-->
+    <string-array name="service_type">
+        <item>TA来找我</item>
+        <item>我去找TA</item>
+        <item>线上服务</item>
+        <item>邮寄</item>
+    </string-array>
+    <string-array name="server_sex">
+        <item>不限</item>
+        <item>男</item>
+        <item>女</item>
+    </string-array>
+    <string-array name="service_time">
+        <item>周一</item>
+        <item>周二</item>
+        <item>周三</item>
+        <item>周四</item>
+        <item>周五</item>
+        <item>周六</item>
+        <item>周日</item>
+    </string-array>
+
+    <string-array name="service_validity">
+        <item>七天</item>
+        <item>一天</item>
+    </string-array>
+
+
+</resources>

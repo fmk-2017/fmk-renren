@@ -44,24 +44,18 @@ public class EditSkillActivity extends BaseActivity
         MyHorizontalScrollView.OnItemClickListener,
         MyHorizontalScrollView.OnItemLongClickListener {
 
-    private String header_text;
-
-    private MyHorizontalScrollView imagelist;
-    private MyGridView type_gridview, time_gridview;
-
-    private String[] types, times;
-
-    private TextView skill_type, skill_pay;
-    private EditText skill_content, skill_price;
-
-    private String skill_types = "跑腿代办";
-    private int skill_type_id = 0;
-
     private final String METHOD_ADD_SERVER = "add_server";  //添加技能
     private final String METHOD_UP_SERVER = "up_server";  //更新技能
-
     private final int ACTION_IMAGE_CAPTURE_REQUEST = 123;  //拍照
     private final int ACTION_PICK_REQUEST = 124;  //相册
+    private String header_text;
+    private MyHorizontalScrollView imagelist;
+    private MyGridView type_gridview, time_gridview;
+    private String[] types, times;
+    private TextView skill_type, skill_pay;
+    private EditText skill_content, skill_price;
+    private String skill_types = "跑腿代办";
+    private int skill_type_id = 0;
     private String server_name, server_time, skill_infos, skill_prices, user_id;
 
     /**
@@ -76,6 +70,7 @@ public class EditSkillActivity extends BaseActivity
 
     private boolean first;
     private int REQUEST_NEEDTYPE_CODE = 100;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,8 +133,6 @@ public class EditSkillActivity extends BaseActivity
         if (view.isSelected()) view.setSelected(false);
         else view.setSelected(true);
     }
-
-    private Intent intent;
 
     @Override
     public void onClick(View v) {
@@ -241,11 +234,11 @@ public class EditSkillActivity extends BaseActivity
         map.put("server_name", server_name);
         map.put("server_time", server_time);
         map.put("skill_info", skill_infos);
-        map.put("skill_photo", METHOD_ADD_SERVER);
+        for (int i = 0; i < imagefilelist.size(); i++)
+            map.put("image[" + i + "]", imagefilelist.get(i));
         map.put("skill_price", skill_prices);
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
-
 
     @Override
     public void Success(String method, JSONObject json) {

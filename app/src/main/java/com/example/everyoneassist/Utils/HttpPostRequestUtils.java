@@ -10,6 +10,7 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -37,7 +38,9 @@ public class HttpPostRequestUtils {
         while (it.hasNext()) {
             String key = (String) it.next();
             String value = map.get(key);
-            rp.addBodyParameter(key, value);
+            if (key.contains("image"))
+                rp.addBodyParameter(key, new File(value));
+            else rp.addBodyParameter(key, value);
         }
         Callback.Cancelable cc = x.http().post(rp, new Callback.CommonCallback<JSONObject>() {
             @Override

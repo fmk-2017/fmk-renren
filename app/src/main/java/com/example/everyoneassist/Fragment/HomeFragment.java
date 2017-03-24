@@ -24,6 +24,7 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
 import com.example.everyoneassist.Activity.AtWillBuyActivity;
 import com.example.everyoneassist.Activity.MainActivity;
+import com.example.everyoneassist.Activity.ShoppingActivity;
 import com.example.everyoneassist.Activity.SingleServerActivity;
 import com.example.everyoneassist.Adapter.HeaderGridViewAdapter;
 import com.example.everyoneassist.Adapter.HomeAdapter;
@@ -128,7 +129,8 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         switch (parent.getId()) {
             case R.id.header_gridview:
                 if (position == 0 || position == 1) {
-
+                    Intent intent = new Intent(getActivity(), ShoppingActivity.class);
+                    startActivityForResult(intent,555);
                 } else {
                     Intent intent = new Intent(getActivity(), SingleServerActivity.class);
                     intent.putExtra("cid", home.getGet_category().get(position).getCat_id());

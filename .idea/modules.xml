@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EveryoneAssist.iml" filepath="$PROJECT_DIR$/EveryoneAssist.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fmk-renren.iml" filepath="$PROJECT_DIR$/fmk-renren.iml" />
     </modules>
   </component>
 </project>

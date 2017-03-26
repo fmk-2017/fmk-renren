@@ -74,7 +74,7 @@
             android:divider="@color/thin_white"
             android:dividerHeight="8dp"
             android:scrollingCache="false"
-            app:layout_heightPercent="50%sh" />
+            app:layout_heightPercent="40%sh" />
 
     </com.example.everyoneassist.Layout.PercentRelativeLayout>
 </LinearLayout>

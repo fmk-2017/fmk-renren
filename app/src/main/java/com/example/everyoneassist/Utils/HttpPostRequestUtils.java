@@ -50,8 +50,7 @@ public class HttpPostRequestUtils {
                         Log.e(method + "====", result.toString());
                         Toast.makeText(hprc.getContext(), result.getString("info"), Toast.LENGTH_SHORT).show();
                     }
-                    if ("success".equals(result.getString("result")))
-                        hprc.Success(method, result);
+                    if ("success".equals(result.getString("result"))) hprc.Success(method, result);
                     else
                         Toast.makeText(hprc.getContext(), result.getString("info"), Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {

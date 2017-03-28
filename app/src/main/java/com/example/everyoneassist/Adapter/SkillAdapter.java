@@ -111,20 +111,20 @@ public class SkillAdapter extends BaseAdapter implements View.OnClickListener {
     public void onClick(View v) {
         HashMap<String, String> map = new HashMap<String, String>();
         switch (v.getId()) {
-            case R.id.amend_skill:
+            case R.id.amend_skill://修改技能
                 Intent intent = new Intent(context, EditSkillActivity.class);
                 intent.putExtra("type", 1);
                 intent.putExtra("skill_type", 1);
                 intent.putExtra("skill_id", (String) v.getTag());
                 context.startActivity(intent);
                 break;
-            case R.id.close_skill:
+            case R.id.close_skill://关闭技能
                 map.put("act", METHOD_OFF_SERVER);
                 map.put("user_id", context.getSharedPreferences("user", Context.MODE_PRIVATE).getString("user_id", ""));
                 map.put("skill_id", (String) v.getTag());
                 HttpPostRequestUtils.getInstance(hprc).Post(map);
                 break;
-            case R.id.delete_skill:
+            case R.id.delete_skill://删除技能
                 map.put("act", METHOD_DEL_SERVER);
                 map.put("user_id", context.getSharedPreferences("user", Context.MODE_PRIVATE).getString("user_id", ""));
                 map.put("skill_id", (String) v.getTag());

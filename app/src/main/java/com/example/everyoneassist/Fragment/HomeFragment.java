@@ -128,7 +128,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (parent.getId()) {
             case R.id.header_gridview:
-                if (position == 0 || position == 1) {
+                if (position == 0) {
                     Intent intent = new Intent(getActivity(), ShoppingActivity.class);
                     startActivityForResult(intent,555);
                 } else {

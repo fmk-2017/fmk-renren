@@ -1,5 +1,6 @@
 package com.example.everyoneassist.Activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +13,7 @@ import android.widget.RadioGroup;
 import com.example.everyoneassist.Fragment.CityFragment;
 import com.example.everyoneassist.Fragment.ShoppingFragment;
 import com.example.everyoneassist.R;
+import com.example.everyoneassist.Utils.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,7 @@ public class ShoppingActivity extends BaseActivity implements RadioGroup.OnCheck
     private FragmentManager mFrManager;
     private Fragment mFragment = null;
     private List<Fragment> fragments = new ArrayList<>();
+    protected SharedPreferences shared;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +45,12 @@ public class ShoppingActivity extends BaseActivity implements RadioGroup.OnCheck
      * 初始化数据，并默认显示同城快递
      */
     private void initData() {
-        fragments.add(new CityFragment().newInstance());
-        fragments.add(new ShoppingFragment().newInstance());
+        shared = getSharedPreferences(Constant.SHARED_NAME, MODE_PRIVATE);
+        String user_id = shared.getString("user_id","user_id");
+        String username = shared.getString("username","username");
+
+        fragments.add(new CityFragment().newInstance(user_id,username));
+        fragments.add(new ShoppingFragment().newInstance(user_id,username));
 
         rgShopp.setOnCheckedChangeListener(this);
         mFrManager = getSupportFragmentManager();

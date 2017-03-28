@@ -88,7 +88,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="20dp"
                     android:drawableRight="@drawable/ic_chevron_right_black_20dp"
-                    android:text="请选择取送达时间"
+                    android:text="请选择送达时间"
                     android:textColor="@color/deep_gray"
                     android:textSize="@dimen/text_normal"
                     app:layout_marginRightPercent="5%w" />

@@ -27,13 +27,17 @@ public class SystemSettingActivity extends BaseActivity implements View.OnClickL
         update_version = (TextView) this.findViewById(R.id.update_version);
         about = (TextView) this.findViewById(R.id.about);
         addr_manager.setOnClickListener(this);
+        about.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.addr_manager:
+            case R.id.addr_manager://地址管理
                 startActivity(new Intent(this, AddressManagerActivity.class));
+                break;
+            case R.id.about://关于我们
+
                 break;
         }
     }

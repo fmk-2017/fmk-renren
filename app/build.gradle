@@ -1,6 +1,20 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        debug {
+            keyAlias 'renren'
+            keyPassword '123456'
+            storeFile file('C:/Users/Administrator.WIN7U-20170118K/Desktop/renren/renren.jks')
+            storePassword '123456'
+        }
+        release {
+            keyAlias 'renren'
+            keyPassword '123456'
+            storeFile file('C:/Users/Administrator.WIN7U-20170118K/Desktop/renren/renren.jks')
+            storePassword '123456'
+        }
+    }
     compileSdkVersion 24
     buildToolsVersion "25.0.0"
     defaultConfig {

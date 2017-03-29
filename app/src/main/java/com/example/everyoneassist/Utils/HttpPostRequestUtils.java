@@ -32,6 +32,7 @@ public class HttpPostRequestUtils {
     }
 
     public void Post(HashMap<String, String> map) {
+        Log.e("I/map",map.toString());
         final String method = map.get("act");
         RequestParams rp = new RequestParams(Constant.Url);
         Iterator it = map.keySet().iterator();

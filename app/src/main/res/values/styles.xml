@@ -25,6 +25,10 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>
+    <style name="anim_window_select">
+        <item name="android:windowEnterAnimation">@anim/window_select_in</item>
+        <item name="android:windowExitAnimation">@anim/window_select_out</item>
+    </style>
 
 
 </resources>

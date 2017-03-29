@@ -22,9 +22,14 @@ public class CityFragment extends Fragment implements View.OnClickListener{
 
     private TextView tvSendPerson,tvSendPhone,tvCountMoney,tvPay;
     private EditText etRecePerson,etRecePhone,etTip,etRemarks;
+    private String user_id,username;
 
-    public static CityFragment newInstance(){
+    public static CityFragment newInstance(String user_id,String username){
         CityFragment fragment = new CityFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("user_id",user_id);
+        bundle.putString("username",username);
+        fragment.setArguments(bundle);
         return fragment;
     }
 
@@ -52,6 +57,9 @@ public class CityFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        user_id = getArguments().getString("user_id");
+        username = getArguments().getString("username");
+
         tvPay.setOnClickListener(this);
     }
 

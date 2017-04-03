@@ -37,6 +37,11 @@ public class LoginActivity extends BaseActivity implements HttpPostRequestUtils.
 
         initView();
 
+        String username = shared.getString("username","username");
+        String passwords = shared.getString("passwords","passwords");
+        if (!username.equals("passwords") &&  !passwords.equals("passwords")){
+            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+        }
     }
 
     private void initView() {
@@ -92,7 +97,14 @@ public class LoginActivity extends BaseActivity implements HttpPostRequestUtils.
 
     @Override
     public void Success(String method, JSONObject json) throws JSONException {
-        shared.edit().putString("username", phones).putString("user_id", json.getJSONObject("data").getString("user_id")).commit();
+        shared.edit()
+                .putString("username", phones)
+                .putString("user_id", json.getJSONObject("data").getString("user_id"))
+                .putString("user_photo",json.getJSONObject("data").getString("user_photo"))
+                .putString("sex",json.getJSONObject("data").getString("sex"))
+                .putString("email",json.getJSONObject("data").getString("email"))
+                .putString("passwords",passwords)
+                .commit();
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }

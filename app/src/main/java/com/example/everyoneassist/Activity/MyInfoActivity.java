@@ -8,11 +8,17 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.everyoneassist.Adapter.MyCollectAdapter;
 import com.example.everyoneassist.R;
+import com.example.everyoneassist.View.CircleImageView;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class MyInfoActivity extends BaseActivity {
+
+    private CircleImageView ivMeHead;
+    private TextView tvUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +39,20 @@ public class MyInfoActivity extends BaseActivity {
     }
 
     private void initview() {
+        ivMeHead = (CircleImageView) findViewById(R.id.ivMeHead);
+        tvUserName = (TextView) findViewById(R.id.tvUserName);
 
+        String user_photo = shared.getString("user_photo", "user_photo");
+        String username = shared.getString("username","username");
+
+        if (!username.equals("user_photo")){
+            ImageLoader.getInstance().displayImage(user_photo, ivMeHead);
+        }
+        if (username.equals("user_id")){
+            tvUserName.setText("人人帮");
+        }else{
+            tvUserName.setText(username);
+        }
     }
 
 }

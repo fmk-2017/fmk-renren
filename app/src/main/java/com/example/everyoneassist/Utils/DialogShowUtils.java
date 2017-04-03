@@ -10,15 +10,22 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.example.everyoneassist.Entity.Region;
 import com.example.everyoneassist.R;
+import com.example.everyoneassist.View.Wheel.OnWheelChangedListener;
+import com.example.everyoneassist.View.Wheel.WheelView;
+import com.example.everyoneassist.View.Wheel.adapters.ArrayWheelAdapter;
+
+import java.util.List;
 
 /**
  * Created by fengm on 2017-3-9.
  */
 
-public class DialogShowUtils extends Dialog {
+public class DialogShowUtils extends Dialog implements OnWheelChangedListener {
 
     private static DialogShowUtils dsu;
+    public int select_id;
     private Context context;
 
     public DialogShowUtils(Context context) {
@@ -68,5 +75,35 @@ public class DialogShowUtils extends Dialog {
         return dsu;
     }
 
+    public DialogShowUtils ShowAddressSelect(List<Region> regionlist, View.OnClickListener oc) {
+        View view = LayoutInflater.from(context).inflate(R.layout.showaddressselect_dialog, null, false);
+        TextView cancel = (TextView) view.findViewById(R.id.cancel);
+        TextView finish = (TextView) view.findViewById(R.id.finish);
+        WheelView select = (WheelView) view.findViewById(R.id.select);
+        select.setViewAdapter(new ArrayWheelAdapter<Region>(context, regionlist));
+        select.setVisibleItems(7);
+        select.setCurrentItem(0);
+        select.addChangingListener(this);
+        finish.setOnClickListener(oc);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dsu.dismiss();
+            }
+        });
+        dsu.setContentView(view);
+        dsu.getWindow().getAttributes().height = WindowManager.LayoutParams.WRAP_CONTENT;
+        dsu.getWindow().getAttributes().width = WindowManager.LayoutParams.WRAP_CONTENT;
+        dsu.getWindow().getAttributes().gravity = Gravity.BOTTOM;
+        dsu.getWindow().setBackgroundDrawable(null);
+        dsu.getWindow().setWindowAnimations(R.style.getimagetypeStily);
+        dsu.create();
+        dsu.show();
+        return dsu;
+    }
 
+    @Override
+    public void onChanged(WheelView wheel, int oldValue, int newValue) {
+        this.select_id = newValue;
+    }
 }

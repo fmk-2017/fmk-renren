@@ -1,7 +1,6 @@
 package com.example.everyoneassist.Adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +8,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.everyoneassist.Activity.ReleaseNeedTypeActivity;
 import com.example.everyoneassist.Entity.HomeCategory;
-import com.example.everyoneassist.Entity.Need_Cat;
 import com.example.everyoneassist.R;
 import com.example.everyoneassist.View.MyGridView;
 
@@ -20,7 +17,7 @@ import java.util.List;
 /**
  * Created by fengm on 2017/1/13.
  */
-public class ReleaseNeedAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
+public class AddSkillListAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
 
     int colirred = 225;
     int colirgreen = 25;
@@ -29,7 +26,7 @@ public class ReleaseNeedAdapter extends BaseAdapter implements AdapterView.OnIte
     private OnItemClickListener itemclick;
     private List<HomeCategory> homeCategories;
 
-    public ReleaseNeedAdapter(OnItemClickListener itemClickListener, List<HomeCategory> homeCategories) {
+    public AddSkillListAdapter(OnItemClickListener itemClickListener, List<HomeCategory> homeCategories) {
         this.itemclick = itemClickListener;
         this.context = itemclick.getContext();
         this.homeCategories = homeCategories;
@@ -81,7 +78,7 @@ public class ReleaseNeedAdapter extends BaseAdapter implements AdapterView.OnIte
     }
 
     public interface OnItemClickListener {
-        void ItemClick(View view, int position, int id);
+        void ItemClick(View view, int position, long id);
 
         Context getContext();
     }

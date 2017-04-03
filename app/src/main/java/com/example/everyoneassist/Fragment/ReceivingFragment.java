@@ -31,9 +31,11 @@ import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
 import com.example.everyoneassist.Adapter.ReceivingAdapter;
 import com.example.everyoneassist.Entity.Demand;
+import com.example.everyoneassist.Entity.GoodsNameAndId;
 import com.example.everyoneassist.R;
 import com.example.everyoneassist.Utils.DebugLog;
 import com.example.everyoneassist.Utils.HttpPostRequestUtils;
+import com.example.everyoneassist.Utils.WindowsUtils;
 import com.example.everyoneassist.View.MyListView;
 
 import org.json.JSONException;
@@ -41,6 +43,7 @@ import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
 import org.xutils.x;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -55,6 +58,7 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
     private OnLocationChangedListener mListener;
     private AMapLocationClient mlocationClient;
     private AMapLocationClientOption mLocationOption;
+    private  List<GoodsNameAndId> list =new ArrayList<>();
     private List<Demand> demandList;
 
     public ReceivingFragment() {
@@ -100,6 +104,20 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
         aMap.setTrafficEnabled(true);// 显示实时交通状况
         aMap.setLocationSource(this);
         aMap.setMyLocationEnabled(true);
+
+        list.add(new GoodsNameAndId("不限",0));
+        list.add(new GoodsNameAndId("随意购",1));
+        list.add(new GoodsNameAndId("同城快递",2));
+        list.add(new GoodsNameAndId("休闲娱乐",3));
+        list.add(new GoodsNameAndId("运动健康",4));
+        list.add(new GoodsNameAndId("丽人时尚",5));
+        list.add(new GoodsNameAndId("智慧社区",6));
+        list.add(new GoodsNameAndId("家政维修",7));
+        list.add(new GoodsNameAndId("教育培训",8));
+        list.add(new GoodsNameAndId("咨询服务",9));
+        list.add(new GoodsNameAndId("技术服务",10));
+        list.add(new GoodsNameAndId("智慧高校",11));
+        list.add(new GoodsNameAndId("车务服务",12));
         return view;
     }
 
@@ -208,7 +226,12 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.type:
+                WindowsUtils.showStringListPopupWindow(v,list, new WindowsUtils.OnStringItemClickListener() {
+                    @Override
+                    public void onStringItemClick(int position, int sex) {
 
+                    }
+                });
                 break;
             case R.id.mode:
 

@@ -34,7 +34,7 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
     private final int REQUEST_NEEDTYPE_CODE = 100;
     private final String METHOD_VIEW = "get_view";
     private final String METHOD_ADD_DEMEND = "add_demand";
-    private int id;
+    private String id;
     private String name;
     private EditText skill_content;
     private TextView skill_type, def_time, release;
@@ -53,7 +53,7 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
         setContentView(R.layout.activity_release_need);
         initHeader("发布需求");
 
-        id = getIntent().getIntExtra("id", 11);
+        id = getIntent().getStringExtra("id");
         name = getIntent().getStringExtra("name");
 
         initView();
@@ -66,7 +66,7 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
     private void getItem() {
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("act", METHOD_VIEW);
-        map.put("category_id", id + "");
+        map.put("category_id", id);
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
 

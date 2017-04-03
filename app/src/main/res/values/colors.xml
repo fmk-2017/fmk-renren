@@ -18,5 +18,6 @@
     <color name="auth_green">#33b16a</color>
 
     <color name="white_transparent">#66FFFFFF</color>
+    <color name="province_line_border">#F8F8F8</color>
 
 </resources>

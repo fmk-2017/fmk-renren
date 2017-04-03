@@ -10,7 +10,11 @@ import android.widget.TextView;
 
 import com.example.everyoneassist.Activity.AddressEditActivity;
 import com.example.everyoneassist.Activity.AddressManagerActivity;
+import com.example.everyoneassist.Entity.Address;
 import com.example.everyoneassist.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by fengm on 2017/2/11.
@@ -19,24 +23,28 @@ import com.example.everyoneassist.R;
 public class AddressListAdapter extends BaseAdapter {
 
     private Context context;
+    private View.OnClickListener onclick;
+    private List<Address> addressList;
 
-    public AddressListAdapter(Context context) {
+    public AddressListAdapter(Context context, View.OnClickListener onclick) {
         this.context = context;
+        this.onclick = onclick;
+        addressList = new ArrayList<>();
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return addressList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return addressList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
@@ -54,21 +62,28 @@ public class AddressListAdapter extends BaseAdapter {
         } else {
             vholder = (ViewHolder) convertView.getTag();
         }
-        vholder.addritem_edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, AddressEditActivity.class);
-                intent.putExtra("type", 1);
-                intent.putExtra("name", "潘先生");
-                intent.putExtra("phone", "13530914291");
-                intent.putExtra("address", "义乌小商品批发城4楼");
-                intent.putExtra("addr1", "广东省");
-                intent.putExtra("addr2", "深圳市");
-                intent.putExtra("addr3", "龙岗区");
-                context.startActivity(intent);
-            }
-        });
+        Address address = addressList.get(position);
+        String addresss = address.getProvince() + address.getCity() + address.getDistrict() + address.getAddress();
+        vholder.addritem_address.setText(addresss);
+        vholder.addritem_phone.setText(address.getTel());
+        vholder.addritem_name.setText(address.getConsignee());
+
+        vholder.addritem_delete.setTag(position);
+        vholder.addritem_delete.setOnClickListener(onclick);
+        vholder.addritem_edit.setTag(position);
+        vholder.addritem_edit.setOnClickListener(onclick);
         return convertView;
+    }
+
+    public void setAddress(List<Address> addressList) {
+        this.addressList.clear();
+        this.addressList.addAll(addressList);
+        notifyDataSetChanged();
+    }
+
+    public void delete_item(int delete_position) {
+        this.addressList.remove(delete_position);
+        notifyDataSetChanged();
     }
 
     class ViewHolder {

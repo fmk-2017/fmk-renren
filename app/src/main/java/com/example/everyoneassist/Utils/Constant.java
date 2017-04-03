@@ -14,7 +14,7 @@ public class Constant {
     /**
      * POST请求地址
      */
-    public static final String Url = "http://m.szwtdl.cn/api.php";
+    public static final String Url = "http://112.74.35.236/api.php";//"http://m.szwtdl.cn/api.php";//
 
 
     public static final String SHARED_NAME = "user";

@@ -26,6 +26,7 @@ public class BaseActivity extends AppCompatActivity {
     protected TextView right_text, title;
     protected ImageView right_img, left;
     protected SharedPreferences shared;
+
     private PercentRelativeLayout header_title;
 
     protected void initHeader(String titles) {

@@ -2,8 +2,9 @@ package com.example.everyoneassist.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,13 +18,22 @@ import com.example.everyoneassist.Activity.MyWalletActivity;
 import com.example.everyoneassist.Activity.PersonAuthActivity;
 import com.example.everyoneassist.Activity.SkillManagerActivity;
 import com.example.everyoneassist.Activity.SystemSettingActivity;
+import com.example.everyoneassist.Activity.UpateInfoActivity;
 import com.example.everyoneassist.Activity.UserManualActivity;
 import com.example.everyoneassist.R;
+import com.example.everyoneassist.Utils.Constant;
+import com.example.everyoneassist.View.CircleImageView;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class MeFragment extends Fragment implements View.OnClickListener {
 
     private TextView[] textviews = new TextView[8];//my_order, demand_manager, skill_manager, my_wallet, system_setting, user_manual, my_collect, person_auth;
+    private TextView tvUser,tvUserId;
     private LinearLayout user;
+    private CircleImageView ivMeImg;
+    protected SharedPreferences shared;
 
     public MeFragment() {
         // Required empty public constructor
@@ -62,13 +72,37 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         textviews[5] = (TextView) view.findViewById(R.id.user_manual);
         textviews[6] = (TextView) view.findViewById(R.id.my_collect);
         textviews[7] = (TextView) view.findViewById(R.id.person_auth);
+        tvUser = (TextView) view.findViewById(R.id.tvUser);
+        tvUserId = (TextView) view.findViewById(R.id.tvUserId);
+        ivMeImg = (CircleImageView) view.findViewById(R.id.ivMeImg);
         for (TextView textview : textviews) {
             textview.setOnClickListener(this);
         }
         user = (LinearLayout) view.findViewById(R.id.user);
         user.setOnClickListener(this);
+        ivMeImg.setOnClickListener(this);
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        shared = getActivity().getSharedPreferences(Constant.SHARED_NAME, MODE_PRIVATE);
+        String user_photo = shared.getString("user_photo", "user_photo");
+        String username = shared.getString("username","username");
+        String user_id = shared.getString("user_id","user_id");
+        ImageLoader.getInstance().displayImage(user_photo, ivMeImg);
+
+        if (username.equals("username")){
+            tvUser.setText("人人帮");
+        }else {
+            tvUser.setText(username);
+        }
+        if (user_id.equals("user_id")){
+            tvUserId.setText("ID:无");
+        }else{
+            tvUserId.setText("ID:"+user_id);
+        }
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -111,6 +145,10 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             case R.id.person_auth:
                 startActivity(new Intent(getActivity(), PersonAuthActivity.class));
                 break;
+            case R.id.ivMeImg://修改个人信息
+                startActivityForResult(new Intent(getActivity(), UpateInfoActivity.class),666);
+                break;
         }
     }
+
 }

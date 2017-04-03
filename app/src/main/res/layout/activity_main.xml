@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.everyoneassist.Layout.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.everyoneassist.Activity.MainActivity">
+
+
+    <LinearLayout
+        android:id="@+id/table_group"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/table_bg"
+        android:orientation="horizontal"
+        android:padding="3dp">
+
+        <TextView
+            android:id="@+id/table1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1"
+            android:background="@color/table_bg"
+            android:drawableTop="@mipmap/home_38"
+            android:gravity="center_horizontal"
+            android:text="@string/home"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_normal" />
+
+        <TextView
+            android:id="@+id/table2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/table_bg"
+            android:drawableTop="@mipmap/home_40"
+            android:gravity="center_horizontal"
+            android:text="@string/receiving"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_normal" />
+
+        <TextView
+            android:id="@+id/table3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/table_bg"
+            android:gravity="center_horizontal"
+            android:text="@string/home"
+            android:textColor="@color/white" />
+
+
+        <TextView
+            android:id="@+id/table4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/table_bg"
+            android:drawableTop="@mipmap/home_43"
+            android:gravity="center_horizontal"
+            android:text="@string/skill"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_normal" />
+
+        <TextView
+            android:id="@+id/table5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/table_bg"
+            android:drawableTop="@mipmap/home_45"
+            android:gravity="center_horizontal"
+            android:text="@string/me"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_normal" />
+
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/table_group"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <ImageView
+        android:id="@+id/hire"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/home_35"
+        app:layout_heightPercent="18%w"
+        app:layout_widthPercent="18%w" />
+
+</com.example.everyoneassist.Layout.PercentRelativeLayout>

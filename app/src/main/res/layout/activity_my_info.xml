@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.example.everyoneassist.Layout.PercentRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/header_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/home_10"
+                    app:layout_heightPercent="60%w" />
+
+                <com.example.everyoneassist.Layout.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_marginTopPercent="52%w">
+
+                    <com.example.everyoneassist.View.CircleImageView
+                        android:id="@+id/ivMeHead"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/home_10"
+                        app:border_color="@color/white_transparent"
+                        app:border_width="5dp"
+                        app:layout_heightPercent="25%w"
+                        app:layout_marginLeftPercent="6%w"
+                        app:layout_widthPercent="25%w" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp"
+                        app:layout_marginTopPercent="8%w">
+
+                        <TextView
+                            android:id="@+id/tvUserName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="陈小龙"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/text_big" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/home_32" />
+
+                    </LinearLayout>
+
+                </com.example.everyoneassist.Layout.PercentLinearLayout>
+
+            </com.example.everyoneassist.Layout.PercentRelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="认证信息"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_big" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/phone_auth_dleft" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/autonym_auth_dleft" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/weibo_auth_dleft" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/skill_auth_dleft" />
+
+                </LinearLayout>
+
+                <com.example.everyoneassist.Layout.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/credit_auth_dleft"
+                        app:layout_widthPercent="25%w" />
+
+                </com.example.everyoneassist.Layout.PercentLinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/thin_white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="兼职厨师"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_big" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="费用：100元、次"
+                        android:textColor="@color/orange"
+                        android:textSize="@dimen/text_normal" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="服务方式：线下服务"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_normal" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="服务时间：周一、周二"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_normal" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/thin_white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="服务介绍："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_normal" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="菜系：家常菜、粤菜、川菜、湘菜、北京菜、鲁菜、东北菜"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/text_normal" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/thin_white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="10dp"
+                android:text="服务评价 （05）"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_normal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/thin_white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="10dp"
+                android:text="留言板"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_normal" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <com.example.everyoneassist.Layout.PercentLinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/thin_white"
+            android:gravity="center"
+            android:text="留言"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_normal"
+            app:layout_heightPercent="12%w" />
+
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/deep_gray" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/thin_white"
+            android:gravity="center"
+            android:text="收藏"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_normal"
+            app:layout_heightPercent="12%w" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@color/theme"
+            android:gravity="center"
+            android:text="聊一聊"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_normal"
+            app:layout_heightPercent="12%w" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@color/orange"
+            android:gravity="center"
+            android:text="立即预约"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_normal"
+            app:layout_heightPercent="12%w" />
+
+    </com.example.everyoneassist.Layout.PercentLinearLayout>
+
+</LinearLayout>

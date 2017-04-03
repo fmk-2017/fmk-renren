@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.everyoneassist.Activity.MyCollectActivity;
 import com.example.everyoneassist.Activity.MyInfoActivity;
+import com.example.everyoneassist.Activity.MyOrderActivity;
 import com.example.everyoneassist.Activity.MyWalletActivity;
 import com.example.everyoneassist.Activity.PersonAuthActivity;
 import com.example.everyoneassist.Activity.SkillManagerActivity;
@@ -88,7 +89,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), MyInfoActivity.class));
                 break;
             case R.id.my_order:
-
+                startActivity(new Intent(getActivity(), MyOrderActivity.class));
                 break;
             case R.id.demand_manager:
 

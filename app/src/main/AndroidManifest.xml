@@ -70,8 +70,9 @@
         <activity android:name=".Activity.AtWillBuyActivity" />
         <activity android:name=".Activity.ReleaseNeedActivity" />
         <activity android:name=".Activity.MyInfoActivity" />
-        <activity android:name=".Activity.SingleServerActivity"/>
-        <activity android:name=".Activity.ShoppingActivity"/>
+        <activity android:name=".Activity.SingleServerActivity" />
+        <activity android:name=".Activity.ShoppingActivity" />
+        <activity android:name=".Activity.MyOrderActivity"></activity>
     </application>
 
 </manifest>

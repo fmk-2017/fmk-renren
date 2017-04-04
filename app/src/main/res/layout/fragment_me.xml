@@ -75,21 +75,6 @@
             android:background="@color/thin_white" />
 
         <TextView
-            android:id="@+id/demand_manager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:paddingLeft="22dp"
-            android:paddingTop="8dp"
-            android:text="@string/me_demand"
-            android:textSize="@dimen/text_normal" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.2dp"
-            android:background="@color/thin_white" />
-
-        <TextView
             android:id="@+id/skill_manager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

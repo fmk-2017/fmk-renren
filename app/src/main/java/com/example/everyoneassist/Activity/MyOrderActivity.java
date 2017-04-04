@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.everyoneassist.Adapter.OrderAdapter;
 import com.example.everyoneassist.R;
 
 import java.util.HashMap;
@@ -51,7 +52,7 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
             textview.setOnClickListener(this);
 
         order_listview = (ListView) this.findViewById(R.id.order_listview);
-
+        order_listview.setAdapter(new OrderAdapter(this));
     }
 
     @Override

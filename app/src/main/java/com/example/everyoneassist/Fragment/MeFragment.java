@@ -30,11 +30,11 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class MeFragment extends Fragment implements View.OnClickListener {
 
-    private TextView[] textviews = new TextView[8];//my_order, demand_manager, skill_manager, my_wallet, system_setting, user_manual, my_collect, person_auth;
+    protected SharedPreferences shared;
+    private TextView[] textviews = new TextView[7];//my_order, demand_manager, skill_manager, my_wallet, system_setting, user_manual, my_collect, person_auth;
     private TextView tvUser,tvUserId;
     private LinearLayout user;
     private CircleImageView ivMeImg;
-    protected SharedPreferences shared;
 
     public MeFragment() {
         // Required empty public constructor
@@ -66,13 +66,12 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
     private void initView(View view) {
         textviews[0] = (TextView) view.findViewById(R.id.my_order);
-        textviews[1] = (TextView) view.findViewById(R.id.demand_manager);
-        textviews[2] = (TextView) view.findViewById(R.id.skill_manager);
-        textviews[3] = (TextView) view.findViewById(R.id.my_wallet);
-        textviews[4] = (TextView) view.findViewById(R.id.system_setting);
-        textviews[5] = (TextView) view.findViewById(R.id.user_manual);
-        textviews[6] = (TextView) view.findViewById(R.id.my_collect);
-        textviews[7] = (TextView) view.findViewById(R.id.person_auth);
+        textviews[1] = (TextView) view.findViewById(R.id.skill_manager);
+        textviews[2] = (TextView) view.findViewById(R.id.my_wallet);
+        textviews[3] = (TextView) view.findViewById(R.id.system_setting);
+        textviews[4] = (TextView) view.findViewById(R.id.user_manual);
+        textviews[5] = (TextView) view.findViewById(R.id.my_collect);
+        textviews[6] = (TextView) view.findViewById(R.id.person_auth);
         tvUser = (TextView) view.findViewById(R.id.tvUser);
         tvUserId = (TextView) view.findViewById(R.id.tvUserId);
         ivMeImg = (CircleImageView) view.findViewById(R.id.ivMeImg);
@@ -124,9 +123,6 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.my_order:
                 startActivity(new Intent(getActivity(), MyOrderActivity.class));
-                break;
-            case R.id.demand_manager:
-
                 break;
             case R.id.skill_manager:
                 startActivity(new Intent(getActivity(), SkillManagerActivity.class));

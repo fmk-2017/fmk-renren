@@ -49,7 +49,7 @@ public class HttpPostRequestUtils {
                 try {
                     if (x.isDebug()) {
                         Log.e(method + "====", result.toString());
-                        Toast.makeText(hprc.getContext(), result.getString("info"), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(hprc.getContext(), result.getString("info"), Toast.LENGTH_SHORT).show();
                     }
                     if ("success".equals(result.getString("result"))) hprc.Success(method, result);
                     else

@@ -42,18 +42,19 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
         initHeader("我的订单");
 
         initView();
-        getOrder();
+        getOrder("1");
     }
 
-    private void getOrder() {
+    private void getOrder(String type) {
         HashMap<String, String> map = new HashMap<>();
         map.put("act", MY_DEMAND);
+        map.put("type_status", type);
         map.put("user_id", shared.getString("user_id",""));
         map.put("page", "1");
         map.put("status", "0");
         HttpPostRequestUtils.getInstance(MyOrderActivity.this).Post(map);
     }
-
+    
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (orderBeanList != null && orderBeanList.size() > 0){
@@ -90,10 +91,12 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
             case R.id.buyer:
                 buyer.setSelected(true);
                 servant.setSelected(false);
+                getOrder("1");
                 break;
             case R.id.servant:
                 buyer.setSelected(false);
                 servant.setSelected(true);
+                getOrder("2");
                 break;
             case R.id.textview1:
                 select(0);
@@ -131,6 +134,6 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public Context getContext() {
-        return null;
+        return this;
     }
 }

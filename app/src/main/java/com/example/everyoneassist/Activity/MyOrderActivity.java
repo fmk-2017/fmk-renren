@@ -1,22 +1,39 @@
 package com.example.everyoneassist.Activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.example.everyoneassist.Adapter.OrderAdapter;
+import com.example.everyoneassist.Entity.OrderBean;
 import com.example.everyoneassist.R;
+import com.example.everyoneassist.Utils.HttpPostRequestUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 
-public class MyOrderActivity extends BaseActivity implements View.OnClickListener {
+public class MyOrderActivity extends BaseActivity implements View.OnClickListener, HttpPostRequestUtils.HttpPostRequestCallback,AdapterView.OnItemClickListener {
+
+    private final String MY_DEMAND = "Mydemand";
 
     private TextView buyer, servant;
     //    private TextView textview1, textview2, textview3, textview4;
     private TextView[] textviews = new TextView[4];
     private ListView order_listview;
+
+    private List<OrderBean> orderBeanList;
+    private OrderAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,16 +41,28 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
         setContentView(R.layout.activity_my_order);
         initHeader("我的订单");
 
-
         initView();
-
         getOrder();
-
     }
 
     private void getOrder() {
         HashMap<String, String> map = new HashMap<>();
-        map.put("", "");
+        map.put("act", MY_DEMAND);
+        map.put("user_id", shared.getString("user_id",""));
+        map.put("page", "1");
+        map.put("status", "0");
+        HttpPostRequestUtils.getInstance(MyOrderActivity.this).Post(map);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (orderBeanList != null && orderBeanList.size() > 0){
+            OrderBean bean = orderBeanList.get(position);
+            Intent intent = new Intent(MyOrderActivity.this,AtWillBuyActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("bean",bean);
+            startActivity(intent);
+        }
     }
 
     private void initView() {
@@ -52,7 +81,7 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
             textview.setOnClickListener(this);
 
         order_listview = (ListView) this.findViewById(R.id.order_listview);
-        order_listview.setAdapter(new OrderAdapter(this));
+        order_listview.setOnItemClickListener(this);
     }
 
     @Override
@@ -87,4 +116,21 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
         textviews[index].setSelected(true);
     }
 
+    @Override
+    public void Success(String method, JSONObject json) throws JSONException {
+        Log.e("tag",json.toString());
+        orderBeanList = JSON.parseArray(json.getString("data"),OrderBean.class);
+        order_listview.setAdapter(new OrderAdapter(MyOrderActivity.this,orderBeanList));
+    }
+
+    @Override
+    public void Fail(String method, String error) {
+        Log.e("tag",method+"---"+error);
+
+    }
+
+    @Override
+    public Context getContext() {
+        return null;
+    }
 }

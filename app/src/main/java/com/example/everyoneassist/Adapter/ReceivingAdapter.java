@@ -20,18 +20,20 @@ import java.util.List;
  * Created by fengm on 2017/1/13.
  */
 
-public class ReceivingAdapter extends BaseAdapter implements View.OnClickListener {
+public class ReceivingAdapter extends BaseAdapter {
 
     private Context context;
     private List<Demand> demandList;
+    private View.OnClickListener onclick;
 
     public ReceivingAdapter(Context context) {
         this.context = context;
     }
 
-    public ReceivingAdapter(Context context, List<Demand> demandList) {
+    public ReceivingAdapter(Context context, List<Demand> demandList, View.OnClickListener onclick) {
         this.context = context;
         this.demandList = demandList;
+        this.onclick = onclick;
     }
 
     @Override
@@ -82,21 +84,9 @@ public class ReceivingAdapter extends BaseAdapter implements View.OnClickListene
         viewHolder.work_price.setText(String.format("配送费%s元", "30"));
 
         viewHolder.receiving.setTag(position);
-        viewHolder.receiving.setOnClickListener(this);
+        viewHolder.receiving.setOnClickListener(onclick);
 
         return convertView;
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.receiving:
-                int position = (int) v.getTag();
-
-                break;
-        }
-
-
     }
 
     class ViewHolder {

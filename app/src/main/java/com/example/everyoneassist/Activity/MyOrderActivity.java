@@ -94,26 +94,31 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
             case R.id.buyer:
                 buyer.setSelected(true);
                 servant.setSelected(false);
-                getOrder(server_type, server_status);
+                server_type = "1";
                 break;
             case R.id.servant:
                 buyer.setSelected(false);
                 servant.setSelected(true);
-                getOrder(server_type, server_status);
+                server_type = "2";
                 break;
             case R.id.textview1:
                 select(0);
+                server_status = "0";
                 break;
             case R.id.textview2:
                 select(1);
+                server_status = "1";
                 break;
             case R.id.textview3:
                 select(2);
+                server_status = "2";
                 break;
             case R.id.textview4:
                 select(3);
+                server_status = "3";
                 break;
         }
+        getOrder(server_type, server_status);
     }
 
     public void select(int index) {

@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.example.everyoneassist.View.MyListView
-        android:id="@+id/mylistview"
+    <com.example.everyoneassist.View.MyListView2
+        android:id="@+id/mylistview2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -24,6 +24,7 @@
         android:background="@color/thin_white" />
 
     <EditText
+        android:id="@+id/comment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -33,6 +34,7 @@
         app:layout_minHeightPercent="30%w" />
 
     <TextView
+        android:id="@+id/release_comment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/skill_item_orange1"

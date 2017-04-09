@@ -34,6 +34,7 @@ import com.example.everyoneassist.Activity.AtWillBuyActivity;
 import com.example.everyoneassist.Adapter.ReceivingAdapter;
 import com.example.everyoneassist.Entity.Demand;
 import com.example.everyoneassist.Entity.GoodsNameAndId;
+import com.example.everyoneassist.Interface.OnInvitedListener;
 import com.example.everyoneassist.R;
 import com.example.everyoneassist.Utils.DebugLog;
 import com.example.everyoneassist.Utils.HttpPostRequestUtils;
@@ -50,8 +51,9 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class ReceivingFragment extends Fragment implements LocationSource, AMapLocationListener, HttpPostRequestUtils.HttpPostRequestCallback, View.OnClickListener {
+public class ReceivingFragment extends Fragment implements LocationSource, AMapLocationListener, HttpPostRequestUtils.HttpPostRequestCallback, View.OnClickListener,OnInvitedListener {
     private final String METHOD_DEMAND = "demand_list";
+    private final String APPOINTMENT_SERVIER = "appointment_server";
     private MapView d2map;
     private MyListView receiving_listview;
     private ReceivingAdapter receivingAdapter;
@@ -215,6 +217,8 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
             demandList = JSON.parseArray(json.getString("data"), Demand.class);
             receivingAdapter = new ReceivingAdapter(getActivity(), demandList, this);
             receiving_listview.setAdapter(receivingAdapter);
+        }else if(APPOINTMENT_SERVIER.equals(mode)){
+
         }
     }
 
@@ -262,4 +266,16 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
     }
 
 
+    //立即应邀
+    @Override
+    public void onInvited(int position) {
+        if(demandList != null){
+            Demand demand = demandList.get(position);
+            HashMap<String, String> map = new HashMap<String, String>();
+            map.put("act", APPOINTMENT_SERVIER);
+            map.put("user_id", "1");
+            map.put("server_id", "1");
+            HttpPostRequestUtils.getInstance(this).Post(map);
+        }
+    }
 }

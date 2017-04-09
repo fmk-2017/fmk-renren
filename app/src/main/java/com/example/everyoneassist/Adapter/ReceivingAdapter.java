@@ -2,6 +2,7 @@ package com.example.everyoneassist.Adapter;
 
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.everyoneassist.Entity.Demand;
+import com.example.everyoneassist.Interface.OnInvitedListener;
 import com.example.everyoneassist.R;
 import com.example.everyoneassist.Utils.TimeUtils;
 import com.example.everyoneassist.View.CircleImageView;
@@ -24,16 +26,19 @@ public class ReceivingAdapter extends BaseAdapter {
 
     private Context context;
     private List<Demand> demandList;
-    private View.OnClickListener onclick;
+
+    private OnInvitedListener invitedListener;
+
 
     public ReceivingAdapter(Context context) {
         this.context = context;
     }
 
-    public ReceivingAdapter(Context context, List<Demand> demandList, View.OnClickListener onclick) {
+    public ReceivingAdapter(Context context, List<Demand> demandList,OnInvitedListener invitedListener) {
         this.context = context;
         this.demandList = demandList;
-        this.onclick = onclick;
+        this.invitedListener =  invitedListener;
+
     }
 
     @Override
@@ -89,9 +94,19 @@ public class ReceivingAdapter extends BaseAdapter {
         return convertView;
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.receiving://立即应邀
+                int position = (int) v.getTag();
+                if (invitedListener != null)
+                    invitedListener.onInvited(position);
+                break;
+        }
+    }
+  
     class ViewHolder {
         TextView listview_title, user_name, bestows_num, work, work_content, work_time, work_address, work_price, receiving;
         CircleImageView avatar;
     }
-
 }

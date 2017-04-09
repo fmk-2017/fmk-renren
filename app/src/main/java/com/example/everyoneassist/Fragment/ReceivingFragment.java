@@ -1,6 +1,7 @@
 package com.example.everyoneassist.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
@@ -29,6 +30,7 @@ import com.amap.api.maps2d.model.BitmapDescriptor;
 import com.amap.api.maps2d.model.BitmapDescriptorFactory;
 import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
+import com.example.everyoneassist.Activity.AtWillBuyActivity;
 import com.example.everyoneassist.Adapter.ReceivingAdapter;
 import com.example.everyoneassist.Entity.Demand;
 import com.example.everyoneassist.Entity.GoodsNameAndId;
@@ -238,7 +240,9 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
                 break;
             case R.id.receiving:
                 int position = (int) v.getTag();
-                
+                Intent intent = new Intent(getContext(), AtWillBuyActivity.class);
+                intent.putExtra("xid", demandList.get(position).getId());
+                startActivity(intent);
                 break;
         }
     }

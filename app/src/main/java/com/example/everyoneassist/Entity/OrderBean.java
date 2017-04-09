@@ -19,6 +19,7 @@ public class OrderBean implements Serializable{
     String server_tag;
     String address;
     String info;
+    String is_accomplish;
     String status;
     String addtime;
     String cat_name;
@@ -132,6 +133,14 @@ public class OrderBean implements Serializable{
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getIs_accomplish() {
+        return is_accomplish;
+    }
+
+    public void setIs_accomplish(String is_accomplish) {
+        this.is_accomplish = is_accomplish;
     }
 
     public String getInfo() {

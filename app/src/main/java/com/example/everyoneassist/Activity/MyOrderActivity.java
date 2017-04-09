@@ -35,6 +35,9 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
     private List<OrderBean> orderBeanList;
     private OrderAdapter mAdapter;
 
+    private String server_status = "0";
+    private String server_type = "1";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,16 +45,16 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
         initHeader("我的订单");
 
         initView();
-        getOrder("1");
+        getOrder(server_type, server_status);
     }
 
-    private void getOrder(String type) {
+    private void getOrder(String type, String status) {
         HashMap<String, String> map = new HashMap<>();
         map.put("act", MY_DEMAND);
         map.put("type_status", type);
         map.put("user_id", shared.getString("user_id",""));
         map.put("page", "1");
-        map.put("status", "0");
+        map.put("status", status);
         HttpPostRequestUtils.getInstance(MyOrderActivity.this).Post(map);
     }
     
@@ -91,12 +94,12 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
             case R.id.buyer:
                 buyer.setSelected(true);
                 servant.setSelected(false);
-                getOrder("1");
+                getOrder(server_type, server_status);
                 break;
             case R.id.servant:
                 buyer.setSelected(false);
                 servant.setSelected(true);
-                getOrder("2");
+                getOrder(server_type, server_status);
                 break;
             case R.id.textview1:
                 select(0);

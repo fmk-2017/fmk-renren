@@ -10,7 +10,6 @@ import java.io.File;
 
 public class Constant {
 
-
     /**
      * POST请求地址
      */

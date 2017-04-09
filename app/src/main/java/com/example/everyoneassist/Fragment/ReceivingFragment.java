@@ -213,7 +213,7 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
     public void Success(String method, JSONObject json) throws JSONException {
         if (METHOD_DEMAND.equals(method)) {
             demandList = JSON.parseArray(json.getString("data"), Demand.class);
-            receivingAdapter = new ReceivingAdapter(getActivity(), demandList,this);
+            receivingAdapter = new ReceivingAdapter(getActivity(), demandList, this);
             receiving_listview.setAdapter(receivingAdapter);
         }else if(APPOINTMENT_SERVIER.equals(mode)){
 
@@ -239,6 +239,10 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
                 break;
             case R.id.mode:
 
+                break;
+            case R.id.receiving:
+                int position = (int) v.getTag();
+                
                 break;
         }
     }

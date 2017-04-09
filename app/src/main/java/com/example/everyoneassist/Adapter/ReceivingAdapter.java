@@ -22,11 +22,13 @@ import java.util.List;
  * Created by fengm on 2017/1/13.
  */
 
-public class ReceivingAdapter extends BaseAdapter implements View.OnClickListener {
+public class ReceivingAdapter extends BaseAdapter {
 
     private Context context;
     private List<Demand> demandList;
+
     private OnInvitedListener invitedListener;
+
 
     public ReceivingAdapter(Context context) {
         this.context = context;
@@ -36,6 +38,7 @@ public class ReceivingAdapter extends BaseAdapter implements View.OnClickListene
         this.context = context;
         this.demandList = demandList;
         this.invitedListener =  invitedListener;
+
     }
 
     @Override
@@ -86,7 +89,7 @@ public class ReceivingAdapter extends BaseAdapter implements View.OnClickListene
         viewHolder.work_price.setText(String.format("配送费%s元", "30"));
 
         viewHolder.receiving.setTag(position);
-        viewHolder.receiving.setOnClickListener(this);
+        viewHolder.receiving.setOnClickListener(onclick);
 
         return convertView;
     }
@@ -101,7 +104,7 @@ public class ReceivingAdapter extends BaseAdapter implements View.OnClickListene
                 break;
         }
     }
-
+  
     class ViewHolder {
         TextView listview_title, user_name, bestows_num, work, work_content, work_time, work_address, work_price, receiving;
         CircleImageView avatar;

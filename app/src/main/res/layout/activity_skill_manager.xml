@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_skill_manager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.everyoneassist.Activity.SkillManagerActivity">
+
+    <include layout="@layout/header_title" />
+
+    <com.example.everyoneassist.View.MyListView
+        android:id="@+id/skilllistview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/thin_white"
+        android:dividerHeight="8dp" />
+
+</LinearLayout>

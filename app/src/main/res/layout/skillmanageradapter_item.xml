@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.everyoneassist.Layout.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/skill_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="跑腿代办"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/text_big" />
+
+        <TextView
+            android:id="@+id/skill_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="等待审核"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/text_small" />
+
+    </LinearLayout>
+
+    <com.example.everyoneassist.Layout.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="服务价格："
+                android:textColor="@color/orange"
+                android:textSize="@dimen/text_normal" />
+
+            <TextView
+                android:id="@+id/skill_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="58元/次"
+                android:textColor="@color/orange"
+                android:textSize="@dimen/text_normal"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="服务方式："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_normal" />
+
+                <TextView
+                    android:id="@+id/skill_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="我去找TA"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/text_normal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="代办类型："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_normal" />
+
+                <TextView
+                    android:id="@+id/skill_lx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="接送服务，排队服务"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/text_normal" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </com.example.everyoneassist.Layout.PercentLinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="服务时间："
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_normal" />
+
+        <TextView
+            android:id="@+id/skill_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="周一,周二,周三,周四,周五,周六,周日"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/text_normal" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/skill_item_dashed"
+        android:layerType="software" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:padding="5dp"
+            android:text="技能介绍"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_normal" />
+
+        <TextView
+            android:id="@+id/skill_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="本着热情周到的服务去对待每一个客人，力求完美"
+            android:textColor="@color/gray" />
+
+        <com.example.everyoneassist.Layout.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <com.example.everyoneassist.View.MyHorizontalScrollView
+                android:id="@+id/imagelist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                app:layout_heightPercent="30%w" />
+
+        </com.example.everyoneassist.Layout.PercentLinearLayout>
+
+        <com.example.everyoneassist.Layout.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <TextView
+                android:id="@+id/amend_skill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/skill_item_orange"
+                android:gravity="center"
+                android:text="修改技能"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_normal"
+                app:layout_widthPercent="25%w" />
+
+            <TextView
+                android:id="@+id/close_skill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/skill_item_orange"
+                android:gravity="center"
+                android:text="关闭技能"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_normal"
+                app:layout_widthPercent="25%w" />
+
+            <TextView
+                android:id="@+id/delete_skill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/skill_item_orange"
+                android:gravity="center"
+                android:text="删除"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_normal"
+                app:layout_widthPercent="25%w" />
+
+        </com.example.everyoneassist.Layout.PercentLinearLayout>
+
+    </LinearLayout>
+
+</com.example.everyoneassist.Layout.PercentLinearLayout>

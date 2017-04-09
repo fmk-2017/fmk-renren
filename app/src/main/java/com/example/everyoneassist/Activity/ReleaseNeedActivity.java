@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -147,7 +148,7 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void Fail(String method, String error) {
-
+        Log.e("xxxxxxxxxxxx", "sssssssssssssssss");
     }
 
     @Override

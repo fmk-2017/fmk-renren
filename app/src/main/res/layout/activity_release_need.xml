@@ -9,8 +9,6 @@
     android:orientation="vertical"
     tools:context="com.example.everyoneassist.Activity.ReleaseNeedActivity">
 
-    <include layout="@layout/header_title" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +25,8 @@
         android:orientation="horizontal"
         android:padding="10dp">
 
-        <ImageView
+        <com.example.everyoneassist.View.CircleImageView
+            android:id="@+id/avatar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/home_07"
@@ -46,6 +46,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/server_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="诚信服务"
@@ -59,6 +60,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/start_one"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:scaleType="centerInside"
@@ -67,6 +69,7 @@
                         app:layout_widthPercent="100%h" />
 
                     <ImageView
+                        android:id="@+id/start_two"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
@@ -77,6 +80,7 @@
                         app:layout_widthPercent="100%h" />
 
                     <ImageView
+                        android:id="@+id/start_three"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:scaleType="centerInside"
@@ -89,6 +93,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/server_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
@@ -120,6 +125,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/image1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -129,6 +135,7 @@
             app:layout_widthPercent="33%w" />
 
         <ImageView
+            android:id="@+id/image2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -138,6 +145,7 @@
             app:layout_widthPercent="33%w" />
 
         <ImageView
+            android:id="@+id/image3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -164,6 +172,7 @@
             android:textSize="@dimen/text_big" />
 
         <TextView
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="深圳卓越服务管理有限公司，经公安备案，工商注册，是深圳市政府民生工程12349和核心服务商，是福田区政府便民生活平台"
@@ -181,6 +190,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/auth1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -188,6 +198,7 @@
             android:src="@drawable/phone_auth_dleft" />
 
         <ImageView
+            android:id="@+id/auth2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -195,6 +206,7 @@
             android:src="@drawable/autonym_auth_dleft" />
 
         <ImageView
+            android:id="@+id/auth3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -202,6 +214,7 @@
             android:src="@drawable/weibo_auth_dleft" />
 
         <ImageView
+            android:id="@+id/auth4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -219,6 +232,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/auth5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="centerInside"
@@ -232,22 +246,43 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:layout_marginTop="8dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:padding="10dp">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="价格：120.00次"
-            android:textColor="@color/orange"
-            android:textSize="@dimen/text_normal" />
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/server_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="价格：120.00次"
+                android:textColor="@color/orange"
+                android:textSize="@dimen/text_normal"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/server_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="应邀时间：2016-11-18 12:00"
+                android:textColor="@color/deep_gray"
+                android:textSize="@dimen/text_normal" />
+
+        </LinearLayout>
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/invitantion"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="应邀时间：2016-11-18 12:00"
-            android:textColor="@color/deep_gray"
+            android:layout_gravity="bottom"
+            android:background="@drawable/skill_item_orange1"
+            android:text="立即应邀"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_normal" />
 
     </LinearLayout>

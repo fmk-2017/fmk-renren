@@ -63,8 +63,7 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
         if (orderBeanList != null && orderBeanList.size() > 0){
             OrderBean bean = orderBeanList.get(position);
             Intent intent = new Intent(MyOrderActivity.this,AtWillBuyActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("bean",bean);
+            intent.putExtra("xid", bean.getId());
             startActivity(intent);
         }
     }

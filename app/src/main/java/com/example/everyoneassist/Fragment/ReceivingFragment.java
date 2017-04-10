@@ -242,12 +242,12 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
             case R.id.mode:
 
                 break;
-            case R.id.receiving:
+            /*case R.id.receiving:
                 int position = (int) v.getTag();
                 Intent intent = new Intent(getContext(), AtWillBuyActivity.class);
                 intent.putExtra("xid", demandList.get(position).getId());
                 startActivity(intent);
-                break;
+                break;*/
         }
     }
 
@@ -270,12 +270,16 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
     @Override
     public void onInvited(int position) {
         if(demandList != null){
-            Demand demand = demandList.get(position);
+            /*Demand demand = demandList.get(position);
             HashMap<String, String> map = new HashMap<String, String>();
             map.put("act", APPOINTMENT_SERVIER);
             map.put("user_id", "1");
             map.put("server_id", "1");
-            HttpPostRequestUtils.getInstance(this).Post(map);
+            HttpPostRequestUtils.getInstance(this).Post(map);*/
+
+            Intent intent = new Intent(getContext(), AtWillBuyActivity.class);
+            intent.putExtra("xid", demandList.get(position).getId());
+            startActivity(intent);
         }
     }
 }

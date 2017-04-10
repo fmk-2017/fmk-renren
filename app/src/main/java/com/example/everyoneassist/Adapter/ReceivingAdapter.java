@@ -22,7 +22,7 @@ import java.util.List;
  * Created by fengm on 2017/1/13.
  */
 
-public class ReceivingAdapter extends BaseAdapter {
+public class ReceivingAdapter extends BaseAdapter implements View.OnClickListener{
 
     private Context context;
     private List<Demand> demandList;
@@ -89,7 +89,7 @@ public class ReceivingAdapter extends BaseAdapter {
         viewHolder.work_price.setText(String.format("配送费%s元", "30"));
 
         viewHolder.receiving.setTag(position);
-        viewHolder.receiving.setOnClickListener(onclick);
+        viewHolder.receiving.setOnClickListener(this);
 
         return convertView;
     }

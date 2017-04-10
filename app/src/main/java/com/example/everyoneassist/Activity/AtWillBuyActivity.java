@@ -5,10 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.alibaba.fastjson.JSON;
+import com.example.everyoneassist.Adapter.EvaluateAdapter;
 import com.example.everyoneassist.Entity.OrderBean;
 import com.example.everyoneassist.R;
 import com.example.everyoneassist.Utils.HttpPostRequestUtils;
 import com.example.everyoneassist.View.MyListView;
+import com.example.everyoneassist.View.MyListView2;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,21 +21,18 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
 
     private final String DEMAND_INFO = "demand_info";
     private String demand_id;
-    private MyListView mylistview;
+    private MyListView2 mylistview;
     private OrderBean orderBean;
+    private EvaluateAdapter mEvaAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_at_will_buy);
         initHeader("随意购");
-
         demand_id = getIntent().getStringExtra("xid");
-
         initView();
-
         getInfo();
-
     }
 
     private void getInfo() {
@@ -42,10 +41,14 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
         map.put("to_user_id", shared.getString("user_id", ""));
         map.put("demand_id", demand_id);
         HttpPostRequestUtils.getInstance(this).Post(map);
+
+        mEvaAdapter = new EvaluateAdapter(AtWillBuyActivity.this);
+        mylistview.setAdapter(mEvaAdapter);
+
     }
 
     private void initView() {
-        mylistview = (MyListView) this.findViewById(R.id.mylistview);
+        mylistview = (MyListView2) this.findViewById(R.id.lvMy);
 
 
     }

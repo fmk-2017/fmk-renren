@@ -1,7 +1,6 @@
 package com.example.everyoneassist.Activity;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -10,13 +9,10 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.example.everyoneassist.Adapter.InvitationAdapter;
 import com.example.everyoneassist.Entity.Invitation;
-import com.example.everyoneassist.Entity.OrderBean;
 import com.example.everyoneassist.Entity.Order_Info;
 import com.example.everyoneassist.R;
-import com.example.everyoneassist.Utils.AppUtils;
 import com.example.everyoneassist.Utils.HttpPostRequestUtils;
 import com.example.everyoneassist.Utils.TimeUtils;
-import com.example.everyoneassist.View.MyListView;
 import com.example.everyoneassist.View.MyListView2;
 
 import org.json.JSONException;
@@ -87,12 +83,12 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
         content.setText(order_info.getInfo());
         time.setText(TimeUtils.getFormatTime(order_info.getAddtime()));
 //        address_buy.setText();
-        address_receving.setText(order_info.getAddress());
-        price.setText(order_info.getServer_price());
+        address_receving.setText("没有数据");
+        price.setText("配送费："+order_info.getServer_price()+"元");
 //        order_no.setText();
-        contacts.setText(order_info.getConsignee());
-        contacts_phone.setText(order_info.getTel());
-        remark.setText(order_info.getTel());
+        contacts.setText("联系人："+"没有数据");
+        contacts_phone.setText("联系电话:"+"没有数据");
+        remark.setText("备注:"+"没有数据");
         String op = "";
         switch (order_info.getStatus()) {
             case "0":
@@ -115,13 +111,13 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
     @Override
     public void Success(String method, JSONObject json) throws JSONException {
         if (DEMAND_INFO.equals(method)) {
-            order_info = JSON.parseObject(json.getJSONObject("data").getString("order_info"), Order_Info.class);
+            order_info = JSON.parseObject(json.getJSONObject("data").toString(), Order_Info.class);
             setviewData();
-            invitations = JSON.parseArray(json.getJSONObject("data").getString("user_info"), Invitation.class);
+            /*invitations = JSON.parseArray(json.getJSONObject("data").getString("user_info"), Invitation.class);
             if (order_info.getUser_id().equals(shared.getString("user_id", ""))) is_self = true;
             else is_self = false;
             ia = new InvitationAdapter(this, invitations, this, is_self);
-            mylistview.setAdapter(ia);
+            mylistview.setAdapter(ia);*/
         } else if (APPOINTMENT_SERVER.equals(method)) {
             getInfo();
         } else if (USER_AFFIRM.equals(method)) {

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.everyoneassist.Activity.AtWillBuyActivity;
 import com.example.everyoneassist.Entity.Invitation;
+import com.example.everyoneassist.Interface.OnInvitedListener;
 import com.example.everyoneassist.R;
 import com.example.everyoneassist.Utils.Constant;
 import com.example.everyoneassist.View.CircleImageView;
@@ -21,12 +22,13 @@ import java.util.List;
  * Created by fengm on 2017-4-10.
  */
 
-public class InvitationAdapter extends BaseAdapter {
+public class InvitationAdapter extends BaseAdapter implements View.OnClickListener{
 
     private Context context;
     private List<Invitation> invitations;
     private View.OnClickListener onclick;
     private boolean is_self;
+    private OnInvitedListener invitedListener;
 
     public InvitationAdapter(Context context, List<Invitation> invitations, View.OnClickListener onclick, boolean is_self) {
         this.context = context;
@@ -35,9 +37,14 @@ public class InvitationAdapter extends BaseAdapter {
         this.is_self = is_self;
     }
 
+    public InvitationAdapter(Context context,OnInvitedListener invitedListener) {
+        this.context = context;
+        this.invitedListener = invitedListener;
+    }
+
     @Override
     public int getCount() {
-        return invitations.size();
+        return 2;//invitations.size();
     }
 
     @Override
@@ -52,7 +59,7 @@ public class InvitationAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder vh;
+        /*ViewHolder vh;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.serverinvitation_layout, null, false);
             vh = new ViewHolder();
@@ -97,7 +104,21 @@ public class InvitationAdapter extends BaseAdapter {
 
         vh.invitantion.setTag(position);
         vh.invitantion.setOnClickListener(onclick);
-        return convertView;
+        return convertView;*/
+        convertView = LayoutInflater.from(context).inflate(R.layout.serverinvitation_layout, null, false);
+        TextView invitantion = (TextView) convertView.findViewById(R.id.invitantion);
+        invitantion.setTag(position);
+        invitantion.setOnClickListener(this);
+        return  convertView;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.invitantion://立即应邀
+                invitedListener.onInvited((Integer) v.getTag());
+                break;
+        }
     }
 
     class ViewHolder {

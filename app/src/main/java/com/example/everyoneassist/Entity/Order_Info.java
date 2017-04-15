@@ -23,6 +23,9 @@ public class Order_Info {
     private String is_accomplish;
     private String status;
     private String addtime;
+    private String accepttime;
+    private String evaluate;
+    private String score;
     private String user_photo;
     private String nickname;
     private String user_name;
@@ -41,6 +44,7 @@ public class Order_Info {
     private String mobile;
     private String sign_building;
     private String best_time;
+    private String server_type_name;
 
     public String getId() {
         return id;
@@ -176,6 +180,30 @@ public class Order_Info {
 
     public void setAddtime(String addtime) {
         this.addtime = addtime;
+    }
+
+    public String getAccepttime() {
+        return accepttime;
+    }
+
+    public void setAccepttime(String accepttime) {
+        this.accepttime = accepttime;
+    }
+
+    public String getEvaluate() {
+        return evaluate;
+    }
+
+    public void setEvaluate(String evaluate) {
+        this.evaluate = evaluate;
+    }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
     }
 
     public String getUser_photo() {
@@ -322,6 +350,14 @@ public class Order_Info {
         this.best_time = best_time;
     }
 
+    public String getServer_type_name() {
+        return server_type_name;
+    }
+
+    public void setServer_type_name(String server_type_name) {
+        this.server_type_name = server_type_name;
+    }
+
     @Override
     public String toString() {
         return "Order_Info{" +
@@ -342,6 +378,9 @@ public class Order_Info {
                 ", is_accomplish='" + is_accomplish + '\'' +
                 ", status='" + status + '\'' +
                 ", addtime='" + addtime + '\'' +
+                ", accepttime='" + accepttime + '\'' +
+                ", evaluate='" + evaluate + '\'' +
+                ", score='" + score + '\'' +
                 ", user_photo='" + user_photo + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", user_name='" + user_name + '\'' +
@@ -360,6 +399,7 @@ public class Order_Info {
                 ", mobile='" + mobile + '\'' +
                 ", sign_building='" + sign_building + '\'' +
                 ", best_time='" + best_time + '\'' +
+                ", server_type_name='" + server_type_name + '\'' +
                 '}';
     }
 }

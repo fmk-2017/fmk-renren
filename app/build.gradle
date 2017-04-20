@@ -1,6 +1,22 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'renren'
+            keyPassword '123456'
+            storeFile file('E:/renren/fmk-renren/renren.jks')
+            storePassword '123456'
+        }
+        relest {
+        }
+        debug {
+            keyAlias 'renren'
+            keyPassword '123456'
+            storeFile file('E:/renren/fmk-renren/renren.jks')
+            storePassword '123456'
+        }
+    }
     compileSdkVersion 24
     buildToolsVersion "25.0.0"
     defaultConfig {
@@ -35,4 +51,12 @@ dependencies {
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha2'
     testCompile 'junit:junit:4.12'
+    compile files('libs/MobCommons-2017.0412.1554.jar')
+    compile files('libs/MobTools-2017.0412.1554.jar')
+    compile files('libs/ShareSDK-Core-2.8.3.jar')
+    compile files('libs/ShareSDK-QQ-2.8.3.jar')
+    compile files('libs/ShareSDK-Wechat-2.8.3.jar')
+    compile files('libs/ShareSDK-Wechat-Core-2.8.3.jar')
+    compile files('libs/ShareSDK-Wechat-Favorite-2.8.3.jar')
+    compile files('libs/ShareSDK-Wechat-Moments-2.8.3.jar')
 }

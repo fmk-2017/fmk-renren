@@ -13,6 +13,7 @@ import com.example.everyoneassist.Entity.Skill;
 import com.example.everyoneassist.Layout.PercentLinearLayout;
 import com.example.everyoneassist.MyApplication;
 import com.example.everyoneassist.R;
+import com.example.everyoneassist.Utils.AppUtils;
 import com.example.everyoneassist.Utils.TimeUtils;
 import com.example.everyoneassist.View.CircleImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -88,10 +89,12 @@ public class HomeAdapter extends BaseAdapter {
         if (skill.getUser_photo().endsWith(".png") || skill.getUser_photo().endsWith(".jpg") || skill.getUser_photo().endsWith(".jpeg"))
             ImageLoader.getInstance().displayImage(skill.getUser_photo(), viewHolder.homeitem_avatar);
         else viewHolder.homeitem_avatar.setImageResource(R.mipmap.home_07);
-        viewHolder.homeitem_name.setText(skill.getServer_name() + "");
-        viewHolder.homeitem_works.setText(skill.getCategory_id() + "");
+        viewHolder.homeitem_name.setText(skill.getCat_name());
+        viewHolder.homeitem_works.setText(skill.getServer_type_name());
         viewHolder.homeitem_time.setText(TimeUtils.getTime_difference(skill.getServer_time()) + "前");
         viewHolder.homeitem_text.setText(skill.getSkill_info());
+        viewHolder.homeitem_distance.setText(AppUtils.getdistance(Float.valueOf(skill.getRange())));
+        viewHolder.homeitem_zan.setText(skill.getPraisesum());
 
         List<String> strlist = skill.getSkill_photos();
         if (strlist != null && strlist.size() < 1)

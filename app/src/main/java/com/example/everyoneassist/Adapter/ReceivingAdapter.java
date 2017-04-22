@@ -22,22 +22,22 @@ import java.util.List;
  * Created by fengm on 2017/1/13.
  */
 
-public class ReceivingAdapter extends BaseAdapter implements View.OnClickListener {
+public class ReceivingAdapter extends BaseAdapter {
 
     private Context context;
     private List<Demand> demandList;
 
-    private OnInvitedListener invitedListener;
+    private View.OnClickListener onclick;
 
 
     public ReceivingAdapter(Context context) {
         this.context = context;
     }
 
-    public ReceivingAdapter(Context context, List<Demand> demandList,OnInvitedListener invitedListener) {
+    public ReceivingAdapter(Context context, List<Demand> demandList, View.OnClickListener onclick) {
         this.context = context;
         this.demandList = demandList;
-        this.invitedListener =  invitedListener;
+        this.onclick = onclick;
 
     }
 
@@ -82,28 +82,33 @@ public class ReceivingAdapter extends BaseAdapter implements View.OnClickListene
         ImageLoader.getInstance().displayImage("http://m.szwtdl.cn/" + demand.getUser_photo(), viewHolder.avatar);
         viewHolder.user_name.setText(demand.getNickname());
         viewHolder.bestows_num.setText("");
-        viewHolder.work.setText("购买商品：" + demand.getCat_name());
+
+        viewHolder.work.setText(demand.getServer_type().equals("2") ? "购买商品：" : "" + demand.getCat_name());
         viewHolder.work_content.setText(demand.getInfo());
         viewHolder.work_time.setText("发布时间：" + TimeUtils.getFormatTime(demand.getAddtime()));//这个是送达时间还是发布时间 ...
+        if (demand.getServer_type().equals("10")) {
+            viewHolder.work_address.setVisibility(View.VISIBLE);
+            viewHolder.work_price.setVisibility(View.VISIBLE);
+        }
         viewHolder.work_address.setText("收货地址：无");
-        viewHolder.work_price.setText(String.format("配送费%s元", "30"));
+        viewHolder.work_price.setText(String.format("配送费%s元", demand.getServer_price()));
 
         viewHolder.receiving.setTag(position);
-        viewHolder.receiving.setOnClickListener(this);
+        viewHolder.receiving.setOnClickListener(onclick);
 
         return convertView;
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.receiving://立即应邀
-                int position = (int) v.getTag();
-                if (invitedListener != null)
-                    invitedListener.onInvited(position);
-                break;
-        }
-    }
+//    @Override
+//    public void onClick(View v) {
+//        switch (v.getId()) {
+//            case R.id.receiving://立即应邀
+//                int position = (int) v.getTag();
+//                if (invitedListener != null)
+//                    invitedListener.onInvited(position);
+//                break;
+//        }
+//    }
   
     class ViewHolder {
         TextView listview_title, user_name, bestows_num, work, work_content, work_time, work_address, work_price, receiving;

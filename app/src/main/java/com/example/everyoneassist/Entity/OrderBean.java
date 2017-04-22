@@ -23,6 +23,7 @@ public class OrderBean implements Serializable{
     String status;
     String addtime;
     String cat_name;
+    String count;
     String server_type_name;
 
     public OrderBean() {
@@ -173,6 +174,14 @@ public class OrderBean implements Serializable{
 
     public void setCat_name(String cat_name) {
         this.cat_name = cat_name;
+    }
+
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
     }
 
     public String getServer_type_name() {

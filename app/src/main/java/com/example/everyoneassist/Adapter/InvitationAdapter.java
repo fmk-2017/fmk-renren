@@ -11,7 +11,9 @@ import android.widget.TextView;
 import com.example.everyoneassist.Activity.AtWillBuyActivity;
 import com.example.everyoneassist.Entity.Invitation;
 import com.example.everyoneassist.R;
+import com.example.everyoneassist.Utils.AppUtils;
 import com.example.everyoneassist.Utils.Constant;
+import com.example.everyoneassist.Utils.TimeUtils;
 import com.example.everyoneassist.View.CircleImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -82,10 +84,10 @@ public class InvitationAdapter extends BaseAdapter {
 
         ImageLoader.getInstance().displayImage(Constant.HOST + invi.getUser_photo(), vh.avatar);
         vh.server_name.setText(invi.getNickname());
-//        vh.server_time.setText(invi.get);
-//        vh.server_price.setText();
-//        vh.content.setText();
-//        vh.textView3.setText();
+        vh.server_time.setText(TimeUtils.getTime(invi.getAddtime()));
+        vh.server_price.setText("￥" + invi.getSkill_price());
+        vh.content.setText(invi.getSkill_info());
+        vh.textView3.setText(AppUtils.getdistance(Float.valueOf(invi.getRange())));
         vh.server_type.setText(invi.getCat_name());
         if (is_self) {
             vh.invitantion.setVisibility(View.VISIBLE);

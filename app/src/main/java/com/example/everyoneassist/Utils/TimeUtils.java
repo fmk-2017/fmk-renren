@@ -1,5 +1,7 @@
 package com.example.everyoneassist.Utils;
 
+import android.text.TextUtils;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,6 +33,7 @@ public class TimeUtils {
 
     //字符串转时间戳
     public static String getTime(String timeString){
+        if (TextUtils.isEmpty(timeString)) return "";
         String timeStamp = null;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 hh:mm");
         Date d;

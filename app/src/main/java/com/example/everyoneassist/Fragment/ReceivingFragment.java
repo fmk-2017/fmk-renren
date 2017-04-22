@@ -204,7 +204,7 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
     public void getdemand(double user_lat, double user_lon) {
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("act", METHOD_DEMAND);
-        map.put("category_id", "7");
+        map.put("category_id", "");
         map.put("user_lat", user_lat + "");
         map.put("user_lon", user_lon + "");
         map.put("server_type", "1");

@@ -6,7 +6,7 @@
 
     <include layout="@layout/header_title" />
 
-    <com.example.everyoneassist.View.Pull.PullToRefreshExpandableListView
+    <com.example.everyoneassist.View.Pull.PullToRefreshListView
         android:id="@+id/refreshlistview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

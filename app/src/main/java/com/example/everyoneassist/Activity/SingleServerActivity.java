@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ExpandableListView;
+import android.widget.ListView;
 
 import com.example.everyoneassist.Adapter.SkillAdapter;
 import com.example.everyoneassist.R;
@@ -16,8 +17,8 @@ import org.json.JSONObject;
 
 public class SingleServerActivity extends BaseActivity implements HttpPostRequestUtils.HttpPostRequestCallback {
 
-    private PullToRefreshExpandableListView refreshlistview;
-    private ExpandableListView expandableListView;
+    private PullToRefreshListView refreshlistview;
+    private ListView expandableListView;
     private String cid, cname;
 
     @Override
@@ -32,10 +33,8 @@ public class SingleServerActivity extends BaseActivity implements HttpPostReques
     }
 
     private void initView() {
-        refreshlistview = (PullToRefreshExpandableListView) this.findViewById(R.id.refreshlistview);
+        refreshlistview = (PullToRefreshListView) this.findViewById(R.id.refreshlistview);
         expandableListView = refreshlistview.getRefreshableView();
-        expandableListView.collapseGroup(0);
-        expandableListView.expandGroup(0);
 
     }
 
@@ -56,6 +55,6 @@ public class SingleServerActivity extends BaseActivity implements HttpPostReques
 
     @Override
     public Context getContext() {
-        return null;
+        return this;
     }
 }

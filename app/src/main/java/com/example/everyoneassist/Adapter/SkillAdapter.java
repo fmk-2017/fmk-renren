@@ -82,11 +82,11 @@ public class SkillAdapter extends BaseAdapter implements View.OnClickListener {
         } else viewholder = (ViewHolder) convertView.getTag();
 
         Skill skill = skills.get(position);
-        viewholder.skill_title.setText(skill.getServer_name());
+        viewholder.skill_title.setText(skill.getCat_name());
         if ("0".equals(skill.getStatus())) viewholder.skill_status.setText("等待审核");
         else viewholder.skill_status.setText("审核通过");
-        viewholder.skill_lx.setText(skill.getServer_name());
-        viewholder.skill_type.setText(skill.getServer_name());
+        viewholder.skill_lx.setText(skill.getCat_name());
+        viewholder.skill_type.setText(skill.getServer_type_name());
 
         viewholder.skill_price.setText(NumberFormat.getInstance().format(Double.valueOf(skill.getSkill_price())) + "元");
 

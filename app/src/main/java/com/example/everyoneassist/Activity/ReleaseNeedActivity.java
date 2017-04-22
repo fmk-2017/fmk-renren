@@ -134,8 +134,10 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
     public void Success(String method, JSONObject json) throws JSONException {
         if (METHOD_VIEW.equals(method)) {
             need_catList = JSON.parseArray(json.getString("data"), Need_Cat.class);
-            releaseneed = new ReleaseNeedActivityAdapter(this, need_catList);
-            server_Item.setAdapter(releaseneed);
+            if (need_catList != null && need_catList.size() > 0) {
+                releaseneed = new ReleaseNeedActivityAdapter(this, need_catList);
+                server_Item.setAdapter(releaseneed);
+            }
             if (need_catList.size() > 0) {
                 skill_type.setText("技能类型：" + need_catList.get(0).getCat_name());
                 cat_id = need_catList.get(0).getCat_id();

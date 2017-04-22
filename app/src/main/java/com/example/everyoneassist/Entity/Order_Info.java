@@ -15,6 +15,8 @@ public class Order_Info {
     private String server_lon;
     private String server_lat;
     private String server_price;
+    private String remark;
+    private String d_order;
     private String server_tag;
     private String address;
     private String info;
@@ -108,6 +110,22 @@ public class Order_Info {
 
     public void setServer_price(String server_price) {
         this.server_price = server_price;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getD_order() {
+        return d_order;
+    }
+
+    public void setD_order(String d_order) {
+        this.d_order = d_order;
     }
 
     public String getServer_tag() {

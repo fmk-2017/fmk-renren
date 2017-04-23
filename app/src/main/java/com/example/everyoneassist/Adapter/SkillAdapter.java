@@ -26,8 +26,8 @@ import java.util.List;
 
 public class SkillAdapter extends BaseAdapter implements View.OnClickListener {
 
-    private final String METHOD_DEL_SERVER = "del_server";  //删除技能
-    private final String METHOD_OFF_SERVER = "off_server";  //关闭技能
+    public static final String METHOD_DEL_SERVER = "del_server";  //删除技能
+    public static final String METHOD_OFF_SERVER = "off_server";  //关闭技能
     private Context context;
     private HttpPostRequestUtils.HttpPostRequestCallback hprc;
     private List<Skill> skills;
@@ -91,10 +91,10 @@ public class SkillAdapter extends BaseAdapter implements View.OnClickListener {
         viewholder.skill_price.setText(NumberFormat.getInstance().format(Double.valueOf(skill.getSkill_price())) + "元");
 
         String[] weeks = context.getResources().getStringArray(R.array.service_time);
-        viewholder.skill_time.setText(weeks[Integer.valueOf(skill.getServer_time())]);
+        viewholder.skill_time.setText(weeks[Integer.valueOf(skill.getServer_time()) - 1]);
         viewholder.skill_content.setText(skill.getSkill_info());
 
-        viewholder.amend_skill.setTag(skill.getSkill_id());
+        viewholder.amend_skill.setTag(position);
         viewholder.close_skill.setTag(skill.getSkill_id());
         viewholder.delete_skill.setTag(skill.getSkill_id());
         viewholder.amend_skill.setOnClickListener(this);
@@ -114,8 +114,9 @@ public class SkillAdapter extends BaseAdapter implements View.OnClickListener {
             case R.id.amend_skill://修改技能
                 Intent intent = new Intent(context, EditSkillActivity.class);
                 intent.putExtra("type", 1);
-                intent.putExtra("skill_type", 1);
-                intent.putExtra("skill_id", (String) v.getTag());
+                intent.putExtra("types", skills.get((int) v.getTag()).getCat_name());
+                intent.putExtra("types_id", skills.get((int) v.getTag()).getCategory_id());
+                intent.putExtra("skill_id", skills.get((int) v.getTag()).getSkill_id());
                 context.startActivity(intent);
                 break;
             case R.id.close_skill://关闭技能

@@ -87,7 +87,7 @@ public class HomeAdapter extends BaseAdapter {
         Skill skill = skill_list.get(position);
 //        x.image().bind(viewHolder.homeitem_avatar, skill.getUser_photo(), MyApplication.io);
         if (skill.getUser_photo().endsWith(".png") || skill.getUser_photo().endsWith(".jpg") || skill.getUser_photo().endsWith(".jpeg"))
-            ImageLoader.getInstance().displayImage(skill.getUser_photo(), viewHolder.homeitem_avatar);
+            ImageLoader.getInstance().displayImage(AppUtils.getAvatarPath(skill.getUser_photo()), viewHolder.homeitem_avatar);
         else viewHolder.homeitem_avatar.setImageResource(R.mipmap.home_07);
         viewHolder.homeitem_name.setText(skill.getCat_name());
         viewHolder.homeitem_works.setText(skill.getServer_type_name());

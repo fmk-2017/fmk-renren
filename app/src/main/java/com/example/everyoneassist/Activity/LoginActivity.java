@@ -46,6 +46,7 @@ public class LoginActivity extends BaseActivity implements HttpPostRequestUtils.
         String passwords = shared.getString("passwords","passwords");
         if (!username.equals("passwords") &&  !passwords.equals("passwords")){
             startActivity(new Intent(LoginActivity.this,MainActivity.class));
+            finish();
         }
     }
 

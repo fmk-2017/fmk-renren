@@ -7,11 +7,13 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,11 +25,13 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationClientOption.AMapLocationMode;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps2d.AMap;
+import com.amap.api.maps2d.CameraUpdate;
 import com.amap.api.maps2d.CameraUpdateFactory;
 import com.amap.api.maps2d.LocationSource;
 import com.amap.api.maps2d.MapView;
 import com.amap.api.maps2d.model.BitmapDescriptor;
 import com.amap.api.maps2d.model.BitmapDescriptorFactory;
+import com.amap.api.maps2d.model.LatLng;
 import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
 import com.example.everyoneassist.Activity.AtWillBuyActivity;
@@ -36,10 +40,12 @@ import com.example.everyoneassist.Entity.Demand;
 import com.example.everyoneassist.Entity.GoodsNameAndId;
 import com.example.everyoneassist.Interface.OnInvitedListener;
 import com.example.everyoneassist.R;
+import com.example.everyoneassist.Utils.AppUtils;
 import com.example.everyoneassist.Utils.DebugLog;
 import com.example.everyoneassist.Utils.HttpPostRequestUtils;
 import com.example.everyoneassist.Utils.WindowsUtils;
 import com.example.everyoneassist.View.MyListView;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,7 +57,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class ReceivingFragment extends Fragment implements LocationSource, AMapLocationListener, HttpPostRequestUtils.HttpPostRequestCallback, View.OnClickListener,OnInvitedListener {
+public class ReceivingFragment extends Fragment implements LocationSource, AMapLocationListener, HttpPostRequestUtils.HttpPostRequestCallback, View.OnClickListener, OnInvitedListener, AbsListView.OnScrollListener {
     private final String METHOD_DEMAND = "demand_list";
     private final String APPOINTMENT_SERVIER = "appointment_server";
     private MapView d2map;
@@ -64,6 +70,9 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
     private AMapLocationClientOption mLocationOption;
     private  List<GoodsNameAndId> list =new ArrayList<>();
     private List<Demand> demandList;
+    private String server_type = "";
+    private String category_id = "";
+    private List<GoodsNameAndId> nameAndIds;
 
     public ReceivingFragment() {
     }
@@ -90,6 +99,7 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
 
         receiving_listview = (MyListView) view.findViewById(R.id.receiving_listview);
         receiving_listview.setbottom(DensityUtil.dip2px(15));
+        receiving_listview.setOnScrollListener(this);
 
         d2map.onCreate(savedInstanceState);// 此方法必须重写
         aMap = d2map.getMap();
@@ -145,7 +155,6 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
             mLocationOption.setLocationMode(AMapLocationMode.Hight_Accuracy);
             mLocationOption.setInterval(2000);
             mlocationClient.setLocationOption(mLocationOption);
-            mlocationClient.startLocation();//启动定位
         }
     }
 
@@ -180,19 +189,21 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
         if (null != mlocationClient) {
             mlocationClient.onDestroy();
         }
+        deactivate();
     }
 
     @Override
     public void onResume() {
         super.onResume();
         d2map.onResume();
+        if (mlocationClient != null)
+            mlocationClient.startLocation();//启动定位
     }
 
     @Override
     public void onPause() {
         super.onPause();
         d2map.onPause();
-        deactivate();
     }
 
     @Override
@@ -204,10 +215,10 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
     public void getdemand(double user_lat, double user_lon) {
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("act", METHOD_DEMAND);
-        map.put("category_id", "");
+        map.put("category_id", category_id);
         map.put("user_lat", user_lat + "");
         map.put("user_lon", user_lon + "");
-        map.put("server_type", "1");
+        map.put("server_type", server_type);
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
 
@@ -217,8 +228,22 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
             demandList = JSON.parseArray(json.getString("data"), Demand.class);
             receivingAdapter = new ReceivingAdapter(getActivity(), demandList, this);
             receiving_listview.setAdapter(receivingAdapter);
+            addmarket();
         }else if(APPOINTMENT_SERVIER.equals(mode)){
 
+        }
+    }
+
+    public void addmarket() {
+        for (Demand demand : demandList) {
+            float v = Float.valueOf(demand.getServer_lat());
+            float v1 = Float.valueOf(demand.getServer_lon());
+            ImageView imageView = new ImageView(getContext());
+            if (TextUtils.isEmpty(demand.getUser_photo()))
+                imageView.setImageResource(R.mipmap.home_07);
+            else
+                ImageLoader.getInstance().displayImage(AppUtils.getAvatarPath(demand.getUser_photo()), imageView);
+            aMap.addMarker(new MarkerOptions().position(new LatLng(v, v1)).title(demand.getNickname()).draggable(false).icon(BitmapDescriptorFactory.fromView(imageView)));
         }
     }
 
@@ -235,12 +260,22 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
                 WindowsUtils.showStringListPopupWindow(v,list, new WindowsUtils.OnStringItemClickListener() {
                     @Override
                     public void onStringItemClick(int position, int sex) {
-
+                        category_id = position + "";
                     }
                 });
                 break;
             case R.id.mode:
-
+                List<GoodsNameAndId> nameAndIds = new ArrayList<GoodsNameAndId>();
+                nameAndIds.add(new GoodsNameAndId("Ta来找我", 1));
+                nameAndIds.add(new GoodsNameAndId("我去找TA", 2));
+                nameAndIds.add(new GoodsNameAndId("线上服务", 3));
+                nameAndIds.add(new GoodsNameAndId("邮寄", 4));
+                WindowsUtils.showStringListPopupWindow(v, nameAndIds, new WindowsUtils.OnStringItemClickListener() {
+                    @Override
+                    public void onStringItemClick(int position, int sex) {
+                        server_type = position + "";
+                    }
+                });
                 break;
             case R.id.receiving:
                 int position = (int) v.getTag();
@@ -277,5 +312,21 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
             map.put("server_id", "1");
             HttpPostRequestUtils.getInstance(this).Post(map);
         }
+    }
+
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+    }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        if (demandList == null || demandList.size() <= 0) return;
+        Demand demand = demandList.get(firstVisibleItem);
+        float lat = Float.valueOf(demand.getServer_lat());
+        float lon = Float.valueOf(demand.getServer_lon());
+        LatLng latLng = new LatLng(lat, lon);
+        CameraUpdate u = CameraUpdateFactory.newLatLngZoom(latLng, 17.0f);
+        aMap.animateCamera(u);
     }
 }

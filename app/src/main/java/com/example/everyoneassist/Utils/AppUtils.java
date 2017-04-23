@@ -29,4 +29,9 @@ public class AppUtils {
         return distances;
     }
 
+    public static String getAvatarPath(String path) {
+        if (path.contains("http:")) return path;
+        return "http://112.74.35.236/" + path;
+    }
+
 }

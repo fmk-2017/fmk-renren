@@ -5,16 +5,11 @@ android {
         release {
             keyAlias 'renren'
             keyPassword '123456'
-            storeFile file('E:/renren/fmk-renren/renren.jks')
+            storeFile file('E:/studio_workspace/EveryoneAssist/renren.jks')
             storePassword '123456'
-        }
-        relest {
         }
         debug {
-            keyAlias 'renren'
-            keyPassword '123456'
-            storeFile file('E:/renren/fmk-renren/renren.jks')
-            storePassword '123456'
+            storeFile file('C:/Users/fengm/.android/debug.keystore')
         }
     }
     compileSdkVersion 24
@@ -31,6 +26,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
         }
     }
 }

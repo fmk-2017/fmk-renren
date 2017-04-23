@@ -38,7 +38,13 @@ public class SkillManagerActivity extends BaseActivity implements View.OnClickLi
 
         initView();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getSkill();
+
     }
 
     private void initView() {
@@ -61,9 +67,11 @@ public class SkillManagerActivity extends BaseActivity implements View.OnClickLi
             skills = JSON.parseArray(json.getString("data"), Skill.class);
             skillAdapter = new SkillAdapter(this, skills);
             skilllistview.setAdapter(skillAdapter);
+        } else if (SkillAdapter.METHOD_OFF_SERVER.equals(method)) {
+            getSkill();
+        } else if (SkillAdapter.METHOD_DEL_SERVER.equals(method)) {
+            getSkill();
         }
-
-
     }
 
     @Override

@@ -9,9 +9,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.everyoneassist.Activity.SingleServerActivity;
 import com.example.everyoneassist.Entity.Demand;
 import com.example.everyoneassist.Interface.OnInvitedListener;
 import com.example.everyoneassist.R;
+import com.example.everyoneassist.Utils.AppUtils;
 import com.example.everyoneassist.Utils.TimeUtils;
 import com.example.everyoneassist.View.CircleImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -75,18 +77,22 @@ public class ReceivingAdapter extends BaseAdapter {
             convertView.setTag(viewHolder);
         } else viewHolder = (ViewHolder) convertView.getTag();
 
-        if (position == 0) viewHolder.listview_title.setVisibility(View.VISIBLE);
-        else viewHolder.listview_title.setVisibility(View.GONE);
+        if (context instanceof SingleServerActivity) {
+            viewHolder.listview_title.setVisibility(View.GONE);
+        } else {
+            if (position == 0) viewHolder.listview_title.setVisibility(View.VISIBLE);
+            else viewHolder.listview_title.setVisibility(View.GONE);
+        }
 
         Demand demand = demandList.get(position);
-        ImageLoader.getInstance().displayImage("http://m.szwtdl.cn/" + demand.getUser_photo(), viewHolder.avatar);
+        ImageLoader.getInstance().displayImage(AppUtils.getAvatarPath(demand.getUser_photo()), viewHolder.avatar);
         viewHolder.user_name.setText(demand.getNickname());
         viewHolder.bestows_num.setText("");
 
-        viewHolder.work.setText(demand.getServer_type().equals("2") ? "购买商品：" : "" + demand.getCat_name());
+        viewHolder.work.setText("2".equals(demand.getCategory_id()) ? "购买商品：" : "" + demand.getCat_name());
         viewHolder.work_content.setText(demand.getInfo());
         viewHolder.work_time.setText("发布时间：" + TimeUtils.getFormatTime(demand.getAddtime()));//这个是送达时间还是发布时间 ...
-        if (demand.getServer_type().equals("10")) {
+        if ("10".equals(demand.getCategory_id())) {
             viewHolder.work_address.setVisibility(View.VISIBLE);
             viewHolder.work_price.setVisibility(View.VISIBLE);
         }

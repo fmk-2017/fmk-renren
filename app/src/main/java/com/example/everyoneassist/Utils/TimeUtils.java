@@ -35,7 +35,7 @@ public class TimeUtils {
     public static String getTime(String timeString){
         if (TextUtils.isEmpty(timeString)) return "";
         String timeStamp = null;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 hh:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date d;
         try{
             d = sdf.parse(timeString);

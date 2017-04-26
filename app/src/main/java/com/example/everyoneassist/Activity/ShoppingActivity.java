@@ -20,6 +20,7 @@ import java.util.List;
 
 /**
  * Created by Administrator on 2017/3/22.
+ * 发布界面
  */
 
 public class ShoppingActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener{

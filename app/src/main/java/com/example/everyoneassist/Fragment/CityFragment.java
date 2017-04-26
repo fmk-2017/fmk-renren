@@ -4,21 +4,32 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.everyoneassist.R;
+import com.example.everyoneassist.Utils.HttpPostRequestUtils;
 import com.example.everyoneassist.Utils.StrUtils;
 import com.example.everyoneassist.Utils.ToastUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
 /**
  * Created by Administrator on 2017/3/22.
+ * 同城
  */
 
-public class CityFragment extends Fragment implements View.OnClickListener{
+public class CityFragment extends Fragment implements View.OnClickListener,HttpPostRequestUtils.HttpPostRequestCallback{
+
+    private final String ACTION = "delivery_add";
 
     private TextView tvSendPerson,tvSendPhone,tvCountMoney,tvPay;
     private EditText etRecePerson,etRecePhone,etTip,etRemarks;
@@ -72,21 +83,49 @@ public class CityFragment extends Fragment implements View.OnClickListener{
                 String remarks = etRemarks.getEditableText().toString().trim();
                 if(TextUtils.isEmpty(recePerName)){
                     etRecePerson.setError("不能为空");
-                    ToastUtils.tipShort(getActivity(),"请填写收货人姓名");
+                    //ToastUtils.tipShort(getActivity(),"请填写收货人姓名");
                     return;
                 }
                 if(TextUtils.isEmpty(recePerPhone)){
                     etRecePhone.setError("不能为空");
-                    ToastUtils.tipShort(getActivity(),"请填写收货人电话");
+                    //ToastUtils.tipShort(getActivity(),"请填写收货人电话");
                     return;
                 }
                 if(!StrUtils.isMobileNO(recePerPhone)){
                     etRecePhone.setError("填写错误");
-                    ToastUtils.tipShort(getActivity(),"电话号码填写错误!");
+                    //ToastUtils.tipShort(getActivity(),"电话号码填写错误!");
                     return;
                 }
-
+                HashMap<String, String> map = new HashMap<>();
+                map.put("act", ACTION);
+                map.put("user_id","");
+                map.put("delivery_price","");
+                map.put("tip_price","");
+                map.put("goods_name","");
+                map.put("goods_weight","");
+                map.put("goods_volume","");
+                map.put("goods_price","");
+                map.put("goods_info","");
+                map.put("start_address","");
+                map.put("user_lon","");
+                map.put("user_lat","");
+                map.put("end_address","");
+                map.put("take_addtime","");
+                map.put("consignee","");
+                map.put("receiving_phone","");
+                HttpPostRequestUtils.getInstance(this).Post(map);
                 break;
         }
+    }
+
+    @Override
+    public void Success(String method, JSONObject json) throws JSONException {
+        if (json.getString("result").equals("success")) Toast.makeText(getActivity(),json.getString("info"),Toast.LENGTH_SHORT).show();
+        else Toast.makeText(getActivity(),json.getString("info"),Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void Fail(String method, String error) {
+        Toast.makeText(getActivity(),error,Toast.LENGTH_SHORT).show();
     }
 }

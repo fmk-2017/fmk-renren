@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,13 +49,15 @@ import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
 import org.xutils.x;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 
-public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener, HttpPostRequestUtils.HttpPostRequestCallback, AMapLocationListener {
+public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener, HttpPostRequestUtils.HttpPostRequestCallback, AMapLocationListener, View.OnClickListener {
 
     private static String METHOD_HOME = "get_home"; // 首页
+    private static String METHOD_PRAISE = "user_praise"; // 首页
     private GridView header_gridview;//分类列表
     private String lon;
     private String lat;
@@ -65,6 +68,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     private HomeAdapter homeAdapter;
     private ViewPager header_viewpager;
     private Home home;
+    private List<Skill> skillList;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -157,10 +161,16 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             home = JSON.parseObject(json.getString("data"), Home.class);
             if (home.getGet_category() != null && home.getGet_category().size() > 0)
                 header_gridview.setAdapter(new HeaderGridViewAdapter(getActivity(), home.getGet_category(), 8));
-
             if (home.getGet_server_list() != null && home.getGet_server_list().size() > 0) {
-                homeAdapter = new HomeAdapter(getActivity(), home.getGet_server_list());
-                homelistview.setAdapter(homeAdapter);
+                if (skillList != null)
+                    skillList.clear();
+                else skillList = new ArrayList<>();
+                skillList.addAll(home.getGet_server_list());
+                if (homeAdapter != null) homeAdapter.notifyDataSetChanged();
+                else {
+                    homeAdapter = new HomeAdapter(getActivity(), skillList, this);
+                    homelistview.setAdapter(homeAdapter);
+                }
             }
             if (home.getHome_pic() != null && home.getHome_pic().size() > 0) {
                 ImageView[] imageViews = new ImageView[home.getHome_pic().size()];
@@ -175,8 +185,9 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                 imageViews[0].setImageResource(R.mipmap.home_03);
                 header_viewpager.setAdapter(new SectionsPagerAdapter(getActivity(), imageViews));
             }
-        } else {
-
+        } else if (METHOD_PRAISE.equals(method)) {
+            getHome(lat, lon);
+            Log.e(METHOD_PRAISE, "赞成功or取消赞");
         }
     }
 
@@ -199,6 +210,24 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         map.put("user_lon", user_lon);
         map.put("page", "1");
         map.put("category_id", "0");
+        HttpPostRequestUtils.getInstance(this).Post(map);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.homeitem_zan:
+                String skillid = (String) v.getTag();
+                zan(skillid);
+                break;
+        }
+    }
+
+    public void zan(String skillid) {
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("act", METHOD_PRAISE);
+        map.put("skill_id", skillid);
+        map.put("userid", getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("user_id", ""));
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
 

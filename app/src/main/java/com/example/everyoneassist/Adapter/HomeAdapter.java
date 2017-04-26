@@ -29,14 +29,16 @@ public class HomeAdapter extends BaseAdapter {
 
     private Context context;
     private List<Skill> skill_list;
+    private View.OnClickListener onclick;
 
     public HomeAdapter(Context context) {
         this.context = context;
     }
 
-    public HomeAdapter(Context context, List<Skill> skill_list) {
+    public HomeAdapter(Context context, List<Skill> skill_list, View.OnClickListener onclick) {
         this.context = context;
         this.skill_list = skill_list;
+        this.onclick = onclick;
     }
 
     @Override
@@ -121,6 +123,9 @@ public class HomeAdapter extends BaseAdapter {
             x.image().bind(viewHolder.homeitem_image2, strlist.get(1), MyApplication.io);
             x.image().bind(viewHolder.homeitem_image2, strlist.get(2), MyApplication.io);
         }
+        viewHolder.homeitem_zan.setTag(skill.getSkill_id());
+        viewHolder.homeitem_zan.setOnClickListener(onclick);
+
         return convertView;
     }
 

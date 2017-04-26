@@ -10,7 +10,7 @@ import android.widget.Toast;
 public class ToastUtils {
 
     public static void tipShort(Context context,String tipStr){
-        Toast.makeText(context,"请填写收货人姓名",Toast.LENGTH_LONG).show();
+        Toast.makeText(context,tipStr,Toast.LENGTH_LONG).show();
     }
 
 }

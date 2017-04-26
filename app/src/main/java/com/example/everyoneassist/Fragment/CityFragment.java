@@ -82,17 +82,17 @@ public class CityFragment extends Fragment implements View.OnClickListener,HttpP
                 String remarks = etRemarks.getEditableText().toString().trim();
                 if(TextUtils.isEmpty(recePerName)){
                     etRecePerson.setError("不能为空");
-                    ToastUtils.tipShort(getActivity(),"请填写收货人姓名");
+                    //ToastUtils.tipShort(getActivity(),"请填写收货人姓名");
                     return;
                 }
                 if(TextUtils.isEmpty(recePerPhone)){
                     etRecePhone.setError("不能为空");
-                    ToastUtils.tipShort(getActivity(),"请填写收货人电话");
+                    //ToastUtils.tipShort(getActivity(),"请填写收货人电话");
                     return;
                 }
                 if(!StrUtils.isMobileNO(recePerPhone)){
                     etRecePhone.setError("填写错误");
-                    ToastUtils.tipShort(getActivity(),"电话号码填写错误!");
+                    //ToastUtils.tipShort(getActivity(),"电话号码填写错误!");
                     return;
                 }
                 HashMap<String, String> map = new HashMap<>();

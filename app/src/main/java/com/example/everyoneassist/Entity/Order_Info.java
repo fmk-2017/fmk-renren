@@ -18,11 +18,17 @@ public class Order_Info {
     private String remark;
     private String d_order;
     private String server_tag;
-    private String address;
+    private String buy_address;
     private String info;
     private String is_accomplish;
     private String status;
     private String addtime;
+    private String accepttime;
+    private String evaluate;
+    private String score;
+    private String user_photo;
+    private String nickname;
+    private String user_name;
     private String cat_name;
     private String address_id;
     private String address_name;
@@ -32,13 +38,13 @@ public class Order_Info {
     private String province;
     private String city;
     private String district;
+    private String address;
     private String zipcode;
     private String tel;
     private String mobile;
     private String sign_building;
     private String best_time;
     private String server_type_name;
-
 
     public String getId() {
         return id;
@@ -136,12 +142,12 @@ public class Order_Info {
         this.server_tag = server_tag;
     }
 
-    public String getAddress() {
-        return address;
+    public String getBuy_address() {
+        return buy_address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setBuy_address(String buy_address) {
+        this.buy_address = buy_address;
     }
 
     public String getInfo() {
@@ -174,6 +180,54 @@ public class Order_Info {
 
     public void setAddtime(String addtime) {
         this.addtime = addtime;
+    }
+
+    public String getAccepttime() {
+        return accepttime;
+    }
+
+    public void setAccepttime(String accepttime) {
+        this.accepttime = accepttime;
+    }
+
+    public String getEvaluate() {
+        return evaluate;
+    }
+
+    public void setEvaluate(String evaluate) {
+        this.evaluate = evaluate;
+    }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
+    }
+
+    public String getUser_photo() {
+        return user_photo;
+    }
+
+    public void setUser_photo(String user_photo) {
+        this.user_photo = user_photo;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
     public String getCat_name() {
@@ -248,6 +302,14 @@ public class Order_Info {
         this.district = district;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getZipcode() {
         return zipcode;
     }
@@ -294,5 +356,50 @@ public class Order_Info {
 
     public void setServer_type_name(String server_type_name) {
         this.server_type_name = server_type_name;
+    }
+
+    @Override
+    public String toString() {
+        return "Order_Info{" +
+                "id='" + id + '\'' +
+                ", user_id='" + user_id + '\'' +
+                ", category_id='" + category_id + '\'' +
+                ", server_sex='" + server_sex + '\'' +
+                ", server_day='" + server_day + '\'' +
+                ", server_type='" + server_type + '\'' +
+                ", server_lon='" + server_lon + '\'' +
+                ", server_lat='" + server_lat + '\'' +
+                ", server_price='" + server_price + '\'' +
+                ", remark='" + remark + '\'' +
+                ", d_order='" + d_order + '\'' +
+                ", server_tag='" + server_tag + '\'' +
+                ", buy_address='" + buy_address + '\'' +
+                ", info='" + info + '\'' +
+                ", is_accomplish='" + is_accomplish + '\'' +
+                ", status='" + status + '\'' +
+                ", addtime='" + addtime + '\'' +
+                ", accepttime='" + accepttime + '\'' +
+                ", evaluate='" + evaluate + '\'' +
+                ", score='" + score + '\'' +
+                ", user_photo='" + user_photo + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", user_name='" + user_name + '\'' +
+                ", cat_name='" + cat_name + '\'' +
+                ", address_id='" + address_id + '\'' +
+                ", address_name='" + address_name + '\'' +
+                ", consignee='" + consignee + '\'' +
+                ", email='" + email + '\'' +
+                ", country='" + country + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", district='" + district + '\'' +
+                ", address='" + address + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                ", tel='" + tel + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", sign_building='" + sign_building + '\'' +
+                ", best_time='" + best_time + '\'' +
+                ", server_type_name='" + server_type_name + '\'' +
+                '}';
     }
 }

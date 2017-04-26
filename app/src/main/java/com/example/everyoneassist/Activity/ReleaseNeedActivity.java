@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.amap.api.location.AMapLocation;
@@ -40,13 +42,14 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
     private EditText skill_content;
     private TextView skill_type, def_time, release;
     private MyListView2 server_Item;
+    private View view1;
     private MyGridView setver_time_gridview, sex_gridview, server_type_gridview;
     private String strs = "";
     private HashMap<String, String> map = new HashMap<String, String>();
     private List<Need_Cat> need_catList;
     private String cat_id;
     private ReleaseNeedActivityAdapter releaseneed;
-    private String server_type, server_sex, setver_time;
+    private String server_type, server_sex, server_day;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +76,7 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
 
     private void initView() {
         skill_type = (TextView) this.findViewById(R.id.skill_type);
+        skill_type.setText("技能类型：" + name);
         skill_type.setOnClickListener(this);
 
         release = (TextView) this.findViewById(R.id.release);
@@ -84,6 +88,7 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
         skill_content = (EditText) this.findViewById(R.id.skill_content);
 
         server_Item = (MyListView2) this.findViewById(R.id.server_Item);
+        view1 = this.findViewById(R.id.view1);
 
         setver_time_gridview = (MyGridView) this.findViewById(R.id.setver_time_gridview);
         sex_gridview = (MyGridView) this.findViewById(R.id.sex_gridview);
@@ -113,13 +118,20 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
 
                 break;
             case R.id.release:
+                String info = skill_content.getText().toString().trim();
+                if (TextUtils.isEmpty(server_day) || TextUtils.isEmpty(server_sex) || TextUtils.isEmpty(server_type) || TextUtils.isEmpty(info)) {
+                    Toast.makeText(this, "所有选项都为必填", Toast.LENGTH_SHORT).show();
+                }
                 map.put("act", METHOD_ADD_DEMEND);
                 map.put("user_id", shared.getString("user_id", ""));
-                map.put("info", skill_content.getText().toString().trim());
-                List<String> list = releaseneed.list;
-                for (String str : list)
-                    strs += "," + str;
-                map.put("server_tag", strs.substring(1));
+                map.put("info", info);
+                if (releaseneed != null) {
+                    List<String> list = releaseneed.list;
+                    for (String str : list)
+                        strs += "," + str;
+                    map.put("server_tag", strs.substring(1));
+                }
+                map.put("category_id", id);
                 HttpPostRequestUtils.getInstance(this).Post(map);
                 break;
         }
@@ -134,8 +146,12 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
     public void Success(String method, JSONObject json) throws JSONException {
         if (METHOD_VIEW.equals(method)) {
             need_catList = JSON.parseArray(json.getString("data"), Need_Cat.class);
-            releaseneed = new ReleaseNeedActivityAdapter(this, need_catList);
-            server_Item.setAdapter(releaseneed);
+            if (need_catList != null && need_catList.size() > 0) {
+                view1.setVisibility(View.VISIBLE);
+                server_Item.setVisibility(View.VISIBLE);
+                releaseneed = new ReleaseNeedActivityAdapter(this, need_catList);
+                server_Item.setAdapter(releaseneed);
+            }
             if (need_catList.size() > 0) {
                 skill_type.setText("技能类型：" + need_catList.get(0).getCat_name());
                 cat_id = need_catList.get(0).getCat_id();
@@ -161,11 +177,11 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
         if (view.isSelected()) view.setSelected(false);
         else view.setSelected(true);
         if (parent.getId() == R.id.server_type_gridview) {
-            map.put("server_type", position + "");
+            server_type = position + "";
         } else if (parent.getId() == R.id.sex_gridview) {
-            map.put("server_sex", position + "");
+            server_sex = position + "";
         } else if (parent.getId() == R.id.setver_time_gridview) {
-            map.put("server_day", position + "");
+            server_day = position + "";
         }
 
     }

@@ -28,6 +28,10 @@ public class Skill {
     private String nickname;
     private String user_name;
     private String user_photo;
+    private String cat_name;
+    private String server_type_name;
+    private String range;
+    private String praisesum;
 
     public Skill() {
     }
@@ -176,5 +180,37 @@ public class Skill {
 
     public void setUser_photo(String user_photo) {
         this.user_photo = user_photo;
+    }
+
+    public String getCat_name() {
+        return cat_name;
+    }
+
+    public void setCat_name(String cat_name) {
+        this.cat_name = cat_name;
+    }
+
+    public String getServer_type_name() {
+        return server_type_name;
+    }
+
+    public void setServer_type_name(String server_type_name) {
+        this.server_type_name = server_type_name;
+    }
+
+    public String getRange() {
+        return range;
+    }
+
+    public void setRange(String range) {
+        this.range = range;
+    }
+
+    public String getPraisesum() {
+        return praisesum;
+    }
+
+    public void setPraisesum(String praisesum) {
+        this.praisesum = praisesum;
     }
 }

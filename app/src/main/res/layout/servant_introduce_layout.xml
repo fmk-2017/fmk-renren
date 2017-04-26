@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.everyoneassist.Layout.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,43 +8,53 @@
     <com.example.everyoneassist.View.MyListView2
         android:id="@+id/mylistview2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
-    <TextView
+    <com.example.everyoneassist.Layout.PercentLinearLayout
+        android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
-        android:text="服务评价（1）"
-        android:textColor="@color/black" />
+        android:orientation="vertical"
+        android:visibility="gone">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/thin_white" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:text="服务评价（1）"
+            android:textColor="@color/black" />
 
-    <EditText
-        android:id="@+id/comment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@color/thin_white"
-        android:gravity="left"
-        android:padding="5dp"
-        app:layout_minHeightPercent="30%w" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/thin_white" />
 
-    <TextView
-        android:id="@+id/release_comment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/skill_item_orange1"
-        android:gravity="center"
-        android:text="发表"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_big"
-        app:layout_marginBottomPercent="25%w"
-        app:layout_marginLeftPercent="20%w"
-        app:layout_marginRightPercent="20%w"
-        app:layout_marginTopPercent="5%w" />
+        <EditText
+            android:id="@+id/comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/thin_white"
+            android:gravity="left"
+            android:padding="5dp"
+            app:layout_minHeightPercent="30%w" />
 
-</com.example.everyoneassist.Layout.PercentLinearLayout>
+        <TextView
+            android:id="@+id/release_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/skill_item_orange1"
+            android:gravity="center"
+            android:text="发表"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_big"
+            app:layout_marginBottomPercent="25%w"
+            app:layout_marginLeftPercent="20%w"
+            app:layout_marginRightPercent="20%w"
+            app:layout_marginTopPercent="5%w" />
+
+    </com.example.everyoneassist.Layout.PercentLinearLayout>
+
+</LinearLayout>

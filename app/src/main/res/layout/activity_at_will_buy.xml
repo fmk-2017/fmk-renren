@@ -93,7 +93,8 @@
                         android:layout_height="wrap_content"
                         android:text="购买地址："
                         android:textColor="@color/deep_gray"
-                        android:textSize="@dimen/text_normal" />
+                        android:textSize="@dimen/text_normal"
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/address_buy"
@@ -101,7 +102,8 @@
                         android:layout_height="wrap_content"
                         android:text="龙东副业文具玩具批发城3楼"
                         android:textColor="@color/deep_gray"
-                        android:textSize="@dimen/text_normal" />
+                        android:textSize="@dimen/text_normal"
+                        android:visibility="gone" />
 
                 </LinearLayout>
 

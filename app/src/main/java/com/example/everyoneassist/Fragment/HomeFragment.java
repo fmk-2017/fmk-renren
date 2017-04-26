@@ -24,6 +24,7 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
 import com.example.everyoneassist.Activity.AtWillBuyActivity;
 import com.example.everyoneassist.Activity.MainActivity;
+import com.example.everyoneassist.Activity.MyInfoActivity;
 import com.example.everyoneassist.Activity.ShoppingActivity;
 import com.example.everyoneassist.Activity.SingleServerActivity;
 import com.example.everyoneassist.Adapter.HeaderGridViewAdapter;
@@ -97,6 +98,14 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         myListView = homelistview.getRefreshableView();
         myListView.setbottom(DensityUtil.dip2px(15));
         myListView.addHeaderView(headerview);
+        homelistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), MyInfoActivity.class);
+                intent.putExtra("user_id", home.getGet_server_list().get(position).getUser_id());
+                startActivity(intent);
+            }
+        });
 
         shared = getActivity().getSharedPreferences("location", Context.MODE_PRIVATE);
         lon = shared.getString("lon", "");

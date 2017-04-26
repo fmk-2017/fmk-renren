@@ -42,20 +42,20 @@ public class TextItemAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder vholder;
-        if (convertView == null) {
-            vholder = new ViewHolder();
+//        ViewHolder vholder;
+//        if (convertView == null) {
+//            vholder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.textitemadapter_item, null, false);
-            vholder.textView = (TextView) convertView.findViewById(R.id.text_item);
-            convertView.setTag(vholder);
-        } else vholder = (ViewHolder) convertView.getTag();
+        TextView textView = (TextView) convertView.findViewById(R.id.text_item);
+//            convertView.setTag(vholder);
+//        } else vholder = (ViewHolder) convertView.getTag();
 
-        vholder.textView.setText(array[position]);
-        if (position == 0) vholder.textView.setSelected(true);
+        textView.setText(array[position]);
+        if (position == 0) textView.setSelected(true);
         return convertView;
     }
 
-    class ViewHolder {
-        TextView textView;
-    }
+//    class ViewHolder {
+//        TextView textView;
+//    }
 }

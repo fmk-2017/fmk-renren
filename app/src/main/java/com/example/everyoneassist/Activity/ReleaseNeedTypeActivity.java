@@ -58,7 +58,7 @@ public class ReleaseNeedTypeActivity extends BaseActivity implements ReleaseNeed
     public void ItemClick(View view, int position, int id) {
         Intent intent = new Intent(this, ReleaseNeedActivity.class);
         intent.putExtra("id", homeCategories.get(id).getChild().get(position).getCat_id());
-//        intent.putExtra("name",homeCategories.get((int)id).getItem().get(position));
+        intent.putExtra("name", homeCategories.get(id).getChild().get(position).getCat_name());
         if (start == 0) startActivity(intent);
         else setResult(RESULT_OK, intent);
         finish();

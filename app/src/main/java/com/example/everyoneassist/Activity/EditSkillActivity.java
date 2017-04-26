@@ -55,7 +55,7 @@ public class EditSkillActivity extends BaseActivity
     private TextView skill_type, skill_pay;
     private EditText skill_content, skill_price;
     private String skill_types = "跑腿代办";
-    private int skill_type_id = 0;
+    private String skill_type_id = "0";
     private String server_name, server_time, skill_infos, skill_prices, user_id;
 
     /**
@@ -71,6 +71,8 @@ public class EditSkillActivity extends BaseActivity
     private boolean first;
     private int REQUEST_NEEDTYPE_CODE = 100;
     private Intent intent;
+
+    private String skill_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,9 +90,12 @@ public class EditSkillActivity extends BaseActivity
     private void getHeaderTitle() {
         type = getIntent().getIntExtra("type", 0);
         if (type == 0) header_text = "添加技能";
-        else header_text = "修改技能";
+        else {
+            skill_id = getIntent().getStringExtra("skill_id");
+            header_text = "修改技能";
+        }
 
-        skill_type_id = getIntent().getIntExtra("types_id", 0);
+        skill_type_id = getIntent().getStringExtra("types_id");
         skill_types = getIntent().getStringExtra("types");
 
     }
@@ -121,14 +126,14 @@ public class EditSkillActivity extends BaseActivity
 
         skill_pay.setOnClickListener(this);
         skill_type.setOnClickListener(this);
-        skill_type.setText("技能类型：" + skill_types);
+        skill_type.setText("技能类型：" + (TextUtils.isEmpty(skill_types) ? "点击选择" : skill_types));
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (parent.getAdapter() == time_gridview.getAdapter())
+        if (parent.getId() == R.id.type_gridview)
             server_name = position + 1 + "";
-        else if (parent.getAdapter() == time_gridview.getAdapter())
+        else if (parent.getId() == R.id.time_gridview)
             server_time = position + 1 + "";
         if (view.isSelected()) view.setSelected(false);
         else view.setSelected(true);
@@ -139,7 +144,7 @@ public class EditSkillActivity extends BaseActivity
         switch (v.getId()) {
             case R.id.skill_type:
                 intent = new Intent(this, AddSkillListActivity.class);
-                intent.putExtra("start","1");
+                intent.putExtra("start", 1);
                 startActivityForResult(intent, REQUEST_NEEDTYPE_CODE);
                 break;
             case R.id.skill_pay:
@@ -171,8 +176,7 @@ public class EditSkillActivity extends BaseActivity
             }
             imagefilelist.add(0, imagefile.getAbsolutePath());
             showImage();
-        }
-        if (requestCode == ACTION_PICK_REQUEST) {
+        } else if (requestCode == ACTION_PICK_REQUEST) {
             if (resultCode != RESULT_OK) {
                 Toast.makeText(this, "获取图片失败", Toast.LENGTH_SHORT).show();
                 return;
@@ -186,6 +190,14 @@ public class EditSkillActivity extends BaseActivity
             cursor.close();
             imagefilelist.add(0, picturePath);
             showImage();
+        } else if (requestCode == REQUEST_NEEDTYPE_CODE) {
+            if (resultCode != RESULT_OK) {
+                Toast.makeText(this, "请选择技能类型", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            skill_type_id = data.getStringExtra("id");
+            skill_types = data.getStringExtra("name");
+            skill_type.setText("技能类型：" + skill_types);
         }
     }
 
@@ -228,13 +240,17 @@ public class EditSkillActivity extends BaseActivity
 
     public void Addskill() {
         HashMap<String, String> map = new HashMap<String, String>();
-        map.put("act", METHOD_ADD_SERVER);
+        if (type == 0) map.put("act", METHOD_ADD_SERVER);
+        else {
+            map.put("act", METHOD_UP_SERVER);
+            map.put("skill_id", skill_id);
+        }
         map.put("user_id", user_id);
         map.put("category_id", skill_type_id + "");
         map.put("server_name", server_name);
         map.put("server_time", server_time);
         map.put("skill_info", skill_infos);
-        for (int i = 0; i < imagefilelist.size(); i++)
+        for (int i = 0; i < imagefilelist.size() - 1; i++)
             map.put("image[" + i + "]", imagefilelist.get(i));
         map.put("skill_price", skill_prices);
         HttpPostRequestUtils.getInstance(this).Post(map);
@@ -242,7 +258,12 @@ public class EditSkillActivity extends BaseActivity
 
     @Override
     public void Success(String method, JSONObject json) {
-
+        if (METHOD_ADD_SERVER.equals(method)) {
+            Toast.makeText(this, "添加成功", Toast.LENGTH_SHORT).show();
+        } else if (METHOD_UP_SERVER.equals(method)) {
+            Toast.makeText(this, "修改成功", Toast.LENGTH_SHORT).show();
+        }
+        finish();
     }
 
     @Override

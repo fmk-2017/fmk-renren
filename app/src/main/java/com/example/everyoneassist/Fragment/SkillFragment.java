@@ -55,14 +55,19 @@ public class SkillFragment extends Fragment implements HttpPostRequestUtils.Http
         skilllistview = (MyListView) view.findViewById(R.id.skilllistview);
         int bottom = (int) ((float) ScreenUtils.getScreenWidth(getActivity()) * 0.18f) - DensityUtil.dip2px(45);
         skilllistview.setbottom(bottom);
-        getSkill();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getSkill();
     }
 
     private void getSkill() {
         HashMap<String, String> map = new HashMap<>();
         map.put("act", METHOD_SKILL);
-        map.put("user_id", "5");
+        map.put("user_id", getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("user_id", ""));
         map.put("page", "1");
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
@@ -84,6 +89,10 @@ public class SkillFragment extends Fragment implements HttpPostRequestUtils.Http
             skills = JSON.parseArray(json.getString("data"), Skill.class);
             skillAdapter = new SkillAdapter(this, skills);
             skilllistview.setAdapter(skillAdapter);
+        } else if (SkillAdapter.METHOD_OFF_SERVER.equals(method)) {
+            getSkill();
+        } else if (SkillAdapter.METHOD_DEL_SERVER.equals(method)) {
+            getSkill();
         }
     }
 

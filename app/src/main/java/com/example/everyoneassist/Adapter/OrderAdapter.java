@@ -60,15 +60,26 @@ public class OrderAdapter extends BaseAdapter {
             holder.oderTip = (TextView) convertView.findViewById(R.id.oderTip);
             holder.oderSendTime = (TextView) convertView.findViewById(R.id.oderSendTime);
             holder.oderAdd = (TextView) convertView.findViewById(R.id.oderAdd);
+            holder.oderInfo = (TextView) convertView.findViewById(R.id.oderInfo);
             convertView.setTag(holder);
         }else{
             holder = (ViewHolder) convertView.getTag();
         }
+        if ("0".equals(orderBeanList.get(position).getStatus()))
+            holder.oderInfo.setText(String.format("已有%s人抢单", orderBeanList.get(position).getCount()));
+        else if ("1".equals(orderBeanList.get(position).getStatus()))
+            holder.oderInfo.setText("正在服务");
+        else if ("2".equals(orderBeanList.get(position).getStatus()))
+            holder.oderInfo.setText("等待确认");
+        else if ("3".equals(orderBeanList.get(position).getStatus()))
+            holder.oderInfo.setText("等待评价");
+        else if ("4".equals(orderBeanList.get(position).getStatus()))
+            holder.oderInfo.setText("服务已完成");
         holder.oderTitName.setText(orderBeanList.get(position).getCat_name());
         holder.oderName.setText(TextUtils.isEmpty(orderBeanList.get(position).getServer_type_name()) ? "无":orderBeanList.get(position).getServer_type_name());
         holder.oderTip.setText("配送费"+orderBeanList.get(position).getServer_price()+"元");
         holder.oderSendTime.setText("送达时间："+ TimeUtils.getFormatTime(orderBeanList.get(position).getAddtime()));
-        holder.oderAdd.setText("收货地址："+(TextUtils.isEmpty(orderBeanList.get(position).getAddress()) ? "无":TextUtils.isEmpty(orderBeanList.get(position).getAddress())));
+        holder.oderAdd.setText("收货地址：" + (TextUtils.isEmpty(orderBeanList.get(position).getAddress()) ? "无" : orderBeanList.get(position).getAddress()));
 
         return convertView;
     }

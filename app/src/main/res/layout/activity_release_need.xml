@@ -9,6 +9,8 @@
     android:orientation="vertical"
     tools:context="com.example.everyoneassist.Activity.ReleaseNeedActivity">
 
+    <include layout="@layout/header_title" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -135,16 +137,19 @@
             </com.example.everyoneassist.Layout.PercentLinearLayout>
 
             <View
+                android:id="@+id/view1"
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
-                android:background="@color/thin_white" />
+                android:background="@color/thin_white"
+                android:visibility="gone" />
 
             <com.example.everyoneassist.View.MyListView2
                 android:id="@+id/server_Item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:divider="@color/thin_white"
-                android:paddingBottom="10dp" />
+                android:paddingBottom="10dp"
+                android:visibility="gone" />
 
             <View
                 android:layout_width="match_parent"

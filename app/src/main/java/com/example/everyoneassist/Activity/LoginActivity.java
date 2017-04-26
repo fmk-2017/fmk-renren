@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.everyoneassist.R;
 import com.example.everyoneassist.Utils.AppUtils;
 import com.example.everyoneassist.Utils.HttpPostRequestUtils;
+import com.example.everyoneassist.Utils.ShareUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,6 +23,9 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import cn.sharesdk.tencent.qq.QQ;
+import cn.sharesdk.wechat.friends.Wechat;
+
 public class LoginActivity extends BaseActivity implements HttpPostRequestUtils.HttpPostRequestCallback {
 
     private final String METHOD_LOGIN = "login";  //添加技能
@@ -29,6 +33,7 @@ public class LoginActivity extends BaseActivity implements HttpPostRequestUtils.
     private TextView registered_go;
     private EditText phone, password;
     private String phones, passwords;
+    private TextView tvWeChat,tvQQ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +46,17 @@ public class LoginActivity extends BaseActivity implements HttpPostRequestUtils.
         String passwords = shared.getString("passwords","passwords");
         if (!username.equals("passwords") &&  !passwords.equals("passwords")){
             startActivity(new Intent(LoginActivity.this,MainActivity.class));
+            finish();
         }
     }
 
     private void initView() {
+        tvWeChat = (TextView) this.findViewById(R.id.tvWeChat);
         login = (Button) this.findViewById(R.id.login);
         registered_go = (TextView) this.findViewById(R.id.registered_go);
         phone = (EditText) this.findViewById(R.id.phone);
         password = (EditText) this.findViewById(R.id.password);
+        tvQQ = (TextView) this.findViewById(R.id.tvQQ);
 
         registered_go.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +70,18 @@ public class LoginActivity extends BaseActivity implements HttpPostRequestUtils.
                 if (checkParam()) Login();
             }
         });
-
+        tvQQ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShareUtils.getInstance(LoginActivity.this).sharePlat(QQ.NAME);
+            }
+        });
+        tvWeChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShareUtils.getInstance(LoginActivity.this).sharePlat(Wechat.NAME);
+            }
+        });
     }
 
     private void Login() {

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.everyoneassist.R;
 import com.example.everyoneassist.Utils.HttpPostRequestUtils;
@@ -113,12 +114,11 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener,H
                 map.put("ship_time", TimeUtils.getTime(time));
                 map.put("goods_address", bugAddress);
                 map.put("shipping_address", receiveAddr);
-                map.put("goods_price", tvDeliTip.getText().toString());
-                map.put("user_name", username);
+                map.put("goods_price", tvDeliTip.getText().toString().substring(0,tvDeliTip.getText().toString().length() -1 ));
+                map.put("username", username);
                 map.put("phone", tvContactPer.getText().toString());
                 map.put("desc", remarks);
                 HttpPostRequestUtils.getInstance(this).Post(map);
-
                 break;
         }
     }
@@ -148,12 +148,12 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener,H
 
     @Override
     public void Success(String method, JSONObject json) throws JSONException {
-        Log.i("tag",json.toString());
+       if (json.getString("result").equals("success"))Toast.makeText(getActivity(),json.getString("info"),Toast.LENGTH_SHORT).show();
+        else Toast.makeText(getActivity(),json.getString("info"),Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void Fail(String method, String error) {
-        Log.i("tag",method + ":" + error);
-
+        Toast.makeText(getActivity(),error,Toast.LENGTH_SHORT).show();
     }
 }

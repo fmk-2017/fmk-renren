@@ -22,5 +22,16 @@ public class AppUtils {
         return m.matches();
     }
 
+    public static String getdistance(float distance) {
+        String distances = "";
+        if (distance > 1000) distances = (int) distance / 1000 + "KM";
+        else distances = (int) distance + "M";
+        return distances;
+    }
+
+    public static String getAvatarPath(String path) {
+        if (path.contains("http:")) return path;
+        return "http://112.74.35.236/" + path;
+    }
 
 }

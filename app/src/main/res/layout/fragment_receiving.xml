@@ -57,14 +57,16 @@
 
     </LinearLayout>
 
-    <com.example.everyoneassist.Layout.PercentRelativeLayout
+    <com.example.everyoneassist.Layout.PercentLinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <com.amap.api.maps2d.MapView
             android:id="@+id/d2map"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
         <com.example.everyoneassist.View.MyListView
             android:id="@+id/receiving_listview"
@@ -74,7 +76,7 @@
             android:divider="@color/thin_white"
             android:dividerHeight="8dp"
             android:scrollingCache="false"
-            app:layout_heightPercent="40%sh" />
+            app:layout_heightPercent="35%sh" />
 
-    </com.example.everyoneassist.Layout.PercentRelativeLayout>
+    </com.example.everyoneassist.Layout.PercentLinearLayout>
 </LinearLayout>

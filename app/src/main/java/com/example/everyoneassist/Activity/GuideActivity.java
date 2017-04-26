@@ -1,7 +1,12 @@
 package com.example.everyoneassist.Activity;
 
+import android.Manifest;
 import android.content.ClipDescription;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,9 +14,12 @@ import android.view.DragEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.everyoneassist.Adapter.SectionsPagerAdapter;
 import com.example.everyoneassist.R;
+import com.example.everyoneassist.runtimepermissions.PermissionsManager;
+import com.example.everyoneassist.runtimepermissions.PermissionsResultAction;
 
 public class GuideActivity extends BaseActivity {
 
@@ -20,6 +28,7 @@ public class GuideActivity extends BaseActivity {
     private ImageView[] imageViews;
     private int[] images = new int[]{R.mipmap.guide, R.mipmap.guide1, R.mipmap.guide2, R.mipmap.guide3};
     private int starxx;
+    private String[] dpermissions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +51,7 @@ public class GuideActivity extends BaseActivity {
                 imageViews[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(v.getContext(), LoginActivity.class));
-                        finish();
+                        getPermisission();
                     }
                 });
         }
@@ -56,15 +64,52 @@ public class GuideActivity extends BaseActivity {
                         starxx = (int) event.getX();
                     } else if (event.getAction() == DragEvent.ACTION_DRAG_ENDED) {
                         if ((event.getX() - starxx) > 0) {
-                            startActivity(new Intent(v.getContext(), LoginActivity.class));
-                            finish();
+                            getPermisission();
                         }
                     }
                 }
                 return false;
             }
         });
-        shared.edit().putBoolean("is_first", false).commit();
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        int res = 0;
+        for (int i = 0; i < grantResults.length; i++) {
+            if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                PermissionsManager.getInstance().notifyPermissionsChange(permissions, grantResults);
+                shouldShowRequestPermissionRationale(permissions[i]);
+            }
+            res += grantResults[i];
+        }
+        if (res == 0) {
+            shared.edit().putBoolean("is_first", false).commit();
+            startActivity(new Intent(GuideActivity.this, LoginActivity.class));
+            finish();
+        }
+    }
+
+    public void getPermisission() {
+        String[] permissions = new String[]{Manifest.permission.LOCATION_HARDWARE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE};
+        if (!PermissionsManager.getInstance().hasAllPermissions(this, permissions)) {
+            PermissionsManager.getInstance().requestAllManifestPermissionsIfNecessary(this, new PermissionsResultAction() {
+                @Override
+                public void onGranted() {
+                    shared.edit().putBoolean("is_first", false).commit();
+                    startActivity(new Intent(GuideActivity.this, LoginActivity.class));
+                    finish();
+                }
+
+                @Override
+                public void onDenied(String permission) {
+                }
+            });
+        }
+
+    }
+
 
 }

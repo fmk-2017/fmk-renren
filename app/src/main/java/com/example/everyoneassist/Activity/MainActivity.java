@@ -1,5 +1,6 @@
 package com.example.everyoneassist.Activity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -19,6 +20,9 @@ import com.example.everyoneassist.Fragment.MeFragment;
 import com.example.everyoneassist.Fragment.ReceivingFragment;
 import com.example.everyoneassist.Fragment.SkillFragment;
 import com.example.everyoneassist.R;
+import com.example.everyoneassist.View.MyViewPager;
+import com.example.everyoneassist.runtimepermissions.PermissionsManager;
+import com.example.everyoneassist.runtimepermissions.PermissionsResultAction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +31,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
     private MainPagerAdapter mSectionsPagerAdapter;
-    private ViewPager mViewPager;
+    private MyViewPager mViewPager;
     private ImageView hire;
     private List<Fragment> fragmentlist;
     private TextView[] textviews = new TextView[4];
@@ -46,7 +50,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mSectionsPagerAdapter = new MainPagerAdapter(getSupportFragmentManager(), fragmentlist);
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = (MyViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setOffscreenPageLimit(2);
         textviews[0] = (TextView) this.findViewById(R.id.table1);

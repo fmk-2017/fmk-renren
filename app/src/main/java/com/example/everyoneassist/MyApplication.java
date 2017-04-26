@@ -15,6 +15,8 @@ import org.xutils.http.RequestParams;
 import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
+import cn.sharesdk.framework.ShareSDK;
+
 /**
  * Created by fengm on 2017-3-4.
  */
@@ -49,6 +51,6 @@ public class MyApplication extends Application {
         x.Ext.init(this);
         x.Ext.setDebug(BuildConfig.DEBUG);
 
-
+        ShareSDK.initSDK(this);
     }
 }

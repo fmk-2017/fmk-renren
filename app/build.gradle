@@ -8,9 +8,6 @@ android {
             storeFile file('E:/studio_workspace/EveryoneAssist/renren.jks')
             storePassword '123456'
         }
-        debug {
-            storeFile file('C:/Users/fengm/.android/debug.keystore')
-        }
     }
     compileSdkVersion 24
     buildToolsVersion "25.0.0"

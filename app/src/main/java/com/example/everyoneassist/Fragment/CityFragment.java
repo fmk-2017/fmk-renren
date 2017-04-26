@@ -24,6 +24,7 @@ import java.util.HashMap;
 
 /**
  * Created by Administrator on 2017/3/22.
+ * 同城
  */
 
 public class CityFragment extends Fragment implements View.OnClickListener,HttpPostRequestUtils.HttpPostRequestCallback{

@@ -27,6 +27,7 @@ import java.util.HashMap;
 
 /**
  * Created by Administrator on 2017/3/22.
+ * 随意购
  */
 
 public class ShoppingFragment extends Fragment implements View.OnClickListener,HttpPostRequestUtils.HttpPostRequestCallback{

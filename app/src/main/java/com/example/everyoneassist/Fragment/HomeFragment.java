@@ -161,7 +161,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             home = JSON.parseObject(json.getString("data"), Home.class);
             if (home.getGet_category() != null && home.getGet_category().size() > 0)
                 header_gridview.setAdapter(new HeaderGridViewAdapter(getActivity(), home.getGet_category(), 8));
-
             if (home.getGet_server_list() != null && home.getGet_server_list().size() > 0) {
                 if (skillList != null)
                     skillList.clear();

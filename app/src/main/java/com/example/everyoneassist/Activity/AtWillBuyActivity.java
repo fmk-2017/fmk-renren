@@ -286,14 +286,11 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
                     case "1":
                         verify(order_info.getId());
                         break;
-                    case "2":
                     case "2"://完成任务
                         verify(order_info.getId());
                         break;
                     case "3"://确认完成
                         consent(order_info.getId());
-                        break;
-                    case "3":
                         break;
                     default:
                         textView4.setVisibility(View.GONE);
@@ -320,9 +317,6 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
         map.put("act", TO_USER_AFFIRM);
         map.put("to_user_id", shared.getString("user_id", ""));
         map.put("demand_id", deli_id);
-        map.put("act", USER_AFFIRM);
-        map.put("user_id", "6");
-        map.put("demand_id", "5");
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
 
@@ -335,9 +329,6 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
         map.put("act", USER_AFFIRM);
         map.put("user_id", shared.getString("user_id", ""));
         map.put("demand_id", deli_id);
-        map.put("act", TO_USER_AFFIRM);
-        map.put("to_user_id", shared.getString("user_id", ""));
-        map.put("demand_id", "5");
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
 
@@ -350,9 +341,6 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
         map.put("act", USER_ORDER_ADD);
         map.put("to_user_id", shared.getString("user_id", ""));
         map.put("demand_id", deli_id);
-        map.put("act", USER_DELIVERY);
-        map.put("user_id", shared.getString("user_id", ""));
-        map.put("delivery_id", "2");
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
 
@@ -364,7 +352,6 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("act", APPOINTMENT_SERVER);
         map.put("user_id", shared.getString("user_id", ""));
-        map.put("to_user_id", user_id);
         map.put("demand_id", order_info.getId());
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
@@ -376,7 +363,6 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
         map.put("evaluate", comment);
         map.put("demand_id", order_info.getId());
         map.put("user_id",shared.getString("user_id", ""));
-        map.put("server_id", "4");//order_info.getId()
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
 

@@ -97,7 +97,7 @@ public class HomeAdapter extends BaseAdapter {
         viewHolder.homeitem_text.setText(skill.getSkill_info());
         viewHolder.homeitem_distance.setText(AppUtils.getdistance(Float.valueOf(skill.getRange())));
         viewHolder.homeitem_zan.setText(skill.getPraisesum());
-
+        
         List<String> strlist = skill.getSkill_photos();
         if (strlist != null && strlist.size() < 1)
             viewHolder.imagelayout.setVisibility(View.GONE);

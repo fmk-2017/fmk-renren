@@ -10,38 +10,40 @@ import android.view.MotionEvent;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.alipay.sdk.app.PayTask;
 import com.example.everyoneassist.Adapter.InvitationAdapter;
 import com.example.everyoneassist.Entity.Invitation;
 import com.example.everyoneassist.Entity.Order_Info;
 
 import com.example.everyoneassist.Layout.PercentLinearLayout;
-import com.example.everyoneassist.Layout.PercentRelativeLayout;
 
 import com.example.everyoneassist.Interface.OnInvitedListener;
 
 import com.example.everyoneassist.R;
+import com.example.everyoneassist.Utils.DialogShowUtils;
 import com.example.everyoneassist.Utils.HttpPostRequestUtils;
 import com.example.everyoneassist.Utils.TimeUtils;
 import com.example.everyoneassist.Utils.ToastUtils;
 import com.example.everyoneassist.View.MyListView2;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUtils.HttpPostRequestCallback, View.OnClickListener,OnInvitedListener {
+public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUtils.HttpPostRequestCallback, View.OnClickListener {
 
     private final String DEMAND_INFO = "demand_info";
     private final String APPOINTMENT_SERVER = "user_order_save";
@@ -49,28 +51,45 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
     private final String USER_ORDER_ADD = "user_order_add";
     private final String TO_USER_AFFIRM = "to_user_affirm";
     private final String USER_AFFIRM = "user_affirm";
-    private String demand_id;
+    private final String Alipay = "zhifubao";
+    private final String Weixin = "weixin";
+    private String demand_id, catecory_id;
     private MyListView2 mylistview;
     private Order_Info order_info;
     private List<Invitation> invitations;
-    private TextView content, time, address_buy, address_receving, price, order_no, contacts, contacts_phone, remark, textView4, release_comment;
+    private TextView content, time, price, order_no, contacts, contacts_phone, remark, textView4, release_comment;
     private EditText comment;
     private ScrollView mySc;
     private InvitationAdapter ia;
     private boolean is_self;
     private PercentLinearLayout bottom;
+    private LinearLayout no_city, city, contact, buyaddress_linear;
+    private TextView address_buy,/*随意购的购买地址*/
+            address_receving; //其他的和随意购的收货地址
+    private TextView shipper, shipper_phone, shipper_address;
+    private TextView consignee, consignee_phone, consignee_address;
+    private IWXAPI api;
+    private DialogShowUtils dsu;
+    private String pay_type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_at_will_buy);
-        initHeader("随意购");
+        String title = getIntent().getStringExtra("title");
+        initHeader(title);
 
         demand_id = getIntent().getStringExtra("xid");
+        catecory_id = getIntent().getStringExtra("catecory_id");
 
         initView();
-        getInfo();
         initListener();
+        getInfo();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     private void getInfo() {
@@ -78,6 +97,7 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
         map.put("act", DEMAND_INFO);
         map.put("to_user_id", shared.getString("user_id", ""));
         map.put("demand_id", demand_id);
+        map.put("category_id", catecory_id);
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
 
@@ -86,6 +106,7 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
 
         mylistview.setFocusable(false);
 
+        //payali("app_id=2017010304811553&biz_content=%7B%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22total_amount%22%3A%220.01%22%2C%22subject%22%3A%22%E4%B8%87%E4%BA%8B%E9%80%9A%22%2C%22body%22%3A%22%E5%95%86%E5%93%81%E6%8F%8F%E8%BF%B0%22%2C%22out_trade_no%22%3A%22483054048429922789%22%7D&charset=utf-8&format=json&method=alipay.trade.app.pay&notify_url=http%3A%2F%2F112.74.35.236%2Fapi.php&timestamp=2017-05-04+13%3A47%3A20&version=1.0&sign_type=RSA&sign=RGzYPzNZI%2BRxS7yq5rRrC%2BRK2J2RSNTdAWe5TSpW4iGH0l8n0UBlenNrsKotgYq4XC%2FPjyDPI5Xb0ssyH8LTp%2FYVKKI9Zzr2fPKyGbieojvyvirm7rlA%2Fv%2FPkN4Tl5QyyJOC%2FRpbM7kPPMqHVUY9BhEOrLO7NTgn7Phu%2Fhjh3Ho%3D");
 
         mySc = (ScrollView) this.findViewById(R.id.mySc);
         content = (TextView) this.findViewById(R.id.content);
@@ -101,6 +122,18 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
         release_comment = (TextView) this.findViewById(R.id.release_comment);
         bottom = (PercentLinearLayout) this.findViewById(R.id.bottom);
 
+        no_city = (LinearLayout) this.findViewById(R.id.no_city);
+        city = (LinearLayout) this.findViewById(R.id.city);
+        contact = (LinearLayout) this.findViewById(R.id.contact);
+        buyaddress_linear = (LinearLayout) this.findViewById(R.id.buyaddress_linear);
+
+        shipper = (TextView) this.findViewById(R.id.shipper);
+        shipper_phone = (TextView) this.findViewById(R.id.shipper_phone);
+        shipper_address = (TextView) this.findViewById(R.id.shipper_address);
+
+        consignee = (TextView) this.findViewById(R.id.shipper);
+        consignee_phone = (TextView) this.findViewById(R.id.consignee_phone);
+        consignee_address = (TextView) this.findViewById(R.id.consignee_address);
 
         comment = (EditText) this.findViewById(R.id.comment);
 
@@ -123,28 +156,45 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
     public void setviewData() {
 
         content.setText(order_info.getInfo());
+        if ("10".equals(order_info.getCategory_id())) {
+            no_city.setVisibility(View.GONE);
+            contact.setVisibility(View.GONE);
+            city.setVisibility(View.VISIBLE);
+            shipper.setText(String.format("发货人：%s", order_info.getDelivery_userName()));
+            shipper_phone.setText(String.format("联系电话：%s", order_info.getDelivery_phone()));
+            shipper_address.setText(String.format("发货地址：%s", order_info.getGoods_address()));
+            consignee.setText(String.format("收货人：%s", order_info.getConsignee()));
+            consignee_phone.setText(String.format("联系电话：%s", order_info.getPhone()));
+            consignee_address.setText(String.format("收货地址：%s", order_info.getShipping_address()));
+        } else if ("2".equals(order_info.getCategory_id())) {
+            city.setVisibility(View.GONE);
+            no_city.setVisibility(View.VISIBLE);
+            buyaddress_linear.setVisibility(View.VISIBLE);
+            contacts.setText(String.format("收货人：%s", order_info.getUsername() + " "));
+            contacts_phone.setText(String.format("联系电话：%s", order_info.getPhone()));
+            address_receving.setText(order_info.getShipping_address() + " ");
+            address_buy.setText(order_info.getGoods_address());
+            price.setText("服务费：" + order_info.getGoods_price());
+            content.setText(order_info.getGoods_name());
+        } else {
+            no_city.setVisibility(View.VISIBLE);
+            city.setVisibility(View.GONE);
+            contact.setVisibility(View.GONE);
+            buyaddress_linear.setVisibility(View.GONE);
+            address_receving.setText(order_info.getAddress());
+            contacts.setText(String.format("联系人：%s", order_info.getConsignee()));
+            contacts_phone.setText(String.format("联系电话：%s", order_info.getTel()));
+        }
+
         time.setText(TimeUtils.getFormatTime(order_info.getAddtime()));
-//        address_buy.setText();
-//        address_buy.setVisibility(View.GONE);
-        address_receving.setText(order_info.getAddress());
-        price.setText("服务费：" + order_info.getServer_price());
         order_no.setText("订单号：" + order_info.getD_order());
-        contacts.setText("联系人：" + order_info.getConsignee());
-        contacts_phone.setText("联系电话：" + order_info.getTel());
         remark.setText("备注：" + order_info.getRemark());
         textView4.setEnabled(true);
-        content.setText(dataStr(order_info.getInfo()));
-        time.setText(TextUtils.isEmpty(order_info.getAddtime())?"暂无数据":TimeUtils.getFormatTime(order_info.getAddtime()));
-        address_buy.setText(dataStr(order_info.getAddress()));
-        address_receving.setText(dataStr(order_info.getAddress()));
-        price.setText("配送费："+(TextUtils.isEmpty(order_info.getServer_price())?"暂无数据":order_info.getServer_price()+"元"));
-        order_no.setText("订单号：" + dataStr(order_info.getZipcode()));
-        contacts.setText("联系人："+ dataStr(order_info.getConsignee()));
-        contacts_phone.setText("联系电话:"+ dataStr(order_info.getTel()));
-        remark.setText("备注:"+dataStr(order_info.getServer_type_name()));
+
         String op = "";
-        switch (TextUtils.isEmpty(order_info.getStatus())?"3":order_info.getStatus()) {
+        switch (TextUtils.isEmpty(order_info.getStatus()) ? "3" : order_info.getStatus()) {
             case "0":
+                api = WXAPIFactory.createWXAPI(this, "wx463580e9dd2620d1");
                 mylistview.setVisibility(View.VISIBLE);
                 op = "立即抢单";
                 if (shared.getString("user_id", "").equals(order_info.getUser_id())) {
@@ -184,11 +234,11 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
         textView4.setText(op);
     }
 
-    private String dataStr(String str){
+    private String dataStr(String str) {
         return TextUtils.isEmpty(str) ? "暂无数据" : str;
     }
 
-    private void initListener(){
+    private void initListener() {
         textView4.setOnClickListener(this);
     }
 
@@ -211,59 +261,62 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
                 mylistview.setVisibility(View.GONE);
             }
         } else if (APPOINTMENT_SERVER.equals(method)) {
-            Toast.makeText(this, "已选择应邀者", Toast.LENGTH_SHORT).show();
-            getInfo();
+            Toast.makeText(getApplicationContext(), "已选择应邀者", Toast.LENGTH_SHORT).show();
+            if (Alipay.equals(pay_type)) payali(json.getString("data"));
+            else paywx(json.getJSONObject("data"));
         } else if (USER_AFFIRM.equals(method)) {
-            Toast.makeText(this, "确认服务完成", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "确认服务完成", Toast.LENGTH_SHORT).show();
             getInfo();
         } else if (TO_USER_AFFIRM.equals(method)) {
-            Toast.makeText(this, "服务完成", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "服务完成", Toast.LENGTH_SHORT).show();
             getInfo();
         } else if (COMMENT.equals(method)) {
-            Toast.makeText(this, "已评价", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "已评价", Toast.LENGTH_SHORT).show();
             getInfo();
         } else if (USER_ORDER_ADD.equals(method)) {
-            Toast.makeText(this, "抢单成功", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "抢单成功", Toast.LENGTH_SHORT).show();
             getInfo();
-            order_info = JSON.parseObject(json.getJSONObject("data").toString(), Order_Info.class);
-            setviewData();
-//            invitations = JSON.parseArray(json.getJSONObject("data").getString("user_info"), Invitation.class);
-//            if (order_info.getUser_id().equals(shared.getString("user_id", ""))) is_self = true;
-//            else is_self = false;
-            //ia = new InvitationAdapter(this, invitations, this, is_self);
-            ia = new InvitationAdapter(AtWillBuyActivity.this,this);
-            mylistview.setAdapter(ia);
-        } else if (APPOINTMENT_SERVER.equals(method)) {
-            String result = json.getString("result");
-            if (result.equals("success")){
-                ToastUtils.tipShort(AtWillBuyActivity.this,json.getString("info"));
-            }else {
-                ToastUtils.tipShort(AtWillBuyActivity.this,json.getString("info"));
-            }
-            //getInfo();
-        } else if (USER_AFFIRM.equals(method)) {//立即抢单
-            String result = json.getString("result");
-            if (result.equals("success")){
-                ToastUtils.tipShort(AtWillBuyActivity.this,json.getString("info"));
-            }else {
-                ToastUtils.tipShort(AtWillBuyActivity.this,json.getString("info"));
-            }
-            //getInfo();
-        } else if (TO_USER_AFFIRM.equals(method)) {
-            String result = json.getString("result");
-            if (result.equals("success")){
-                ToastUtils.tipShort(AtWillBuyActivity.this,json.getString("info"));
-            }else {
-                ToastUtils.tipShort(AtWillBuyActivity.this,json.getString("info"));
-            }
-            //getInfo();
         }
+    }
+
+    private void payali(final String orderInfo) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                PayTask alipay = new PayTask(AtWillBuyActivity.this);
+                Map<String, String> result = alipay.payV2(orderInfo, true);
+                Log.e("支付宝支付返回", result.toString());
+                if ("9000".equals(result.get("resultStatus"))) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            getInfo();
+                        }
+                    });
+                }
+            }
+        }).start();
+    }
+
+    private void paywx(JSONObject json) throws JSONException {
+        PayReq req = new PayReq();
+        //req.appId = "wxf8b4f85f3a794e77";  // 测试用appId
+        req.appId = json.getString("appid");
+        req.partnerId = json.getString("partnerid");
+        req.prepayId = json.getString("prepayid");
+        req.nonceStr = json.getString("noncestr");
+        req.timeStamp = json.getString("timestamp");
+        req.packageValue = json.getString("package");
+        req.sign = json.getString("sign");
+        req.extData = "app data"; // optional
+        Toast.makeText(getApplicationContext(), "正常调起支付", Toast.LENGTH_SHORT).show();
+        // 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
+        api.sendReq(req);
     }
 
     @Override
     public void Fail(String method, String error) {
-        Log.e("1111111111111", "222222222222222222");
-        ToastUtils.tipShort(AtWillBuyActivity.this,error);
+        ToastUtils.tipShort(AtWillBuyActivity.this, error);
     }
 
     @Override
@@ -275,11 +328,26 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.invitantion:
-                int position = (int) v.getTag();
-                subscribe(invitations.get(position).getUser_id());
+                final int position = (int) v.getTag();
+                dsu = DialogShowUtils.getInstance(this).SelectPaytype(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        switch (v.getId()) {
+                            case R.id.alipay:
+                                pay_type = Alipay;
+                                subscribe(invitations.get(position).getUser_id(), invitations.get(position).getTender_id(), Alipay);
+                                break;
+                            case R.id.weixin:
+                                pay_type = Weixin;
+                                subscribe(invitations.get(position).getUser_id(), invitations.get(position).getTender_id(), Weixin);
+                                break;
+                        }
+                        dsu.dismiss();
+                    }
+                });
                 break;
             case R.id.textView4:
-                switch ("2") {//order_info.getStatus()
+                switch (order_info.getStatus()) {//order_info.getStatus()
                     case "0"://立即抢单
                         bid(order_info.getId());
                         break;
@@ -287,10 +355,10 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
                         verify(order_info.getId());
                         break;
                     case "2"://完成任务
-                        verify(order_info.getId());
+                        consent(order_info.getId());
                         break;
                     case "3"://确认完成
-                        consent(order_info.getId());
+                        verify(order_info.getId());
                         break;
                     default:
                         textView4.setVisibility(View.GONE);
@@ -315,13 +383,14 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
     public void verify(String deli_id) {
         HashMap<String, String> map = new HashMap<>();
         map.put("act", TO_USER_AFFIRM);
-        map.put("to_user_id", shared.getString("user_id", ""));
+        map.put("user_id", shared.getString("user_id", ""));
         map.put("demand_id", deli_id);
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
 
     /**
      * 确认完成
+     *
      * @param deli_id
      */
     public void consent(String deli_id) {
@@ -334,6 +403,7 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
 
     /**
      * 立即抢单
+     *
      * @param deli_id
      */
     public void bid(String deli_id) {
@@ -346,13 +416,16 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
 
     /**
      * 立即应邀
+     *
      * @param user_id
      */
-    public void subscribe(String user_id) {
+    public void subscribe(String user_id, String tender_id, String type) {
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("act", APPOINTMENT_SERVER);
         map.put("user_id", shared.getString("user_id", ""));
         map.put("demand_id", order_info.getId());
+        map.put("to_user_id", user_id);
+        map.put("type", type);
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
 
@@ -360,18 +433,19 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("act", COMMENT);
         map.put("score", "3");
-        map.put("evaluate", comment);
-        map.put("demand_id", order_info.getId());
-        map.put("user_id",shared.getString("user_id", ""));
+        map.put("evaluate_content", comment);
+        map.put("server_id", order_info.getId());
+        map.put("evaluate_user_id", shared.getString("user_id", ""));
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
 
-    /**
-     * 立即应邀方法调用
-     * @param position
-     */
-    @Override
-    public void onInvited(int position) {
-        subscribe("");
-    }
+//    /**
+//     * 立即应邀方法调用
+//     *
+//     * @param position
+//     */
+//    @Override
+//    public void onInvited(int position) {
+//        subscribe("");
+//    }
 }

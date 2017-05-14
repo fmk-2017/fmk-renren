@@ -77,7 +77,10 @@ public class OrderAdapter extends BaseAdapter {
             holder.oderInfo.setText("服务已完成");
         holder.oderTitName.setText(orderBeanList.get(position).getCat_name());
         holder.oderName.setText(TextUtils.isEmpty(orderBeanList.get(position).getServer_type_name()) ? "无":orderBeanList.get(position).getServer_type_name());
-        holder.oderTip.setText("配送费"+orderBeanList.get(position).getServer_price()+"元");
+        if (!TextUtils.isEmpty(orderBeanList.get(position).getServer_price())) {
+            holder.oderTip.setText("服务费" + orderBeanList.get(position).getServer_price() + "元");
+            holder.oderTip.setVisibility(View.VISIBLE);
+        } else holder.oderTip.setVisibility(View.INVISIBLE);
         holder.oderSendTime.setText("送达时间："+ TimeUtils.getFormatTime(orderBeanList.get(position).getAddtime()));
         holder.oderAdd.setText("收货地址：" + (TextUtils.isEmpty(orderBeanList.get(position).getAddress()) ? "无" : orderBeanList.get(position).getAddress()));
 

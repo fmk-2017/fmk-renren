@@ -104,10 +104,10 @@ public class AddressEditActivity extends BaseActivity implements HttpPostRequest
                     break;
             }
         } else if ("add_address".equals(method)) {
-            Toast.makeText(this, "修改地址成功", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "修改地址成功", Toast.LENGTH_SHORT).show();
             finish();
         } else if ("update_address".equals(method)) {
-            Toast.makeText(this, "增加地址成功", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "增加地址成功", Toast.LENGTH_SHORT).show();
             finish();
         }
     }
@@ -137,17 +137,17 @@ public class AddressEditActivity extends BaseActivity implements HttpPostRequest
     public void EditAddress() {
         address = editaddr_detail.getText().toString().trim();
         if (TextUtils.isEmpty(address)) {
-            Toast.makeText(this, "请输入详细地址", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "请输入详细地址", Toast.LENGTH_SHORT).show();
             return;
         }
         phone = editaddr_phone.getText().toString().trim();
         if (TextUtils.isEmpty(phone)) {
-            Toast.makeText(this, "请输入联系人手机号码", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "请输入联系人手机号码", Toast.LENGTH_SHORT).show();
             return;
         }
         String name = editaddr_name.getText().toString().trim();
         if (TextUtils.isEmpty(name)) {
-            Toast.makeText(this, "请输入联系人称呼", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "请输入联系人称呼", Toast.LENGTH_SHORT).show();
             return;
         }
         HashMap<String, String> map = new HashMap<String, String>();

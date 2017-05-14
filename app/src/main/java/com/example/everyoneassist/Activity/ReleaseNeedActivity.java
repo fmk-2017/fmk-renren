@@ -120,7 +120,7 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
             case R.id.release:
                 String info = skill_content.getText().toString().trim();
                 if (TextUtils.isEmpty(server_day) || TextUtils.isEmpty(server_sex) || TextUtils.isEmpty(server_type) || TextUtils.isEmpty(info)) {
-                    Toast.makeText(this, "所有选项都为必填", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "所有选项都为必填", Toast.LENGTH_SHORT).show();
                 }
                 map.put("act", METHOD_ADD_DEMEND);
                 map.put("user_id", shared.getString("user_id", ""));

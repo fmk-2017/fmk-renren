@@ -236,6 +236,7 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
 
     public void addmarket() {
         for (Demand demand : demandList) {
+            if (TextUtils.isEmpty(demand.getServer_lon())) return;
             float v = Float.valueOf(demand.getServer_lat());
             float v1 = Float.valueOf(demand.getServer_lon());
             ImageView imageView = new ImageView(getContext());
@@ -281,6 +282,8 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
                 int position = (int) v.getTag();
                 Intent intent = new Intent(getContext(), AtWillBuyActivity.class);
                 intent.putExtra("xid", demandList.get(position).getId());
+                intent.putExtra("title", demandList.get(position).getCat_name());
+                intent.putExtra("catecory_id", demandList.get(position).getCategory_id());
                 startActivity(intent);
                 break;
         }
@@ -326,6 +329,7 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         if (demandList == null || demandList.size() <= 0) return;
         Demand demand = demandList.get(firstVisibleItem);
+        if (TextUtils.isEmpty(demand.getServer_lat())) return;
         float lat = Float.valueOf(demand.getServer_lat());
         float lon = Float.valueOf(demand.getServer_lon());
         LatLng latLng = new LatLng(lat, lon);

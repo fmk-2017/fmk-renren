@@ -86,11 +86,11 @@ public class RegisterActivity extends BaseActivity implements HttpPostRequestUti
     private boolean checkPhone() {
         phones = phone.getText().toString().trim();
         if (TextUtils.isEmpty(phones)) {
-            Toast.makeText(this, "请输入手机号码", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "请输入手机号码", Toast.LENGTH_SHORT).show();
             return false;
         }
         if (!AppUtils.AuthorPhone(phones)) {
-            Toast.makeText(this, "请输入正确的手机号码", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "请输入正确的手机号码", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -101,19 +101,19 @@ public class RegisterActivity extends BaseActivity implements HttpPostRequestUti
         codes = code.getText().toString().trim();
         passwords = password.getText().toString().trim();
         if (TextUtils.isEmpty(codes)) {
-            Toast.makeText(this, "请输入验证码", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "请输入验证码", Toast.LENGTH_SHORT).show();
             return false;
         }
         if (!"1234".equals(codes)) {
-            Toast.makeText(this, "验证码不正确", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "验证码不正确", Toast.LENGTH_SHORT).show();
             return false;
         }
         if (TextUtils.isEmpty(passwords)) {
-            Toast.makeText(this, "请输入密码", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "请输入密码", Toast.LENGTH_SHORT).show();
             return false;
         }
         if (passwords.length() < 6) {
-            Toast.makeText(this, "密码至少6位", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "密码至少6位", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -149,7 +149,7 @@ public class RegisterActivity extends BaseActivity implements HttpPostRequestUti
 
     @Override
     public void Fail(String method, String error) {
-        Toast.makeText(this, method + " 请求错误 " + error, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), method + " 请求错误 " + error, Toast.LENGTH_SHORT).show();
     }
 
     @Override

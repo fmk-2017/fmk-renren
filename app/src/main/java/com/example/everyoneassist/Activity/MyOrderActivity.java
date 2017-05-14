@@ -64,6 +64,7 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
             OrderBean bean = orderBeanList.get(position);
             Intent intent = new Intent(MyOrderActivity.this,AtWillBuyActivity.class);
             intent.putExtra("xid", bean.getId());
+            intent.putExtra("title", bean.getCat_name());
             startActivity(intent);
         }
     }

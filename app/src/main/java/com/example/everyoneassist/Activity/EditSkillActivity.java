@@ -171,14 +171,14 @@ public class EditSkillActivity extends BaseActivity
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ACTION_IMAGE_CAPTURE_REQUEST) {
             if (resultCode != RESULT_OK) {
-                Toast.makeText(this, "获取图片失败", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "获取图片失败", Toast.LENGTH_SHORT).show();
                 return;
             }
             imagefilelist.add(0, imagefile.getAbsolutePath());
             showImage();
         } else if (requestCode == ACTION_PICK_REQUEST) {
             if (resultCode != RESULT_OK) {
-                Toast.makeText(this, "获取图片失败", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "获取图片失败", Toast.LENGTH_SHORT).show();
                 return;
             }
             Uri selectedImage = data.getData();
@@ -192,7 +192,7 @@ public class EditSkillActivity extends BaseActivity
             showImage();
         } else if (requestCode == REQUEST_NEEDTYPE_CODE) {
             if (resultCode != RESULT_OK) {
-                Toast.makeText(this, "请选择技能类型", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "请选择技能类型", Toast.LENGTH_SHORT).show();
                 return;
             }
             skill_type_id = data.getStringExtra("id");
@@ -206,7 +206,7 @@ public class EditSkillActivity extends BaseActivity
      */
     public void showImage(){
         if (first) {
-            Toast.makeText(this, "长安图片删除", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "长安图片删除", Toast.LENGTH_SHORT).show();
             first = false;
         }
         imagelist.setAdapter(new SkillImageAdapter(this, type, imagefilelist));
@@ -220,19 +220,24 @@ public class EditSkillActivity extends BaseActivity
         skill_infos = skill_content.getText().toString().trim();
         skill_prices = skill_price.getText().toString().trim();
         if (TextUtils.isEmpty(user_id)){
-            Toast.makeText(this, "请重新登陆", Toast.LENGTH_SHORT).show(); return false;
+            Toast.makeText(getApplicationContext(), "请重新登陆", Toast.LENGTH_SHORT).show();
+            return false;
         }
         if (TextUtils.isEmpty(server_name)){
-            Toast.makeText(this, "请选择服务方式", Toast.LENGTH_SHORT).show(); return false;
+            Toast.makeText(getApplicationContext(), "请选择服务方式", Toast.LENGTH_SHORT).show();
+            return false;
         }
         if (TextUtils.isEmpty(server_time)){
-            Toast.makeText(this, "请选择服务时间", Toast.LENGTH_SHORT).show(); return false;
+            Toast.makeText(getApplicationContext(), "请选择服务时间", Toast.LENGTH_SHORT).show();
+            return false;
         }
         if (TextUtils.isEmpty(skill_infos)){
-            Toast.makeText(this, "请输入技能介绍", Toast.LENGTH_SHORT).show(); return false;
+            Toast.makeText(getApplicationContext(), "请输入技能介绍", Toast.LENGTH_SHORT).show();
+            return false;
         }
         if (TextUtils.isEmpty(skill_prices)){
-            Toast.makeText(this, "请输入服务价格", Toast.LENGTH_SHORT).show(); return false;
+            Toast.makeText(getApplicationContext(), "请输入服务价格", Toast.LENGTH_SHORT).show();
+            return false;
         }
         return true;
     }
@@ -259,9 +264,9 @@ public class EditSkillActivity extends BaseActivity
     @Override
     public void Success(String method, JSONObject json) {
         if (METHOD_ADD_SERVER.equals(method)) {
-            Toast.makeText(this, "添加成功", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "添加成功", Toast.LENGTH_SHORT).show();
         } else if (METHOD_UP_SERVER.equals(method)) {
-            Toast.makeText(this, "修改成功", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "修改成功", Toast.LENGTH_SHORT).show();
         }
         finish();
     }

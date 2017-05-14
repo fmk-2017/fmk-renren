@@ -48,7 +48,6 @@ public class DialogShowUtils extends Dialog implements OnWheelChangedListener {
 
     /**
      * 显示选择相册图片还是拍照图片
-     *
      * @return 当前dialog的实例
      */
     public DialogShowUtils ShowGetImageType(View.OnClickListener oc) {
@@ -106,4 +105,23 @@ public class DialogShowUtils extends Dialog implements OnWheelChangedListener {
     public void onChanged(WheelView wheel, int oldValue, int newValue) {
         this.select_id = newValue;
     }
+
+    public DialogShowUtils SelectPaytype(View.OnClickListener oc) {
+        View view = LayoutInflater.from(context).inflate(R.layout.paytypedialog_layout, null, false);
+        TextView alipay = (TextView) view.findViewById(R.id.alipay);
+        TextView weixin = (TextView) view.findViewById(R.id.weixin);
+        alipay.setOnClickListener(oc);
+        weixin.setOnClickListener(oc);
+        dsu.setContentView(view);
+        dsu.getWindow().getAttributes().height = WindowManager.LayoutParams.WRAP_CONTENT;
+        dsu.getWindow().getAttributes().width = ScreenUtils.getScreenWidth(getContext()) / 3 * 2;
+        dsu.getWindow().getAttributes().gravity = Gravity.CENTER;
+        dsu.getWindow().setBackgroundDrawable(null);
+        dsu.getWindow().setWindowAnimations(R.style.getimagetypeStily);
+        dsu.create();
+        dsu.show();
+        return dsu;
+    }
+
+
 }

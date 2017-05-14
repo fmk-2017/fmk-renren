@@ -2,6 +2,7 @@ package com.example.everyoneassist.Adapter;
 
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.example.everyoneassist.Utils.TimeUtils;
 import com.example.everyoneassist.View.CircleImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -85,7 +87,8 @@ public class ReceivingAdapter extends BaseAdapter {
         }
 
         Demand demand = demandList.get(position);
-        ImageLoader.getInstance().displayImage(AppUtils.getAvatarPath(demand.getUser_photo()), viewHolder.avatar);
+        if (!TextUtils.isEmpty(demand.getUser_photo()))
+            ImageLoader.getInstance().displayImage(AppUtils.getAvatarPath(demand.getUser_photo()), viewHolder.avatar);
         viewHolder.user_name.setText(demand.getNickname());
         viewHolder.bestows_num.setText("");
 
@@ -95,9 +98,23 @@ public class ReceivingAdapter extends BaseAdapter {
         if ("10".equals(demand.getCategory_id())) {
             viewHolder.work_address.setVisibility(View.VISIBLE);
             viewHolder.work_price.setVisibility(View.VISIBLE);
+            DecimalFormat decimalFormat = new DecimalFormat("######0.00");
+            String goods_price = decimalFormat.format(Double.valueOf(TextUtils.isEmpty(demand.getGoods_price()) ? "0" : demand.getGoods_price()));
+            String tip_price = decimalFormat.format(Double.valueOf(TextUtils.isEmpty(demand.getTip_price()) ? "0" : demand.getTip_price()));
+            viewHolder.work_price.setText(String.format("配送费%s元 + %s", goods_price, tip_price));
+            viewHolder.work_address.setText(String.format("收货地址：%s", demand.getShipping_address()));
+        } else if ("2".equals(demand.getCategory_id())) {
+            viewHolder.work_address.setVisibility(View.VISIBLE);
+            viewHolder.work_price.setVisibility(View.VISIBLE);
+            DecimalFormat decimalFormat = new DecimalFormat("######0.00");
+            String goods_price = decimalFormat.format(Double.valueOf(TextUtils.isEmpty(demand.getGoods_price()) ? "0" : demand.getGoods_price()));
+            viewHolder.work_price.setText(String.format("服务费%s元", goods_price));
+            viewHolder.work_address.setText(String.format("收货地址：%s", demand.getShipping_address()));
+        } else {
+            viewHolder.work_address.setVisibility(View.INVISIBLE);
+            viewHolder.work_price.setVisibility(View.INVISIBLE);
+//            viewHolder.work_price.setText(String.format("服务费%s元", demand.getServer_price()));
         }
-        viewHolder.work_address.setText("收货地址：无");
-        viewHolder.work_price.setText(String.format("配送费%s元", demand.getServer_price()));
 
         viewHolder.receiving.setTag(position);
         viewHolder.receiving.setOnClickListener(onclick);

@@ -25,7 +25,163 @@ public class Demand {
     private String user_name;
     private String cat_name;
 
+
+    private String delivery_price;
+    private String delivery_id;
+    private String tip_price;
+    private String goods_name;
+    private String goods_weight;
+    private String goods_volume;
+    private String goods_info;
+    private String start_address;
+    private String user_lon;
+    private String user_lat;
+    private String end_address;
+    private String take_addtime;
+    private String consignee;
+    private String receiving_phone;
+    private String server_sex_name;
+
+    private String shipping_address;
+    private String goods_price;
+
     public Demand() {
+    }
+
+    public String getShipping_address() {
+        return shipping_address;
+    }
+
+    public void setShipping_address(String shipping_address) {
+        this.shipping_address = shipping_address;
+    }
+
+    public String getDelivery_price() {
+        return delivery_price;
+    }
+
+    public void setDelivery_price(String delivery_price) {
+        this.delivery_price = delivery_price;
+    }
+
+    public String getDelivery_id() {
+        return delivery_id;
+    }
+
+    public void setDelivery_id(String delivery_id) {
+        this.delivery_id = delivery_id;
+    }
+
+    public String getTip_price() {
+        return tip_price;
+    }
+
+    public void setTip_price(String tip_price) {
+        this.tip_price = tip_price;
+    }
+
+    public String getGoods_name() {
+        return goods_name;
+    }
+
+    public void setGoods_name(String goods_name) {
+        this.goods_name = goods_name;
+    }
+
+    public String getGoods_weight() {
+        return goods_weight;
+    }
+
+    public void setGoods_weight(String goods_weight) {
+        this.goods_weight = goods_weight;
+    }
+
+    public String getGoods_volume() {
+        return goods_volume;
+    }
+
+    public void setGoods_volume(String goods_volume) {
+        this.goods_volume = goods_volume;
+    }
+
+    public String getGoods_price() {
+        return goods_price;
+    }
+
+    public void setGoods_price(String goods_price) {
+        this.goods_price = goods_price;
+    }
+
+    public String getGoods_info() {
+        return goods_info;
+    }
+
+    public void setGoods_info(String goods_info) {
+        this.goods_info = goods_info;
+    }
+
+    public String getStart_address() {
+        return start_address;
+    }
+
+    public void setStart_address(String start_address) {
+        this.start_address = start_address;
+    }
+
+    public String getUser_lon() {
+        return user_lon;
+    }
+
+    public void setUser_lon(String user_lon) {
+        this.user_lon = user_lon;
+    }
+
+    public String getUser_lat() {
+        return user_lat;
+    }
+
+    public void setUser_lat(String user_lat) {
+        this.user_lat = user_lat;
+    }
+
+    public String getEnd_address() {
+        return end_address;
+    }
+
+    public void setEnd_address(String end_address) {
+        this.end_address = end_address;
+    }
+
+    public String getTake_addtime() {
+        return take_addtime;
+    }
+
+    public void setTake_addtime(String take_addtime) {
+        this.take_addtime = take_addtime;
+    }
+
+    public String getConsignee() {
+        return consignee;
+    }
+
+    public void setConsignee(String consignee) {
+        this.consignee = consignee;
+    }
+
+    public String getReceiving_phone() {
+        return receiving_phone;
+    }
+
+    public void setReceiving_phone(String receiving_phone) {
+        this.receiving_phone = receiving_phone;
+    }
+
+    public String getServer_sex_name() {
+        return server_sex_name;
+    }
+
+    public void setServer_sex_name(String server_sex_name) {
+        this.server_sex_name = server_sex_name;
     }
 
     public String getServer_lon() {

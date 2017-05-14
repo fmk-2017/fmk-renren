@@ -19,9 +19,17 @@ public class MySkill {
     private String addtime;
     private String status;
     private String praisesum;
+    private String score;
     private String cat_name;
     private String server_type_name;
 
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
+    }
 
     public String getSkill_id() {
         return skill_id;

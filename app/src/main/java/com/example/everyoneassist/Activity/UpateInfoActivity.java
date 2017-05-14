@@ -284,7 +284,7 @@ public class UpateInfoActivity extends BaseActivity implements View.OnClickListe
         email = jsonObject.getString("email");
         shared.edit().putString("user_photo", user_photo).putString("username", username).putString("sex", sex).putString("email", email).commit();
         setInfo();
-        Toast.makeText(this, "修改成功", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "修改成功", Toast.LENGTH_SHORT).show();
         //{"result":"success","info":"修改成功","data":{"sex":"1","email":"admin@163.com","nickname":"15827991714","user_photo":"http:\/\/www.hzmeijia.top\/"}}
     }
 

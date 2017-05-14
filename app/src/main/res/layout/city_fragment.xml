@@ -21,8 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:orientation="vertical"
-                app:layout_heightPercent="27%w">
+                android:orientation="vertical">
 
                 <com.example.everyoneassist.Layout.PercentRelativeLayout
                     android:layout_width="match_parent"
@@ -30,6 +29,7 @@
                     app:layout_heightPercent="10%w">
 
                     <TextView
+                        android:id="@+id/textView7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -37,14 +37,18 @@
                         android:text="发货人:"
                         android:textSize="@dimen/text_normal" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/tvSendPerson"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
+                        android:layout_alignBaseline="@+id/textView7"
+                        android:layout_alignBottom="@+id/textView7"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="23dp"
                         android:layout_marginRight="20dp"
-                        android:text="小美"
+                        android:background="@null"
+                        android:hint="你的名字"
+                        android:textColorHint="@color/deep_gray"
                         android:textSize="@dimen/text_normal" />
 
                 </com.example.everyoneassist.Layout.PercentRelativeLayout>
@@ -68,14 +72,50 @@
                         android:text="电话:"
                         android:textSize="@dimen/text_normal" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/tvSendPhone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="20dp"
-                        android:text="13886298514"
+                        android:background="@null"
+                        android:hint="你的手机号码"
+                        android:inputType="phone"
+                        android:textColorHint="@color/deep_gray"
+                        android:textSize="@dimen/text_normal" />
+
+                </com.example.everyoneassist.Layout.PercentRelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/thin_white" />
+
+                <com.example.everyoneassist.Layout.PercentRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_heightPercent="10%w">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="发货地址:"
+                        android:textSize="@dimen/text_normal" />
+
+                    <EditText
+                        android:id="@+id/tvSendAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@null"
+                        android:hint="你的发货地址"
+                        android:textColorHint="@color/deep_gray"
                         android:textSize="@dimen/text_normal" />
 
                 </com.example.everyoneassist.Layout.PercentRelativeLayout>
@@ -93,7 +133,6 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:orientation="vertical"
-                app:layout_heightPercent="30%w"
                 app:layout_marginTopPercent="3%w">
 
                 <com.example.everyoneassist.Layout.PercentRelativeLayout
@@ -137,6 +176,7 @@
                     app:layout_heightPercent="10%w">
 
                     <TextView
+                        android:id="@+id/textView6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -148,13 +188,52 @@
                         android:id="@+id/etRecePhone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
+                        android:layout_alignBaseline="@+id/textView6"
+                        android:layout_alignBottom="@+id/textView6"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="22dp"
                         android:layout_marginRight="20dp"
                         android:background="@null"
                         android:gravity="right"
                         android:hint="请填写收货人联系电话"
                         android:inputType="phone"
+                        android:maxLength="11"
+                        android:textColorHint="@color/deep_gray"
+                        android:textSize="@dimen/text_normal" />
+
+                </com.example.everyoneassist.Layout.PercentRelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/thin_white" />
+
+                <com.example.everyoneassist.Layout.PercentRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_heightPercent="10%w">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="收货地址:"
+                        android:textSize="@dimen/text_normal" />
+
+                    <EditText
+                        android:id="@+id/etReceAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/textView6"
+                        android:layout_alignBottom="@+id/textView6"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="22dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@null"
+                        android:gravity="right"
+                        android:hint="请填写收货地址"
                         android:maxLength="11"
                         android:textColorHint="@color/deep_gray"
                         android:textSize="@dimen/text_normal" />
@@ -226,7 +305,7 @@
                         android:layout_marginRight="20dp"
                         android:background="@null"
                         android:gravity="center"
-                        android:text="20元"
+                        android:text="0元"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_normal"
                         app:layout_heightPercent="10%w"
@@ -239,8 +318,8 @@
                         android:layout_centerVertical="true"
                         android:layout_toLeftOf="@id/etTip"
                         android:layout_toRightOf="@id/left1"
-                        android:max="100"
-                        android:progress="10" />
+                        android:max="20"
+                        android:progress="0" />
 
                 </com.example.everyoneassist.Layout.PercentRelativeLayout>
 
@@ -252,6 +331,39 @@
                 android:background="@color/white"
                 android:orientation="vertical"
                 app:layout_heightPercent="40%w"
+                app:layout_marginTopPercent="3%w">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
+                    android:text="快递信息："
+                    android:textSize="@dimen/text_normal"
+                    app:layout_heightPercent="10%w"
+                    app:layout_marginTopPercent="3%w" />
+
+                <EditText
+                    android:id="@+id/etinfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/edit_bg"
+                    android:gravity="top"
+                    android:textSize="@dimen/text_normal"
+                    app:layout_heightPercent="20%w"
+                    app:layout_marginLeftPercent="5%w"
+                    app:layout_marginRightPercent="5%w" />
+
+            </com.example.everyoneassist.Layout.PercentLinearLayout>
+
+            <com.example.everyoneassist.Layout.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                app:layout_heightPercent="25%w"
                 app:layout_marginTopPercent="3%w">
 
                 <TextView
@@ -273,12 +385,43 @@
                     android:background="@drawable/edit_bg"
                     android:gravity="top"
                     android:textSize="@dimen/text_normal"
-                    app:layout_heightPercent="20%w"
+                    app:layout_heightPercent="10%w"
                     app:layout_marginLeftPercent="5%w"
                     app:layout_marginRightPercent="5%w" />
 
             </com.example.everyoneassist.Layout.PercentLinearLayout>
 
+            <com.example.everyoneassist.Layout.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
+                    android:text="配送费："
+                    android:textSize="@dimen/text_normal" />
+
+                <EditText
+                    android:id="@+id/price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/fram_auth_bg"
+                    android:gravity="left"
+                    android:hint="元"
+                    android:inputType="numberDecimal"
+                    android:padding="8dp"
+                    android:textSize="@dimen/text_normal"
+                    app:layout_widthPercent="40%w" />
+
+            </com.example.everyoneassist.Layout.PercentLinearLayout>
 
             <com.example.everyoneassist.Layout.PercentRelativeLayout
                 android:layout_width="match_parent"
@@ -291,7 +434,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="合计：32元"
+                    android:text="合计：0.00元"
                     app:layout_marginLeftPercent="5%w"
                     app:layout_marginTopPercent="5%w" />
 

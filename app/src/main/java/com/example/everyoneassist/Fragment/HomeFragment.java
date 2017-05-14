@@ -106,7 +106,8 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), MyInfoActivity.class);
-                intent.putExtra("user_id", home.getGet_server_list().get(position).getUser_id());
+                intent.putExtra("user_id", home.getGet_server_list().get(position - 2).getUser_id());
+                intent.putExtra("skill_id", home.getGet_server_list().get(position - 2).getSkill_id());
                 startActivity(intent);
             }
         });
@@ -194,7 +195,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     @Override
     public void Fail(String method, String error) {
         homelistview.onRefreshComplete();
-//        if (x.isDebug()) Toast.makeText(getActivity(), this.getClass().getName() + ": " + method + " error: " + error, Toast.LENGTH_SHORT).show();
+//        if (x.isDebug()) Toast.makeText(getApplicationContext(), this.getClass().getName() + ": " + method + " error: " + error, Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -39,14 +39,9 @@ public class InvitationAdapter extends BaseAdapter implements View.OnClickListen
         this.is_self = is_self;
     }
 
-    public InvitationAdapter(Context context,OnInvitedListener invitedListener) {
-        this.context = context;
-        this.invitedListener = invitedListener;
-    }
-
     @Override
     public int getCount() {
-        return 2;//invitations.size();
+        return invitations.size();
     }
 
     @Override
@@ -61,7 +56,7 @@ public class InvitationAdapter extends BaseAdapter implements View.OnClickListen
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        /*ViewHolder vh;
+        ViewHolder vh;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.serverinvitation_layout, null, false);
             vh = new ViewHolder();
@@ -106,12 +101,12 @@ public class InvitationAdapter extends BaseAdapter implements View.OnClickListen
 
         vh.invitantion.setTag(position);
         vh.invitantion.setOnClickListener(onclick);
-        return convertView;*/
-        convertView = LayoutInflater.from(context).inflate(R.layout.serverinvitation_layout, null, false);
-        TextView invitantion = (TextView) convertView.findViewById(R.id.invitantion);
-        invitantion.setTag(position);
-        invitantion.setOnClickListener(this);
-        return  convertView;
+        return convertView;
+//        convertView = LayoutInflater.from(context).inflate(R.layout.serverinvitation_layout, null, false);
+//        TextView invitantion = (TextView) convertView.findViewById(R.id.invitantion);
+//        invitantion.setTag(position);
+//        invitantion.setOnClickListener(this);
+//        return  convertView;
     }
 
     @Override

@@ -6,7 +6,7 @@ package com.example.everyoneassist.Entity;
 
 public class Invitation {
 
-
+    private String tender_id;
     private String user_id;
     private String nickname;
     private String email;
@@ -59,6 +59,14 @@ public class Invitation {
     private String status;
     private String range;
 
+
+    public String getTender_id() {
+        return tender_id;
+    }
+
+    public void setTender_id(String tender_id) {
+        this.tender_id = tender_id;
+    }
 
     public String getUser_id() {
         return user_id;

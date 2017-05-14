@@ -43,14 +43,15 @@ public class HttpPostRequestUtils {
                 rp.addBodyParameter(key, new File(value));
             else rp.addBodyParameter(key, value);
         }
-        Callback.Cancelable cc = x.http().post(rp, new Callback.CommonCallback<JSONObject>() {
+        Callback.Cancelable cc = x.http().post(rp, new Callback.CommonCallback<String>() {
             @Override
-            public void onSuccess(JSONObject result) {
+            public void onSuccess(String results) {
                 try {
                     if (x.isDebug()) {
-                        Log.e(method + "====", result.toString());
+                        Log.e(method + "====", results.toString());
                         //Toast.makeText(hprc.getContext(), result.getString("info"), Toast.LENGTH_SHORT).show();
                     }
+                    JSONObject result = new JSONObject(results);
                     if ("success".equals(result.getString("result"))) hprc.Success(method, result);
                     else
                         Toast.makeText(hprc.getContext(), result.getString("info"), Toast.LENGTH_SHORT).show();
@@ -61,6 +62,7 @@ public class HttpPostRequestUtils {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                Log.e("qqqqqqqqqqq", ex.toString());
                 if (x.isDebug())
                     hprc.Fail(method, ex.toString());
             }

@@ -6,12 +6,12 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <com.example.everyoneassist.Layout.PercentLinearLayout
+    <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.example.everyoneassist.View.CircleImageView
+        <com.cfkj.dushikuaibang.View.CircleImageView
             android:id="@+id/oderImg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
 
         </LinearLayout>
 
-    </com.example.everyoneassist.Layout.PercentLinearLayout>
+    </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

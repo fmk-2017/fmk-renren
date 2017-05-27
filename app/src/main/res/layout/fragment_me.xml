@@ -5,15 +5,15 @@
     android:layout_height="match_parent"
     android:background="@color/thin_white"
     android:orientation="vertical"
-    tools:context="com.example.everyoneassist.Fragment.MeFragment">
+    tools:context="com.cfkj.dushikuaibang.Fragment.MeFragment">
 
-    <com.example.everyoneassist.Layout.PercentLinearLayout
+    <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/theme"
         android:gravity="center_vertical">
 
-        <com.example.everyoneassist.View.CircleImageView
+        <com.cfkj.dushikuaibang.View.CircleImageView
             android:id="@+id/ivMeImg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -49,7 +49,7 @@
 
         </LinearLayout>
 
-    </com.example.everyoneassist.Layout.PercentLinearLayout>
+    </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

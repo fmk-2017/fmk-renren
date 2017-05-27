@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/fab_margin">
 
-        <com.example.everyoneassist.View.MyGridView
+        <com.cfkj.dushikuaibang.View.MyGridView
             android:id="@+id/header_gridview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

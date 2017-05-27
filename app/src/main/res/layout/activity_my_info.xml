@@ -16,7 +16,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.example.everyoneassist.Layout.PercentRelativeLayout
+            <com.cfkj.dushikuaibang.Layout.PercentRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -28,13 +28,13 @@
                     android:src="@mipmap/home_10"
                     app:layout_heightPercent="60%w" />
 
-                <com.example.everyoneassist.Layout.PercentLinearLayout
+                <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     app:layout_marginTopPercent="52%w">
 
-                    <com.example.everyoneassist.View.CircleImageView
+                    <com.cfkj.dushikuaibang.View.CircleImageView
                         android:id="@+id/ivMeHead"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -92,9 +92,9 @@
 
                     </LinearLayout>
 
-                </com.example.everyoneassist.Layout.PercentLinearLayout>
+                </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
 
-            </com.example.everyoneassist.Layout.PercentRelativeLayout>
+            </com.cfkj.dushikuaibang.Layout.PercentRelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -146,7 +146,7 @@
 
                 </LinearLayout>
 
-                <com.example.everyoneassist.Layout.PercentLinearLayout
+                <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
@@ -159,7 +159,7 @@
                         android:src="@drawable/credit_auth_dleft"
                         app:layout_widthPercent="25%w" />
 
-                </com.example.everyoneassist.Layout.PercentLinearLayout>
+                </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -168,7 +168,7 @@
                     android:layout_marginTop="12dp"
                     android:background="@color/thin_white" />
 
-                <com.example.everyoneassist.View.MyListView2
+                <com.cfkj.dushikuaibang.View.MyListView2
                     android:id="@+id/mylistview2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -214,7 +214,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <com.example.everyoneassist.Layout.PercentLinearLayout
+    <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -275,6 +275,6 @@
             android:textSize="@dimen/text_normal"
             app:layout_heightPercent="12%w" />
 
-    </com.example.everyoneassist.Layout.PercentLinearLayout>
+    </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
 
 </LinearLayout>

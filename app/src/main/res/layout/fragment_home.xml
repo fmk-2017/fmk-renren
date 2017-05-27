@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.example.everyoneassist.Fragment.HomeFragment">
+    tools:context="com.cfkj.dushikuaibang.Fragment.HomeFragment">
 
-    <com.example.everyoneassist.View.Pull.PullToRefreshListView
+    <com.cfkj.dushikuaibang.View.Pull.PullToRefreshListView
         android:id="@+id/homelistview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

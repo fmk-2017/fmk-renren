@@ -7,11 +7,11 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context="com.example.everyoneassist.Activity.AddressEditActivity">
+    tools:context="com.cfkj.dushikuaibang.Activity.AddressEditActivity">
 
     <include layout="@layout/header_title" />
 
-    <com.example.everyoneassist.Layout.PercentLinearLayout
+    <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
@@ -130,6 +130,6 @@
             app:layout_paddingLeftPercent="15%w"
             app:layout_paddingRightPercent="15%w" />
 
-    </com.example.everyoneassist.Layout.PercentLinearLayout>
+    </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
 
 </LinearLayout>

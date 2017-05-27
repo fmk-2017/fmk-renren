@@ -12,14 +12,15 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="16dp"
-        android:background="#FF4B7F7A"
-        android:gravity="center"
+        android:drawableLeft="@mipmap/home_repair"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
         android:padding="10dp"
         android:text="家政服务"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="@dimen/text_big" />
 
-    <com.example.everyoneassist.View.MyGridView
+    <com.cfkj.dushikuaibang.View.MyGridView
         android:id="@+id/need_gridview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

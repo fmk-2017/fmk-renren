@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.everyoneassist">
+    package="com.cfkj.dushikuaibang">
 
     <!-- 允许程序打开网络套接字 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -30,7 +30,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <application
-        android:name=".MyApplication"
+        android:name="com.cfkj.dushikuaibang.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
@@ -42,7 +42,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.example.everyoneassist.fileprovider"
+            android:authorities="com.cfkj.dushikuaibang.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -53,13 +53,13 @@
         <service android:name="com.amap.api.location.APSService" />
 
         <activity
-            android:name=".Activity.MainActivity"
+            android:name="com.cfkj.dushikuaibang.Activity.MainActivity"
             android:hardwareAccelerated="false"
             android:label="@string/app_name"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activity.BaseActivity" />
-        <activity android:name=".Activity.ReleaseNeedTypeActivity" />
-        <activity android:name=".Activity.GuideActivity">
+        <activity android:name="com.cfkj.dushikuaibang.Activity.BaseActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.ReleaseNeedTypeActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.GuideActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -100,7 +100,7 @@
 
         <!-- 微信分享回调 -->
         <activity
-            android:name=".wxapi.WXEntryActivity"
+            android:name="com.cfkj.dushikuaibang.wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -117,31 +117,31 @@
             android:exported="false"
             android:screenOrientation="behind"></activity>
 
-        <activity android:name=".Activity.LoginActivity" />
-        <activity android:name=".Activity.RegisterActivity" />
-        <activity android:name=".Activity.UserManualActivity" />
-        <activity android:name=".Activity.ShowExplainActivity" />
-        <activity android:name=".Activity.SystemSettingActivity" />
-        <activity android:name=".Activity.AddressManagerActivity" />
-        <activity android:name=".Activity.AddressEditActivity" />
-        <activity android:name=".Activity.PersonAuthActivity" />
-        <activity android:name=".Activity.AuthAutonymActivity" />
-        <activity android:name=".Activity.AuthPhoneActivity" />
-        <activity android:name=".Activity.MyWalletActivity" />
-        <activity android:name=".Activity.MyWalletDepositActivity" />
-        <activity android:name=".Activity.MyCollectActivity" />
-        <activity android:name=".Activity.EditSkillActivity" />
-        <activity android:name=".Activity.SkillManagerActivity" />
-        <activity android:name=".Activity.AddSkillListActivity" />
-        <activity android:name=".Activity.AtWillBuyActivity" />
-        <activity android:name=".Activity.ReleaseNeedActivity" />
-        <activity android:name=".Activity.MyInfoActivity" />
-        <activity android:name=".Activity.SingleServerActivity" />
-        <activity android:name=".Activity.ShoppingActivity" />
-        <activity android:name=".Activity.MyOrderActivity" />
-        <activity android:name=".Activity.UpateInfoActivity" />
-        <activity android:name=".Activity.CommentActivity" />
-        <activity android:name=".Activity.EditTextActivity"></activity>
+        <activity android:name="com.cfkj.dushikuaibang.Activity.LoginActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.RegisterActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.UserManualActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.ShowExplainActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.SystemSettingActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.AddressManagerActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.AddressEditActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.PersonAuthActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.AuthAutonymActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.AuthPhoneActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.MyWalletActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.MyWalletDepositActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.MyCollectActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.EditSkillActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.SkillManagerActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.AddSkillListActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.AtWillBuyActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.ReleaseNeedActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.MyInfoActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.SingleServerActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.ShoppingActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.MyOrderActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.UpateInfoActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.CommentActivity" />
+        <activity android:name="com.cfkj.dushikuaibang.Activity.EditTextActivity"></activity>
     </application>
 
 </manifest>

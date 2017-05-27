@@ -20,4 +20,20 @@
     <color name="white_transparent">#66FFFFFF</color>
     <color name="province_line_border">#F8F8F8</color>
 
+    <color name="need_type1">#F07359</color>
+    <color name="need_type2">#F97A31</color>
+    <color name="need_type3">#1CD6A0</color>
+    <color name="need_type4">#F7BE35</color>
+    <color name="need_type5">#F9B932</color>
+    <color name="need_type6">#FC6954</color>
+    <color name="need_type7">#5E74F6</color>
+    <color name="need_type8">#27B2FD</color>
+    <color name="need_type9">#55F9FF</color>
+    <color name="need_type10">#1BD990</color>
+    <color name="need_type11">#F7BF2D</color>
+    <color name="need_type12">#F7BF2D</color>
+    <color name="need_type13">#F7BF2D</color>
+    <color name="need_type14">#F7BF2D</color>
+
+
 </resources>

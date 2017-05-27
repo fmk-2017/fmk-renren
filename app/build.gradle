@@ -9,11 +9,15 @@ android {
             storePassword '123456'
         }
     }
+    aaptOptions {
+        cruncherEnabled = false
+        useNewCruncher = false
+    }
     compileSdkVersion 24
-    buildToolsVersion "25.0.0"
+    buildToolsVersion '25.0.0'
     defaultConfig {
-        applicationId "com.example.everyoneassist"
-        minSdkVersion 21
+        applicationId "com.example.dushikuaibang"
+        minSdkVersion 19
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -35,6 +39,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
     compile files('libs/MobCommons-2017.0412.1554.jar')
     compile files('libs/MobTools-2017.0412.1554.jar')
     compile files('libs/ShareSDK-Core-2.8.3.jar')

@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.everyoneassist.Activity.SkillManagerActivity">
+    tools:context="com.cfkj.dushikuaibang.Activity.SkillManagerActivity">
 
     <include layout="@layout/header_title" />
 
-    <com.example.everyoneassist.View.MyListView
+    <com.cfkj.dushikuaibang.View.MyListView
         android:id="@+id/skilllistview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context="com.example.everyoneassist.Activity.AtWillBuyActivity">
+    tools:context="com.cfkj.dushikuaibang.Activity.AtWillBuyActivity">
 
     <include layout="@layout/header_title" />
 
@@ -16,13 +16,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.example.everyoneassist.Layout.PercentLinearLayout
+        <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="15dp"
             android:orientation="vertical">
 
-            <com.example.everyoneassist.Layout.PercentLinearLayout
+            <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
                 android:id="@+id/other"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
                     app:layout_maxHeightPercent="16%w"
                     app:layout_minHeightPercent="12%w" />
 
-            </com.example.everyoneassist.Layout.PercentLinearLayout>
+            </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -292,7 +292,7 @@
                 android:layout_height="8dp"
                 android:background="@color/thin_white" />
 
-            <com.example.everyoneassist.Layout.PercentLinearLayout
+            <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -353,14 +353,14 @@
                     app:layout_marginRightPercent="20%w"
                     app:layout_marginTopPercent="6%w" />
 
-            </com.example.everyoneassist.Layout.PercentLinearLayout>
+            </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
 
             <include
                 layout="@layout/servant_introduce_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-        </com.example.everyoneassist.Layout.PercentLinearLayout>
+        </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
 
     </ScrollView>
 

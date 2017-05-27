@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context="com.example.everyoneassist.Activity.ReleaseNeedActivity">
+    tools:context="com.cfkj.dushikuaibang.Activity.ReleaseNeedActivity">
 
     <include layout="@layout/header_title" />
 
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.example.everyoneassist.Layout.PercentLinearLayout
+        <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -72,7 +72,7 @@
                 android:layout_height="8dp"
                 android:background="@color/thin_white" />
 
-            <com.example.everyoneassist.Layout.PercentLinearLayout
+            <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -88,7 +88,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_normal" />
 
-                <com.example.everyoneassist.View.MyGridView
+                <com.cfkj.dushikuaibang.View.MyGridView
                     android:id="@+id/setver_time_gridview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -106,7 +106,7 @@
                     android:textSize="@dimen/text_normal" />
 
                 <!--android:listSelector="@drawable/skill_item_orange"-->
-                <com.example.everyoneassist.View.MyGridView
+                <com.cfkj.dushikuaibang.View.MyGridView
                     android:id="@+id/sex_gridview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
                     android:textSize="@dimen/text_normal" />
 
                 <!--android:listSelector="@drawable/skill_item_orange"-->
-                <com.example.everyoneassist.View.MyGridView
+                <com.cfkj.dushikuaibang.View.MyGridView
                     android:id="@+id/server_type_gridview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -134,7 +134,7 @@
                     android:padding="10dp"
                     android:verticalSpacing="15dp" />
 
-            </com.example.everyoneassist.Layout.PercentLinearLayout>
+            </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
 
             <View
                 android:id="@+id/view1"
@@ -143,7 +143,7 @@
                 android:background="@color/thin_white"
                 android:visibility="gone" />
 
-            <com.example.everyoneassist.View.MyListView2
+            <com.cfkj.dushikuaibang.View.MyListView2
                 android:id="@+id/server_Item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -156,7 +156,7 @@
                 android:layout_height="8dp"
                 android:background="@color/thin_white" />
 
-            <com.example.everyoneassist.Layout.PercentLinearLayout
+            <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -202,7 +202,7 @@
 
                 </EditText>
 
-            </com.example.everyoneassist.Layout.PercentLinearLayout>
+            </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
 
             <TextView
                 android:id="@+id/release"
@@ -225,7 +225,7 @@
                 android:text="注：为了防止用户隐私受到打扰，请在交易意向大成前不要留下电话和其他联系方式"
                 app:layout_marginBottomPercent="8%w" />
 
-        </com.example.everyoneassist.Layout.PercentLinearLayout>
+        </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
 
     </ScrollView>
 

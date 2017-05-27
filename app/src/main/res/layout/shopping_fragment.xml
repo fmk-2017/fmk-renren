@@ -11,20 +11,20 @@
         android:background="@color/thin_white"
         android:scrollbars="none">
 
-        <com.example.everyoneassist.Layout.PercentLinearLayout
+        <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/thin_white"
             android:orientation="vertical">
 
-            <com.example.everyoneassist.Layout.PercentLinearLayout
+            <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:orientation="vertical"
                 app:layout_heightPercent="42%w">
 
-                <com.example.everyoneassist.Layout.PercentLinearLayout
+                <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -46,7 +46,7 @@
                         app:layout_marginTopPercent="5%w"
                         app:layout_widthPercent="60%w" />
 
-                </com.example.everyoneassist.Layout.PercentLinearLayout>
+                </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -63,9 +63,9 @@
                     app:layout_marginLeftPercent="5%w"
                     app:layout_marginTopPercent="2%w" />
 
-            </com.example.everyoneassist.Layout.PercentLinearLayout>
+            </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
 
-            <com.example.everyoneassist.Layout.PercentRelativeLayout
+            <com.cfkj.dushikuaibang.Layout.PercentRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -93,7 +93,7 @@
                     android:textSize="@dimen/text_normal"
                     app:layout_marginRightPercent="5%w" />
 
-            </com.example.everyoneassist.Layout.PercentRelativeLayout>
+            </com.cfkj.dushikuaibang.Layout.PercentRelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -101,7 +101,7 @@
                 android:layout_alignParentBottom="true"
                 android:background="@color/thin_white" />
 
-            <com.example.everyoneassist.Layout.PercentRelativeLayout
+            <com.cfkj.dushikuaibang.Layout.PercentRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -129,7 +129,7 @@
                     android:textSize="@dimen/text_normal"
                     app:layout_marginRightPercent="9%w" />
 
-            </com.example.everyoneassist.Layout.PercentRelativeLayout>
+            </com.cfkj.dushikuaibang.Layout.PercentRelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -137,7 +137,7 @@
                 android:layout_alignParentBottom="true"
                 android:background="@color/thin_white" />
 
-            <com.example.everyoneassist.Layout.PercentRelativeLayout
+            <com.cfkj.dushikuaibang.Layout.PercentRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -165,7 +165,7 @@
                     android:textSize="@dimen/text_normal"
                     app:layout_marginRightPercent="9%w" />
 
-            </com.example.everyoneassist.Layout.PercentRelativeLayout>
+            </com.cfkj.dushikuaibang.Layout.PercentRelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -173,7 +173,7 @@
                 android:layout_alignParentBottom="true"
                 android:background="@color/thin_white" />
 
-            <com.example.everyoneassist.Layout.PercentRelativeLayout
+            <com.cfkj.dushikuaibang.Layout.PercentRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -195,12 +195,15 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="20dp"
                     android:background="@null"
+                    android:gravity="right"
                     android:hint="元"
+                    android:inputType="numberDecimal"
+                    android:minWidth="120dp"
                     android:textColor="@color/orange"
                     android:textSize="@dimen/text_normal"
                     app:layout_marginRightPercent="9%w" />
 
-            </com.example.everyoneassist.Layout.PercentRelativeLayout>
+            </com.cfkj.dushikuaibang.Layout.PercentRelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -208,7 +211,7 @@
                 android:layout_alignParentBottom="true"
                 android:background="@color/thin_white" />
 
-            <com.example.everyoneassist.Layout.PercentRelativeLayout
+            <com.cfkj.dushikuaibang.Layout.PercentRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -231,13 +234,15 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="20dp"
                     android:background="@null"
+                    android:gravity="right"
                     android:hint="联系人电话号码"
+                    android:inputType="phone"
                     android:textColor="@color/deep_gray"
                     android:textColorHint="@color/deep_gray"
                     android:textSize="@dimen/text_normal"
                     app:layout_marginRightPercent="9%w" />
 
-            </com.example.everyoneassist.Layout.PercentRelativeLayout>
+            </com.cfkj.dushikuaibang.Layout.PercentRelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -245,7 +250,7 @@
                 android:layout_alignParentBottom="true"
                 android:background="@color/thin_white" />
 
-            <com.example.everyoneassist.Layout.PercentRelativeLayout
+            <com.cfkj.dushikuaibang.Layout.PercentRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -267,13 +272,14 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="20dp"
                     android:background="@null"
-                    android:hint="联系人电话号码"
+                    android:gravity="right"
+                    android:hint="联系人名字"
                     android:textColor="@color/deep_gray"
                     android:textColorHint="@color/deep_gray"
                     android:textSize="@dimen/text_normal"
                     app:layout_marginRightPercent="9%w" />
 
-            </com.example.everyoneassist.Layout.PercentRelativeLayout>
+            </com.cfkj.dushikuaibang.Layout.PercentRelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -281,7 +287,7 @@
                 android:layout_alignParentBottom="true"
                 android:background="@color/thin_white" />
 
-            <com.example.everyoneassist.Layout.PercentRelativeLayout
+            <com.cfkj.dushikuaibang.Layout.PercentRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -309,7 +315,7 @@
                     android:textSize="@dimen/text_normal"
                     app:layout_marginRightPercent="9%w" />
 
-            </com.example.everyoneassist.Layout.PercentRelativeLayout>
+            </com.cfkj.dushikuaibang.Layout.PercentRelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -317,7 +323,7 @@
                 android:layout_alignParentBottom="true"
                 android:background="@color/thin_white" />
 
-            <com.example.everyoneassist.Layout.PercentRelativeLayout
+            <com.cfkj.dushikuaibang.Layout.PercentRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_heightPercent="30%w">
@@ -337,8 +343,8 @@
                     app:layout_paddingRightPercent="20%w"
                     app:layout_paddingTopPercent="3%w" />
 
-            </com.example.everyoneassist.Layout.PercentRelativeLayout>
-        </com.example.everyoneassist.Layout.PercentLinearLayout>
+            </com.cfkj.dushikuaibang.Layout.PercentRelativeLayout>
+        </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
 
     </ScrollView>
 

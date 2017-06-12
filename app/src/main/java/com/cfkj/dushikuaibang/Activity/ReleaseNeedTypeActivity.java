@@ -3,6 +3,7 @@ package com.cfkj.dushikuaibang.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ListView;
 
@@ -27,14 +28,20 @@ public class ReleaseNeedTypeActivity extends BaseActivity implements ReleaseNeed
     private int start;
     private List<HomeCategory> homeCategories;
 
+    private String type = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_release_need_type);
 
         start = getIntent().getIntExtra("start", 0);
-
-        initHeader("发布需求");
+        if (getIntent().hasExtra("type")) {
+            type = getIntent().getStringExtra("type");
+        }
+        if (TextUtils.isEmpty(type))
+            initHeader("发布需求");
+        else initHeader("所有服务");
 
         initView();
 
@@ -55,12 +62,19 @@ public class ReleaseNeedTypeActivity extends BaseActivity implements ReleaseNeed
 
     @Override
     public void ItemClick(View view, int position, int id) {
-        Intent intent = new Intent(this, ReleaseNeedActivity.class);
-        intent.putExtra("id", homeCategories.get(id).getChild().get(position).getCat_id());
-        intent.putExtra("name", homeCategories.get(id).getChild().get(position).getCat_name());
-        if (start == 0) startActivity(intent);
-        else setResult(RESULT_OK, intent);
-        finish();
+        if (TextUtils.isEmpty(type)) {
+            Intent intent = new Intent(this, ReleaseNeedActivity.class);
+            intent.putExtra("id", homeCategories.get(id).getChild().get(position).getCat_id());
+            intent.putExtra("name", homeCategories.get(id).getChild().get(position).getCat_name());
+            if (start == 0) startActivity(intent);
+            else setResult(RESULT_OK, intent);
+            finish();
+        } else {
+            Intent intent = new Intent(this, SingleServerActivity.class);
+            intent.putExtra("cid", homeCategories.get(id).getChild().get(position).getCat_id());
+            intent.putExtra("cname", homeCategories.get(id).getChild().get(position).getCat_name());
+            startActivity(intent);
+        }
     }
 
     @Override

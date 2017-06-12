@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -22,6 +23,7 @@ import com.alibaba.fastjson.JSON;
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
 import com.cfkj.dushikuaibang.Activity.MyInfoActivity;
+import com.cfkj.dushikuaibang.Activity.ReleaseNeedTypeActivity;
 import com.cfkj.dushikuaibang.Activity.ShoppingActivity;
 import com.cfkj.dushikuaibang.Activity.SingleServerActivity;
 import com.cfkj.dushikuaibang.Adapter.HeaderGridViewAdapter;
@@ -83,6 +85,9 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         }
     };
 
+    private int page = 1;
+    private boolean canload = true;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -109,6 +114,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             public void onRefresh(PullToRefreshBase<MyListView> refreshView) {
                 String label = TimeUtils.getFormatTime((System.currentTimeMillis() / 1000) + "");
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                page = 1;
                 LocationUtils.getInstance(getActivity()).startLoaction(HomeFragment.this);
             }
         });
@@ -133,6 +139,23 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
         mhandler.removeCallbacks(mrunnable);
         mhandler.postDelayed(mrunnable, 2500);
+
+        homelistview.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if (skillList == null) return;
+                if ((firstVisibleItem + visibleItemCount + 3) >= skillList.size() && canload) {
+                    canload = false;
+                    page++;
+                    LocationUtils.getInstance(getActivity()).startLoaction(HomeFragment.this);
+                }
+            }
+        });
 
         return view;
     }
@@ -182,6 +205,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                     Intent intent = new Intent(getActivity(), ShoppingActivity.class);
                     intent.putExtra("type", home.getGet_category().get(position).getCat_id());
                     startActivityForResult(intent, 555);
+                } else if (position == 7) {
+                    Intent intent = new Intent(getActivity(), ReleaseNeedTypeActivity.class);
+                    intent.putExtra("type", "all");
+                    startActivity(intent);
                 } else {
                     Intent intent = new Intent(getActivity(), SingleServerActivity.class);
                     intent.putExtra("cid", home.getGet_category().get(position).getCat_id());
@@ -201,17 +228,21 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                 home.getGet_category().get(7).setCat_name("全部");
                 header_gridview.setAdapter(new HeaderGridViewAdapter(getActivity(), home.getGet_category(), 8));
             }
+
             if (home.getGet_server_list() != null && home.getGet_server_list().size() > 0) {
-                if (skillList != null)
+                if (skillList == null) skillList = new ArrayList<>();
+                if (page == 1) {
                     skillList.clear();
-                else skillList = new ArrayList<>();
+                }
                 skillList.addAll(home.getGet_server_list());
                 if (homeAdapter != null) homeAdapter.notifyDataSetChanged();
                 else {
                     homeAdapter = new HomeAdapter(getActivity(), skillList, this);
                     homelistview.setAdapter(homeAdapter);
                 }
+                canload = true;
             }
+            Log.e("sss", page + " hah " + home.getGet_server_list().size());
             if (home.getHome_pic() != null && home.getHome_pic().size() > 0) {
 //                ImageView[] imageViews = new ImageView[home.getHome_pic().size()];
 //                for (int i = 0; i < home.getHome_pic().size(); i++) {
@@ -239,6 +270,9 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     @Override
     public void Fail(String method, String error) {
         homelistview.onRefreshComplete();
+        if (METHOD_HOME.equals(method)) {
+            if (page > 1) page--;
+        }
 //        if (x.isDebug()) Toast.makeText(getApplicationContext(), this.getClass().getName() + ": " + method + " error: " + error, Toast.LENGTH_SHORT).show();
     }
 
@@ -253,7 +287,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         map.put("act", METHOD_HOME);
         map.put("user_lat", user_lat);
         map.put("user_lon", user_lon);
-        map.put("page", "1");
+        map.put("page", page + "");
         map.put("category_id", "0");
         HttpPostRequestUtils.getInstance(this).Post(map);
     }

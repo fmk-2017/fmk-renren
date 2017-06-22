@@ -1,6 +1,7 @@
 package com.cfkj.dushikuaibang.Utils;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
 
 import java.util.regex.Matcher;
@@ -42,11 +43,14 @@ public class AppUtils {
     public static DisplayImageOptions getOptions() {
         if (options == null)
             options = new DisplayImageOptions.Builder()
-                    .resetViewBeforeLoading(false)  // default
-                    .delayBeforeLoading(1000)
-                    .cacheInMemory(true) // default
-                    .cacheOnDisk(true) // default
-                    .displayer(new SimpleBitmapDisplayer()) // default
+//                    .showImageOnLoading(R.drawable.ease_default_avatar)            //加载图片时的图片
+//                    .showImageForEmptyUri(R.drawable.ease_default_avatar)         //没有图片资源时的默认图片
+//                    .showImageOnFail(R.drawable.ease_default_avatar)              //加载失败时的图片
+                    .cacheInMemory(true)                               //启用内存缓存
+                    .cacheOnDisk(true)                                 //启用外存缓存
+                    .considerExifParams(true)                          //启用EXIF和JPEG图像格式
+                    //                .displayer(new RoundedBitmapDisplayer(20))         //设置显示风格这里是圆角矩形
+                    .imageScaleType(ImageScaleType.EXACTLY)
                     .build();
         return options;
     }

@@ -1,6 +1,8 @@
 package com.cfkj.dushikuaibang.Adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +24,35 @@ public class HeaderGridViewAdapter extends BaseAdapter {
     private Context context;
     private int max = 0;
     private int color = 0;
+    private boolean is_image = false;
+
+    private int image[] = new int[]{
+            R.mipmap.home_kuaidi,
+            R.mipmap.home_gouwu,
+            R.mipmap.home_jiazhengweixiu,
+            R.mipmap.home_lvyou,
+            R.mipmap.home_shoujiweixiu,
+            R.mipmap.home_banjia,
+            R.mipmap.home_qian,
+            R.mipmap.home_all
+    };
+
+    public HeaderGridViewAdapter(Context context, List<HomeCategory> items, int max, boolean is_image) {
+        this.context = context;
+        this.max = max;
+        this.is_image = is_image;
+        if (items == null) {
+            this.item = context.getResources().getStringArray(R.array.need_item);
+            return;
+        }
+        this.item = new String[items.size()];
+        for (int i = 0; i < items.size(); i++) {
+            this.item[i] = items.get(i).getCat_name();
+        }
+    }
 
     public HeaderGridViewAdapter(Context context, List<HomeCategory> items, int max) {
         this.context = context;
-        this.color = color;
         this.max = max;
         if (items == null) {
             this.item = context.getResources().getStringArray(R.array.need_item);
@@ -39,7 +66,6 @@ public class HeaderGridViewAdapter extends BaseAdapter {
 
     public HeaderGridViewAdapter(Context context, List<HomeCategory> items) {
         this.context = context;
-        this.color = color;
         if (items == null) {
             this.item = context.getResources().getStringArray(R.array.need_item);
             return;
@@ -54,6 +80,7 @@ public class HeaderGridViewAdapter extends BaseAdapter {
         this.context = context;
         this.item = item;
     }
+
 
     @Override
     public int getCount() {
@@ -79,6 +106,12 @@ public class HeaderGridViewAdapter extends BaseAdapter {
         if (color != 0)
             textview.setTextColor(context.getResources().getColor(color));
         textview.setText(item[position]);
+        if (is_image) {
+            Drawable rightDrawable = context.getResources().getDrawable(image[position]);
+            rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(), rightDrawable.getMinimumHeight());
+            textview.setCompoundDrawables(null, rightDrawable, null, null);
+            textview.setCompoundDrawablePadding(20);
+        }
         return view;
     }
 

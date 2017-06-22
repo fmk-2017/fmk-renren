@@ -127,6 +127,7 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
         list.add(new GoodsNameAndId("技术服务", 10));
         list.add(new GoodsNameAndId("智慧高校", 11));
         list.add(new GoodsNameAndId("车务服务", 12));
+
         return view;
     }
 
@@ -220,9 +221,16 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
     @Override
     public void Success(String method, JSONObject json) throws JSONException {
         if (METHOD_DEMAND.equals(method)) {
-            demandList = JSON.parseArray(json.getString("data"), Demand.class);
-            receivingAdapter = new ReceivingAdapter(getActivity(), demandList, this);
-            receiving_listview.setAdapter(receivingAdapter);
+            receiving_listview.setVisibility(View.VISIBLE);
+            if (demandList == null || demandList.size() == 0) {
+                demandList = JSON.parseArray(json.getString("data"), Demand.class);
+                receivingAdapter = new ReceivingAdapter(getActivity(), demandList, this);
+                receiving_listview.setAdapter(receivingAdapter);
+            } else {
+                demandList.clear();
+                demandList.addAll(JSON.parseArray(json.getString("data"), Demand.class));
+                receivingAdapter.notifyDataSetChanged();
+            }
             addmarket();
         } else if (APPOINTMENT_SERVIER.equals(mode)) {
 
@@ -245,6 +253,10 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
 
     @Override
     public void Fail(String method, String error) {
+        if (METHOD_DEMAND.equals(method)) {
+            receiving_listview.setVisibility(View.GONE);
+            Toast.makeText(getActivity(), " 没有数据 ", Toast.LENGTH_SHORT).show();
+        }
         if (x.isDebug())
             Toast.makeText(getActivity(), method + " ： " + error, Toast.LENGTH_SHORT).show();
     }
@@ -285,17 +297,13 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
     }
 
     public void add(List<Demand> demandList) {
-
         for (Demand demand : demandList) {
             float lat = Float.valueOf(demand.getServer_lat());
             float lon = Float.valueOf(demand.getServer_lon());
             MarkerOptions mo = new MarkerOptions();
             mo.anchor(lat, lon);
-
             aMap.addMarker(mo);
         }
-
-
     }
 
 
@@ -303,12 +311,6 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
     @Override
     public void onInvited(int position) {
         if (demandList != null) {
-            /*Demand demand = demandList.get(position);
-            HashMap<String, String> map = new HashMap<String, String>();
-            map.put("act", APPOINTMENT_SERVIER);
-            map.put("user_id", "1");
-            map.put("server_id", "1");
-            HttpPostRequestUtils.getInstance(this).Post(map);*/
             Intent intent = new Intent(getContext(), AtWillBuyActivity.class);
             intent.putExtra("xid", demandList.get(position).getId());
             startActivity(intent);

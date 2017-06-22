@@ -94,8 +94,20 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener, 
                 break;
             case R.id.tvSure://确定
                 api = WXAPIFactory.createWXAPI(getActivity(), "wx463580e9dd2620d1");
-                dsu = DialogShowUtils.getInstance(getActivity()).SelectPaytype(this);
-//                requestPay();
+                View view = LayoutInflater.from(v.getContext()).inflate(R.layout.getimagetype_dialog, null, false);
+                dsu = DialogShowUtils.getInstance(getContext()).SelectPaytype(view);
+                TextView alipay = (TextView) view.findViewById(R.id.alipay);
+                TextView weixin = (TextView) view.findViewById(R.id.weixin);
+                TextView cancel = (TextView) view.findViewById(R.id.cancel);
+
+                alipay.setOnClickListener(this);
+                weixin.setOnClickListener(this);
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dsu.dismiss();
+                    }
+                });
                 break;
             case R.id.alipay:
                 pay_type = "zhifubao";

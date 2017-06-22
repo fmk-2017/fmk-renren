@@ -62,16 +62,24 @@ public class ReleaseNeedTypeActivity extends BaseActivity implements ReleaseNeed
 
     @Override
     public void ItemClick(View view, int position, int id) {
+        String cat_id = homeCategories.get(id).getChild().get(position).getCat_id();
         if (TextUtils.isEmpty(type)) {
             Intent intent = new Intent(this, ReleaseNeedActivity.class);
-            intent.putExtra("id", homeCategories.get(id).getChild().get(position).getCat_id());
+            intent.putExtra("id", cat_id);
             intent.putExtra("name", homeCategories.get(id).getChild().get(position).getCat_name());
+            if ("2".equals(cat_id) || "10".equals(cat_id)) {
+                intent = new Intent(this, ShoppingActivity.class);
+                intent.putExtra("type", cat_id);
+                startActivity(intent);
+                finish();
+                return;
+            }
             if (start == 0) startActivity(intent);
             else setResult(RESULT_OK, intent);
             finish();
         } else {
             Intent intent = new Intent(this, SingleServerActivity.class);
-            intent.putExtra("cid", homeCategories.get(id).getChild().get(position).getCat_id());
+            intent.putExtra("cid", cat_id);
             intent.putExtra("cname", homeCategories.get(id).getChild().get(position).getCat_name());
             startActivity(intent);
         }

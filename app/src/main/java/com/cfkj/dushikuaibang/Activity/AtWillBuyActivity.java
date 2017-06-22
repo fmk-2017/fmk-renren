@@ -6,6 +6,7 @@ import android.text.TextUtils;
 
 import android.util.Log;
 
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 
 import android.view.View;
@@ -328,19 +329,30 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
         switch (v.getId()) {
             case R.id.invitantion:
                 final int position = (int) v.getTag();//暂时不用
-                dsu = DialogShowUtils.getInstance(this).SelectPaytype(new View.OnClickListener() {
+                View view = LayoutInflater.from(v.getContext()).inflate(R.layout.getimagetype_dialog, null, false);
+                dsu = DialogShowUtils.getInstance(this).SelectPaytype(view);
+                TextView alipay = (TextView) view.findViewById(R.id.alipay);
+                TextView weixin = (TextView) view.findViewById(R.id.weixin);
+                TextView cancel = (TextView) view.findViewById(R.id.cancel);
+                alipay.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        switch (v.getId()) {
-                            case R.id.alipay:
-                                pay_type = Alipay;
-                                subscribe(invitations.get(position).getUser_id(), invitations.get(position).getTender_id(), Alipay);
-                                break;
-                            case R.id.weixin:
-                                pay_type = Weixin;
-                                subscribe(invitations.get(position).getUser_id(), invitations.get(position).getTender_id(), Weixin);
-                                break;
-                        }
+                        pay_type = Alipay;
+                        subscribe(invitations.get(position).getUser_id(), invitations.get(position).getTender_id(), Alipay);
+                        dsu.dismiss();
+                    }
+                });
+                weixin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        pay_type = Weixin;
+                        subscribe(invitations.get(position).getUser_id(), invitations.get(position).getTender_id(), Weixin);
+                        dsu.dismiss();
+                    }
+                });
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
                         dsu.dismiss();
                     }
                 });

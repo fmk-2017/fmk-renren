@@ -1,6 +1,7 @@
 package com.cfkj.dushikuaibang.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
+import com.cfkj.dushikuaibang.Activity.MainActivity;
 import com.cfkj.dushikuaibang.R;
 import com.cfkj.dushikuaibang.Utils.DialogShowUtils;
 import com.cfkj.dushikuaibang.Utils.HttpPostRequestUtils;
@@ -139,8 +141,20 @@ public class CityFragment extends Fragment implements View.OnClickListener, Http
         switch (v.getId()) {
             case R.id.tvPay://前往支付
                 api = WXAPIFactory.createWXAPI(getActivity(), "wx463580e9dd2620d1");
-                dsu = DialogShowUtils.getInstance(getContext()).SelectPaytype(this);
-//                requestPay();
+                View view = LayoutInflater.from(v.getContext()).inflate(R.layout.getimagetype_dialog, null, false);
+                dsu = DialogShowUtils.getInstance(getContext()).SelectPaytype(view);
+                TextView alipay = (TextView) view.findViewById(R.id.alipay);
+                TextView weixin = (TextView) view.findViewById(R.id.weixin);
+                TextView cancel = (TextView) view.findViewById(R.id.cancel);
+
+                alipay.setOnClickListener(this);
+                weixin.setOnClickListener(this);
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dsu.dismiss();
+                    }
+                });
                 break;
             case R.id.alipay:
                 pay_type = "zhifubao";
@@ -228,6 +242,7 @@ public class CityFragment extends Fragment implements View.OnClickListener, Http
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            startActivity(new Intent(getActivity(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                             getActivity().finish();
                         }
                     });

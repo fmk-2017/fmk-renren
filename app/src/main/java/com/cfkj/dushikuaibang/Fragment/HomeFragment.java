@@ -125,8 +125,8 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), MyInfoActivity.class);
-                intent.putExtra("user_id", home.getGet_server_list().get(position - 2).getUser_id());
-                intent.putExtra("skill_id", home.getGet_server_list().get(position - 2).getSkill_id());
+                intent.putExtra("user_id", skillList.get(position - 2).getUser_id());
+                intent.putExtra("skill_id", skillList.get(position - 2).getSkill_id());
                 startActivity(intent);
             }
         });
@@ -226,11 +226,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             home = JSON.parseObject(json.getString("data"), Home.class);
             if (home.getGet_category() != null && home.getGet_category().size() > 0) {
                 home.getGet_category().get(7).setCat_name("全部");
-                header_gridview.setAdapter(new HeaderGridViewAdapter(getActivity(), home.getGet_category(), 8));
+                header_gridview.setAdapter(new HeaderGridViewAdapter(getActivity(), home.getGet_category(), 8, true));
             }
-
+            if (skillList == null) skillList = new ArrayList<>();
             if (home.getGet_server_list() != null && home.getGet_server_list().size() > 0) {
-                if (skillList == null) skillList = new ArrayList<>();
                 if (page == 1) {
                     skillList.clear();
                 }
@@ -241,6 +240,9 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                     homelistview.setAdapter(homeAdapter);
                 }
                 canload = true;
+            } else {
+                homeAdapter = new HomeAdapter(getActivity(), skillList, this);
+                homelistview.setAdapter(homeAdapter);
             }
             Log.e("sss", page + " hah " + home.getGet_server_list().size());
             if (home.getHome_pic() != null && home.getHome_pic().getAd_photo().size() > 0) {

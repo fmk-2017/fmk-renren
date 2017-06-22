@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -40,6 +41,7 @@ public class MyInfoActivity extends BaseActivity implements HttpPostRequestUtils
     private List<MySkill> mySkills;
     private String skill_id, userid;
     private ImageView[] start = new ImageView[3];
+    private String skill_name = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +62,6 @@ public class MyInfoActivity extends BaseActivity implements HttpPostRequestUtils
         initview();
 
         getData();
-
     }
 
     private void getData() {
@@ -113,6 +114,7 @@ public class MyInfoActivity extends BaseActivity implements HttpPostRequestUtils
             } else {
                 tvUserName.setText(name);
             }
+            skill_name = json.getJSONObject("data").getJSONArray("skill_info").getJSONObject(0).getString("server_name");
             mySkills = JSON.parseArray(json.getJSONObject("data").getString("skill_info"), MySkill.class);
             mylistview2.setAdapter(new InfoAdapter(this, mySkills));
         } else if (METHOD_MERCHANT.equals(method)) {
@@ -124,7 +126,7 @@ public class MyInfoActivity extends BaseActivity implements HttpPostRequestUtils
 
     @Override
     public void Fail(String method, String error) {
-
+        Log.e("ssssss", "ssssss");
     }
 
     @Override
@@ -143,7 +145,17 @@ public class MyInfoActivity extends BaseActivity implements HttpPostRequestUtils
                 collect();
                 break;
             case R.id.subscribe: //这个跳转对应的是什么技能？
-
+                if ("2".equals(skill_id) || "10".equals(skill_id)) {
+                    intent = new Intent(this, ShoppingActivity.class);
+                    intent.putExtra("type", skill_id);
+                    startActivity(intent);
+                    return;
+                }
+                intent = new Intent(this, ReleaseNeedActivity.class);
+                intent.putExtra("id", skill_id);
+                intent.putExtra("name", skill_name);
+                intent.putExtra("selet", false);
+                startActivity(intent);
                 break;
             case R.id.num:
                 intent = new Intent(this, CommentActivity.class);

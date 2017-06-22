@@ -1,6 +1,7 @@
 package com.cfkj.dushikuaibang.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cfkj.dushikuaibang.Activity.ImageActivity;
 import com.cfkj.dushikuaibang.Entity.Skill;
 import com.cfkj.dushikuaibang.Layout.PercentLinearLayout;
 import com.cfkj.dushikuaibang.MyApplication;
@@ -103,6 +105,7 @@ public class HomeAdapter extends BaseAdapter {
         else if (strlist != null && strlist.size() < 2) {
             viewHolder.imagelayout.setVisibility(View.VISIBLE);
 //            x.image().bind(viewHolder.homeitem_image1, strlist.get(0));
+            viewHolder.homeitem_image1.setTag(strlist.get(0));
             ImageLoader.getInstance().displayImage(strlist.get(0), viewHolder.homeitem_image1, AppUtils.getOptions());
             viewHolder.homeitem_image1.setVisibility(View.VISIBLE);
             viewHolder.homeitem_image2.setVisibility(View.INVISIBLE);
@@ -113,6 +116,8 @@ public class HomeAdapter extends BaseAdapter {
             viewHolder.homeitem_image2.setVisibility(View.VISIBLE);
 //            x.image().bind(viewHolder.homeitem_image1, strlist.get(0), MyApplication.io);
 //            x.image().bind(viewHolder.homeitem_image2, strlist.get(1), MyApplication.io);
+            viewHolder.homeitem_image1.setTag(strlist.get(0));
+            viewHolder.homeitem_image2.setTag(strlist.get(1));
             ImageLoader.getInstance().displayImage(strlist.get(0), viewHolder.homeitem_image1, AppUtils.getOptions());
             ImageLoader.getInstance().displayImage(strlist.get(1), viewHolder.homeitem_image2, AppUtils.getOptions());
             viewHolder.homeitem_image3.setVisibility(View.INVISIBLE);
@@ -124,6 +129,9 @@ public class HomeAdapter extends BaseAdapter {
 //            x.image().bind(viewHolder.homeitem_image1, strlist.get(0), MyApplication.io);
 //            x.image().bind(viewHolder.homeitem_image2, strlist.get(1), MyApplication.io);
 //            x.image().bind(viewHolder.homeitem_image2, strlist.get(2), MyApplication.io);
+            viewHolder.homeitem_image1.setTag(strlist.get(0));
+            viewHolder.homeitem_image2.setTag(strlist.get(1));
+            viewHolder.homeitem_image3.setTag(strlist.get(2));
             ImageLoader.getInstance().displayImage(strlist.get(0), viewHolder.homeitem_image1, AppUtils.getOptions());
             ImageLoader.getInstance().displayImage(strlist.get(1), viewHolder.homeitem_image2, AppUtils.getOptions());
             ImageLoader.getInstance().displayImage(strlist.get(2), viewHolder.homeitem_image3, AppUtils.getOptions());
@@ -131,6 +139,27 @@ public class HomeAdapter extends BaseAdapter {
         viewHolder.homeitem_zan.setTag(skill.getSkill_id());
         viewHolder.homeitem_zan.setOnClickListener(onclick);
 
+        viewHolder.homeitem_image1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = (String) v.getTag();
+                v.getContext().startActivity(new Intent(v.getContext(), ImageActivity.class).putExtra("url", url));
+            }
+        });
+        viewHolder.homeitem_image2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = (String) v.getTag();
+                v.getContext().startActivity(new Intent(v.getContext(), ImageActivity.class).putExtra("url", url));
+            }
+        });
+        viewHolder.homeitem_image3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = (String) v.getTag();
+                v.getContext().startActivity(new Intent(v.getContext(), ImageActivity.class).putExtra("url", url));
+            }
+        });
         return convertView;
     }
 

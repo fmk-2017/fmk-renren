@@ -84,7 +84,7 @@ public class ReceivingAdapter extends BaseAdapter {
 
         Demand demand = demandList.get(position);
         if (!TextUtils.isEmpty(demand.getUser_photo()))
-            ImageLoader.getInstance().displayImage(AppUtils.getAvatarPath(demand.getUser_photo()), viewHolder.avatar);
+            ImageLoader.getInstance().displayImage(AppUtils.getAvatarPath(demand.getUser_photo()), viewHolder.avatar, AppUtils.getOptions());
         viewHolder.user_name.setText(demand.getNickname());
         viewHolder.bestows_num.setText("");
 

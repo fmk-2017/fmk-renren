@@ -37,8 +37,9 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
     private final String METHOD_ADD_DEMEND = "add_demand";
     private String id;
     private String name;
+    private boolean selet = true;
     private EditText skill_content;
-    private TextView skill_type, def_time, release;
+    private TextView skill_type, def_time, release, jies;
     private MyListView2 server_Item;
     private View view1;
     private MyGridView setver_time_gridview, sex_gridview, server_type_gridview;
@@ -59,8 +60,11 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
 
         id = getIntent().getStringExtra("id");
         name = getIntent().getStringExtra("name");
+        selet = getIntent().getBooleanExtra("selet", true);
 
         initView();
+
+        skill_type.setEnabled(selet);
 
         LocationUtils.getInstance(this).startLoaction(this);
 
@@ -81,6 +85,9 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
 
         release = (TextView) this.findViewById(R.id.release);
         release.setOnClickListener(this);
+
+        jies = (TextView) this.findViewById(R.id.jies);
+        jies.setText(name + "简介：");
 
         def_time = (TextView) this.findViewById(R.id.def_time);
         def_time.setOnClickListener(this);
@@ -193,7 +200,9 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
                 map.put("category_id", cat_id);
             }
         } else if (METHOD_ADD_DEMEND.equals(method)) {
-            finish();
+            if (!selet) {
+
+            } else finish();
         }
     }
 

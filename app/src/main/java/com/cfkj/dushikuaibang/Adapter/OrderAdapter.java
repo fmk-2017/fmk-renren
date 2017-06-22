@@ -64,7 +64,7 @@ public class OrderAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         if ("0".equals(orderBeanList.get(position).getStatus()))
-            holder.oderInfo.setText(String.format("已有%s人抢单", orderBeanList.get(position).getCount()));
+            holder.oderInfo.setText(String.format("已有%s人抢单", TextUtils.isEmpty(orderBeanList.get(position).getRobsum()) ? "0" : orderBeanList.get(position).getRobsum()));
         else if ("1".equals(orderBeanList.get(position).getStatus()))
             holder.oderInfo.setText("正在服务");
         else if ("2".equals(orderBeanList.get(position).getStatus()))

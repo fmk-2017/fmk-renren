@@ -21,7 +21,7 @@ public class Constant {
 
     public static final String SHARED_NAME = "user";
 
-    public static final String appid = "wx463580e9dd2620d1";
+    public static final String appid = "wx3dd3865f1adf4c71";
 
     /**
      * 文件存储跟目录路径

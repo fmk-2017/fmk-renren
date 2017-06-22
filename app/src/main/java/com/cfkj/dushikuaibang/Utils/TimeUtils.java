@@ -25,6 +25,7 @@ public class TimeUtils {
     }
 
     public static String getFormatTime(String timestamps) {
+        if (TextUtils.isEmpty(timestamps)) return "";
         long timestamp = Long.valueOf(timestamps);
         SimpleDateFormat sf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         return sf.format(new Date(timestamp * 1000l));

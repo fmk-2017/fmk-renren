@@ -23,29 +23,29 @@ public class OrderBean implements Serializable {
     String status;
     String addtime;
     String cat_name;
+    String cat_id;
     String count;
+    String robsum;
     String server_type_name;
 
     public OrderBean() {
     }
 
-    public OrderBean(String id, String user_id, String category_id, String server_sex, String server_day, String server_type, String server_lon, String server_lat, String server_price, String server_tag, String address, String info, String status, String addtime, String cat_name, String server_type_name) {
-        this.id = id;
-        this.user_id = user_id;
-        this.category_id = category_id;
-        this.server_sex = server_sex;
-        this.server_day = server_day;
-        this.server_type = server_type;
-        this.server_lon = server_lon;
-        this.server_lat = server_lat;
-        this.server_price = server_price;
-        this.server_tag = server_tag;
-        this.address = address;
-        this.info = info;
-        this.status = status;
-        this.addtime = addtime;
-        this.cat_name = cat_name;
-        this.server_type_name = server_type_name;
+
+    public String getRobsum() {
+        return robsum;
+    }
+
+    public void setRobsum(String robsum) {
+        this.robsum = robsum;
+    }
+
+    public String getCat_id() {
+        return cat_id;
+    }
+
+    public void setCat_id(String cat_id) {
+        this.cat_id = cat_id;
     }
 
     public String getId() {

@@ -2,6 +2,7 @@ package com.cfkj.dushikuaibang.Activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -62,7 +63,7 @@ public class MyCollectActivity extends BaseActivity implements HttpPostRequestUt
 
     @Override
     public void Fail(String method, String error) {
-
+        Log.e("ssssss", "ssssssssss");
     }
 
     @Override

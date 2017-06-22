@@ -7,18 +7,18 @@ import java.util.List;
  */
 
 public class Home {
-    private List<Pic> home_pic;
+    private Pic home_pic;
     private List<HomeCategory> get_category;
     private List<Skill> get_server_list;
 
     public Home() {
     }
 
-    public List<Pic> getHome_pic() {
+    public Pic getHome_pic() {
         return home_pic;
     }
 
-    public void setHome_pic(List<Pic> home_pic) {
+    public void setHome_pic(Pic home_pic) {
         this.home_pic = home_pic;
     }
 

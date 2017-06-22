@@ -165,7 +165,7 @@ public class MyInfoActivity extends BaseActivity implements HttpPostRequestUtils
         HashMap<String, String> map = new HashMap<>();
         map.put("act", METHOD_MERCHANT);
         map.put("user_id", shared.getString("user_id", ""));
-        map.put("goods_id", userid);
+        map.put("goods_id", skill_id);
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
 

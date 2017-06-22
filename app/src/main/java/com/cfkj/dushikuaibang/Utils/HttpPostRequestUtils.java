@@ -53,8 +53,10 @@ public class HttpPostRequestUtils {
                     }
                     JSONObject result = new JSONObject(results);
                     if ("success".equals(result.getString("result"))) hprc.Success(method, result);
-                    else
+                    else {
+                        hprc.Fail(method, result.getString("info"));
                         Toast.makeText(hprc.getContext(), result.getString("info"), Toast.LENGTH_SHORT).show();
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -62,9 +64,9 @@ public class HttpPostRequestUtils {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                Log.e("qqqqqqqqqqq", ex.toString());
                 if (x.isDebug())
-                    hprc.Fail(method, ex.toString());
+                    Log.e("qqqqqqqqqqq", "http_error:" + ex != null ? ex.toString() : "");
+                hprc.Fail(method, ex.toString());
             }
 
             @Override

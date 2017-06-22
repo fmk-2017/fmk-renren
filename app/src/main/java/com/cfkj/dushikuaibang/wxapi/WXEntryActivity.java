@@ -1,6 +1,7 @@
 package com.cfkj.dushikuaibang.wxapi;
 
 import com.cfkj.dushikuaibang.Activity.ShoppingActivity;
+import com.cfkj.dushikuaibang.R;
 import com.cfkj.dushikuaibang.Utils.Constant;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
@@ -12,6 +13,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,16 +22,14 @@ import org.xutils.x;
 public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 
     private IWXAPI api;
-    private TextView textView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        textView = new TextView(this);
-        setContentView(textView);
+        setContentView(R.layout.activity_login);
 
-        // ͨ��WXAPIFactory��������ȡIWXAPI��ʵ��
         api = WXAPIFactory.createWXAPI(this, Constant.appid, false);
+        api.registerApp(Constant.appid);
         try {
             api.handleIntent(getIntent(), this);
         } catch (Exception e) {
@@ -44,7 +44,6 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
         api.handleIntent(intent, this);
     }
 
-    // ΢�ŷ������󵽵�����Ӧ��ʱ����ص����÷���
     @Override
     public void onReq(BaseReq req) {
         switch (req.getType()) {
@@ -57,16 +56,17 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
         }
     }
 
-    // ������Ӧ�÷��͵�΢�ŵ�����������Ӧ�������ص����÷���
     @Override
     public void onResp(BaseResp resp) {
         int result = 0;
         if (x.isDebug())
             Toast.makeText(this, "baseresp.getType = " + resp.getType(), Toast.LENGTH_SHORT).show();
-
+        Log.e("ssss", resp.openId);
+        Log.e("ssss", resp.errCode + "");
+        Log.e("ssss", resp.errStr);
+        Log.e("ssss", resp.getType() + "");
         switch (resp.errCode) {
             case BaseResp.ErrCode.ERR_OK:
-                textView.setText("支付成功");
                 if (ShoppingActivity.getInstance() != null) {
                     ShoppingActivity.getInstance().finish();
                 }
@@ -81,7 +81,6 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
             default:
                 break;
         }
-
         Toast.makeText(this, result, Toast.LENGTH_LONG).show();
     }
 

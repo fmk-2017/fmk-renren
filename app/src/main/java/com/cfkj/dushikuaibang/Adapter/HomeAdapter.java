@@ -88,7 +88,7 @@ public class HomeAdapter extends BaseAdapter {
         Skill skill = skill_list.get(position);
 //        x.image().bind(viewHolder.homeitem_avatar, skill.getUser_photo(), MyApplication.io);
         if (skill.getUser_photo().endsWith(".png") || skill.getUser_photo().endsWith(".jpg") || skill.getUser_photo().endsWith(".jpeg"))
-            ImageLoader.getInstance().displayImage(AppUtils.getAvatarPath(skill.getUser_photo()), viewHolder.homeitem_avatar);
+            ImageLoader.getInstance().displayImage(AppUtils.getAvatarPath(skill.getUser_photo()), viewHolder.homeitem_avatar, AppUtils.getOptions());
         else viewHolder.homeitem_avatar.setImageResource(R.mipmap.home_07);
         viewHolder.homeitem_name.setText(skill.getCat_name());
         viewHolder.homeitem_works.setText(skill.getServer_type_name());
@@ -98,11 +98,12 @@ public class HomeAdapter extends BaseAdapter {
         viewHolder.homeitem_zan.setText(skill.getPraisesum());
 
         List<String> strlist = skill.getSkill_photos();
-        if (strlist != null && strlist.size() < 1)
+        if (strlist == null || strlist.size() < 1)
             viewHolder.imagelayout.setVisibility(View.GONE);
         else if (strlist != null && strlist.size() < 2) {
             viewHolder.imagelayout.setVisibility(View.VISIBLE);
-            x.image().bind(viewHolder.homeitem_image1, strlist.get(0));
+//            x.image().bind(viewHolder.homeitem_image1, strlist.get(0));
+            ImageLoader.getInstance().displayImage(strlist.get(0), viewHolder.homeitem_image1, AppUtils.getOptions());
             viewHolder.homeitem_image1.setVisibility(View.VISIBLE);
             viewHolder.homeitem_image2.setVisibility(View.INVISIBLE);
             viewHolder.homeitem_image3.setVisibility(View.INVISIBLE);
@@ -110,17 +111,22 @@ public class HomeAdapter extends BaseAdapter {
             viewHolder.imagelayout.setVisibility(View.VISIBLE);
             viewHolder.homeitem_image1.setVisibility(View.VISIBLE);
             viewHolder.homeitem_image2.setVisibility(View.VISIBLE);
-            x.image().bind(viewHolder.homeitem_image1, strlist.get(0), MyApplication.io);
-            x.image().bind(viewHolder.homeitem_image2, strlist.get(1), MyApplication.io);
+//            x.image().bind(viewHolder.homeitem_image1, strlist.get(0), MyApplication.io);
+//            x.image().bind(viewHolder.homeitem_image2, strlist.get(1), MyApplication.io);
+            ImageLoader.getInstance().displayImage(strlist.get(0), viewHolder.homeitem_image1, AppUtils.getOptions());
+            ImageLoader.getInstance().displayImage(strlist.get(1), viewHolder.homeitem_image2, AppUtils.getOptions());
             viewHolder.homeitem_image3.setVisibility(View.INVISIBLE);
         } else {
             viewHolder.homeitem_image1.setVisibility(View.VISIBLE);
             viewHolder.homeitem_image2.setVisibility(View.VISIBLE);
             viewHolder.homeitem_image2.setVisibility(View.VISIBLE);
             viewHolder.imagelayout.setVisibility(View.VISIBLE);
-            x.image().bind(viewHolder.homeitem_image1, strlist.get(0), MyApplication.io);
-            x.image().bind(viewHolder.homeitem_image2, strlist.get(1), MyApplication.io);
-            x.image().bind(viewHolder.homeitem_image2, strlist.get(2), MyApplication.io);
+//            x.image().bind(viewHolder.homeitem_image1, strlist.get(0), MyApplication.io);
+//            x.image().bind(viewHolder.homeitem_image2, strlist.get(1), MyApplication.io);
+//            x.image().bind(viewHolder.homeitem_image2, strlist.get(2), MyApplication.io);
+            ImageLoader.getInstance().displayImage(strlist.get(0), viewHolder.homeitem_image1, AppUtils.getOptions());
+            ImageLoader.getInstance().displayImage(strlist.get(1), viewHolder.homeitem_image2, AppUtils.getOptions());
+            ImageLoader.getInstance().displayImage(strlist.get(2), viewHolder.homeitem_image3, AppUtils.getOptions());
         }
         viewHolder.homeitem_zan.setTag(skill.getSkill_id());
         viewHolder.homeitem_zan.setOnClickListener(onclick);

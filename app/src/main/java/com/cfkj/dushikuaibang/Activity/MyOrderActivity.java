@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.cfkj.dushikuaibang.Utils.HttpPostRequestUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -39,6 +41,10 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
     private String server_status = "";
     private String server_type = "1";
 
+    private int page = 1;
+    private boolean canload = true;
+    private OrderAdapter orderAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +60,7 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
         map.put("act", MY_DEMAND);
         map.put("type_status", type);
         map.put("user_id", shared.getString("user_id", ""));
-        map.put("page", "1");
-        map.put("page", "1");
+        map.put("page", page + "");
 
         if ("0".equals(status)) {
             map.put("is_pay", "0");
@@ -75,7 +80,7 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
             OrderBean bean = orderBeanList.get(position);
             Intent intent = new Intent(MyOrderActivity.this, AtWillBuyActivity.class);
             intent.putExtra("xid", bean.getId());
-            intent.putExtra("category_id", bean.getCategory_id());
+            intent.putExtra("category_id", bean.getCat_id());
             intent.putExtra("title", bean.getCat_name());
             startActivity(intent);
         }
@@ -98,6 +103,24 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
 
         order_listview = (ListView) this.findViewById(R.id.order_listview);
         order_listview.setOnItemClickListener(this);
+        orderBeanList = new ArrayList<>();
+        orderAdapter = new OrderAdapter(MyOrderActivity.this, orderBeanList);
+        order_listview.setAdapter(orderAdapter);
+
+        order_listview.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if ((firstVisibleItem + visibleItemCount) >= (orderBeanList.size() - 4) && canload) {
+                    canload = false;
+                    ++page;
+                    getOrder(server_type, server_status);
+                }
+            }
+        });
     }
 
     @Override
@@ -136,6 +159,7 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
                 server_status = "2";
                 break;
         }
+        page = 1;
         getOrder(server_type, server_status);
     }
 
@@ -148,14 +172,21 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void Success(String method, JSONObject json) throws JSONException {
         Log.e("tag", json.toString());
-        orderBeanList = JSON.parseArray(json.getString("data"), OrderBean.class);
-        order_listview.setAdapter(new OrderAdapter(MyOrderActivity.this, orderBeanList));
+        if (page == 1 && orderBeanList != null) orderBeanList.clear();
+        orderBeanList.addAll(JSON.parseArray(json.getString("data"), OrderBean.class));
+        orderAdapter.notifyDataSetChanged();
+        canload = true;
     }
 
     @Override
     public void Fail(String method, String error) {
         Log.e("tag", method + "---" + error);
-
+        if (page > 1)
+            --page;
+        else orderBeanList.clear();
+        canload = false;
+        if (orderAdapter != null)
+            orderAdapter.notifyDataSetChanged();
     }
 
     @Override

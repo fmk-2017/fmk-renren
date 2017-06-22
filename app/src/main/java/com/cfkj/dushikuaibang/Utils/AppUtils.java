@@ -1,5 +1,8 @@
 package com.cfkj.dushikuaibang.Utils;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,6 +12,8 @@ import java.util.regex.Pattern;
 
 public class AppUtils {
 
+
+    private static DisplayImageOptions options;
 
     /**
      * 正则验证手机号码是否合法
@@ -32,6 +37,18 @@ public class AppUtils {
     public static String getAvatarPath(String path) {
         if (path.contains("http:")) return path;
         return "http://112.74.35.236/" + path;
+    }
+
+    public static DisplayImageOptions getOptions() {
+        if (options == null)
+            options = new DisplayImageOptions.Builder()
+                    .resetViewBeforeLoading(false)  // default
+                    .delayBeforeLoading(1000)
+                    .cacheInMemory(true) // default
+                    .cacheOnDisk(true) // default
+                    .displayer(new SimpleBitmapDisplayer()) // default
+                    .build();
+        return options;
     }
 
 

@@ -77,9 +77,9 @@ public class ShareUtils {
         plat.SSOSetting(false);//此处设置为false，则在优先采用客户端授权的方法，设置true会采用网页方式
         //回调信息，可以在这里获取基本的授权返回的信息，但是注意如果做提示和UI操作要传到主线程handler里去执行
         plat.setPlatformActionListener(new PlatformActionListener() {// 设置分享事件回调
-
             @Override
             public void onError(Platform platform, int action, Throwable t) {
+                t.printStackTrace();
                 Log.e("tag", "onError");
                 Message msg = new Message();
                 msg.what = MSG_ACTION_CCALLBACK;

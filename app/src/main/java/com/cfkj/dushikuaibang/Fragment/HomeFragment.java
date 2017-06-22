@@ -243,16 +243,11 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                 canload = true;
             }
             Log.e("sss", page + " hah " + home.getGet_server_list().size());
-            if (home.getHome_pic() != null && home.getHome_pic().size() > 0) {
-//                ImageView[] imageViews = new ImageView[home.getHome_pic().size()];
-//                for (int i = 0; i < home.getHome_pic().size(); i++) {
-//                    imageViews[i] = new ImageView(getActivity());
-//                    x.image().bind(imageViews[i], home.getHome_pic().get(i).getAd_photo());
-//                }
-                ImageView[] imageViews = new ImageView[4];
-                for (int i = 0; i < imageViews.length; i++) {
+            if (home.getHome_pic() != null && home.getHome_pic().getAd_photo().size() > 0) {
+                ImageView[] imageViews = new ImageView[home.getHome_pic().getAd_photo().size()];
+                for (int i = 0; i < home.getHome_pic().getAd_photo().size(); i++) {
                     imageViews[i] = new ImageView(getActivity());
-                    imageViews[i].setImageResource(image[i]);
+                    x.image().bind(imageViews[i], home.getHome_pic().getAd_photo().get(i));
                 }
                 header_viewpager.setAdapter(new SectionsPagerAdapter(getActivity(), imageViews));
             } else {
@@ -279,6 +274,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     @Override
     public void onLocationChanged(AMapLocation aMapLocation) {
         shared.edit().putString("lat", aMapLocation.getLatitude() + "").putString("lon", aMapLocation.getLongitude() + "").commit();
+        Log.e("ssss", aMapLocation.getLatitude() + " " + aMapLocation.getLongitude());
         getHome(aMapLocation.getLatitude() + "", aMapLocation.getLongitude() + "");
     }
 

@@ -13,12 +13,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationListener;
 import com.cfkj.dushikuaibang.Adapter.SkillImageAdapter;
 import com.cfkj.dushikuaibang.Adapter.TextItemAdapter;
 import com.cfkj.dushikuaibang.R;
 import com.cfkj.dushikuaibang.Utils.Constant;
 import com.cfkj.dushikuaibang.Utils.DialogShowUtils;
 import com.cfkj.dushikuaibang.Utils.HttpPostRequestUtils;
+import com.cfkj.dushikuaibang.Utils.LocationUtils;
 import com.cfkj.dushikuaibang.View.MyGridView;
 import com.cfkj.dushikuaibang.View.MyHorizontalScrollView;
 
@@ -39,7 +42,7 @@ public class EditSkillActivity extends BaseActivity
         View.OnClickListener,
         HttpPostRequestUtils.HttpPostRequestCallback,
         MyHorizontalScrollView.OnItemClickListener,
-        MyHorizontalScrollView.OnItemLongClickListener {
+        MyHorizontalScrollView.OnItemLongClickListener, AMapLocationListener {
 
     private final String METHOD_ADD_SERVER = "add_server";  //添加技能
     private final String METHOD_UP_SERVER = "up_server";  //更新技能
@@ -72,6 +75,7 @@ public class EditSkillActivity extends BaseActivity
     private String skill_id;
     private Map<String, Boolean> typemap = new HashMap<String, Boolean>();
     private Map<String, Boolean> timemap = new HashMap<String, Boolean>();
+    private String user_lat, user_lon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +83,8 @@ public class EditSkillActivity extends BaseActivity
         setContentView(R.layout.activity_add_skill);
         getHeaderTitle();
         initHeader(header_text);
+
+        LocationUtils.getInstance(this).startLoaction(this);
 
         user_id = shared.getString("user_id", "");
         first = true;
@@ -136,7 +142,6 @@ public class EditSkillActivity extends BaseActivity
             map.put(str, false);
         }
     }
-
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -257,7 +262,6 @@ public class EditSkillActivity extends BaseActivity
         return true;
     }
 
-
     public void Addskill() {
         HashMap<String, String> map = new HashMap<String, String>();
         if (type == 0) map.put("act", METHOD_ADD_SERVER);
@@ -269,6 +273,8 @@ public class EditSkillActivity extends BaseActivity
         map.put("category_id", skill_type_id + "");
         map.put("server_name", server_name);
         map.put("server_time", server_time);
+        map.put("user_lon", user_lon);
+        map.put("user_lat", user_lat);
         map.put("skill_info", skill_infos);
         for (int i = 0; i < imagefilelist.size() - 1; i++)
             map.put("image[" + i + "]", imagefilelist.get(i));
@@ -308,5 +314,12 @@ public class EditSkillActivity extends BaseActivity
         if (pos != (imagelist.getAdapter().getCount() - 1))
             imagefilelist.remove(pos);
         imagelist.setAdapter(new SkillImageAdapter(this, type, imagefilelist));
+    }
+
+    @Override
+    public void onLocationChanged(AMapLocation aMapLocation) {
+        if (String.valueOf(aMapLocation.getLatitude()).length() > 12) return;
+        user_lat = aMapLocation.getLatitude() + "";
+        user_lon = aMapLocation.getLongitude() + "";
     }
 }

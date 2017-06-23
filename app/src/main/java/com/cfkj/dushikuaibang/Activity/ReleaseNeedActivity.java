@@ -48,7 +48,7 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
     private List<Need_Cat> need_catList;
     private String cat_id;
     private ReleaseNeedActivityAdapter releaseneed;
-    private String server_type, server_sex, server_day;
+    private String server_type = "1", server_sex = "0", server_day = "1";
     private String[] times, sexs, types;
     private Map<String, Boolean> timemap = new HashMap<String, Boolean>(), sexmap = new HashMap<String, Boolean>(), typemap = new HashMap<String, Boolean>();
 
@@ -127,7 +127,7 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (parent.getId() == R.id.server_type_gridview) {
-            server_type = position + "";
+            server_type = position + 1 + "";
             resetMap(typemap, types);
             typemap.put(types[position], true);
             server_type_gridview.setAdapter(new TextItemAdapter(this, types, typemap));
@@ -137,7 +137,7 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
             sexmap.put(sexs[position], true);
             sex_gridview.setAdapter(new TextItemAdapter(this, sexs, sexmap));
         } else if (parent.getId() == R.id.setver_time_gridview) {
-            server_day = position + "";
+            server_day = position + 1 + "";
             resetMap(timemap, times);
             timemap.put(times[position], true);
             setver_time_gridview.setAdapter(new TextItemAdapter(this, times, timemap));
@@ -170,6 +170,9 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
                     map.put("server_tag", strs.substring(1));
                 }
                 map.put("category_id", id);
+                map.put("server_day", server_day);
+                map.put("server_sex", server_sex);
+                map.put("server_type", server_type);
                 HttpPostRequestUtils.getInstance(this).Post(map);
                 break;
         }
@@ -218,6 +221,7 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onLocationChanged(AMapLocation aMapLocation) {
+        if (String.valueOf(aMapLocation.getLatitude()).length() > 12) return;
         map.put("user_lat", aMapLocation.getLatitude() + "");
         map.put("user_lon", aMapLocation.getLongitude() + "");
     }

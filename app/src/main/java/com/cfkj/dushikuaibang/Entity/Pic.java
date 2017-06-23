@@ -8,17 +8,19 @@ import java.util.List;
 
 public class Pic {
 
-    private List<String> ad_photo;
+
+    private String ad_photo;
     private String ad_name;
+    private String url;
 
     public Pic() {
     }
 
-    public List<String> getAd_photo() {
+    public String getAd_photo() {
         return ad_photo;
     }
 
-    public void setAd_photo(List<String> ad_photo) {
+    public void setAd_photo(String ad_photo) {
         this.ad_photo = ad_photo;
     }
 
@@ -28,5 +30,13 @@ public class Pic {
 
     public void setAd_name(String ad_name) {
         this.ad_name = ad_name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

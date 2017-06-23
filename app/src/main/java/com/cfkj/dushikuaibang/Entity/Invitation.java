@@ -1,5 +1,10 @@
 package com.cfkj.dushikuaibang.Entity;
 
+import android.text.TextUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by fengm on 2017-4-10.
  */
@@ -54,10 +59,12 @@ public class Invitation {
     private String server_time;
     private String skill_info;
     private String skill_photo;
+    private List<String> skill_photos;
     private String skill_price;
     private String addtime;
     private String status;
     private String range;
+
 
 
     public String getTender_id() {
@@ -442,6 +449,18 @@ public class Invitation {
 
     public void setSkill_photo(String skill_photo) {
         this.skill_photo = skill_photo;
+
+        if (TextUtils.isEmpty(skill_photo)) return;
+        String[] strs = skill_photo.split(",");
+        for (String str : strs) {
+            if (skill_photos == null) skill_photos = new ArrayList<>();
+            skill_photos.add(str);
+        }
+
+    }
+
+    public List<String> getSkill_photos() {
+        return skill_photos;
     }
 
     public String getSkill_price() {

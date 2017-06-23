@@ -12,6 +12,7 @@ import com.cfkj.dushikuaibang.Entity.MySkill;
 import com.cfkj.dushikuaibang.Interface.MyOnClickListener;
 import com.cfkj.dushikuaibang.R;
 import com.cfkj.dushikuaibang.Utils.AppUtils;
+import com.cfkj.dushikuaibang.Utils.Constant;
 import com.cfkj.dushikuaibang.Utils.TimeUtils;
 import com.cfkj.dushikuaibang.View.CircleImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -74,6 +75,9 @@ public class MyCollectAdapter extends BaseAdapter {
         }
 
         MySkill mySkill = mySkills.get(position);
+
+        ImageLoader.getInstance().displayImage(mySkill.getUser_photo(), vh.avatar, AppUtils.getOptions());
+
         int score = Integer.valueOf(TextUtils.isEmpty(mySkill.getScore()) ? "0" : mySkill.getScore());
         for (int i = 0; i < score; i++) {
             vh.start[i].setVisibility(View.VISIBLE);
@@ -81,7 +85,7 @@ public class MyCollectAdapter extends BaseAdapter {
         String[] imagepath = mySkill.getSkill_photo().split(",");
         for (int i = 0; i < imagepath.length; i++) {
             vh.image1[i].setVisibility(View.VISIBLE);
-            ImageLoader.getInstance().displayImage(AppUtils.getAvatarPath(imagepath[i]), vh.image1[i]);
+            ImageLoader.getInstance().displayImage(AppUtils.getAvatarPath(imagepath[i]), vh.image1[i], AppUtils.getOptions());
         }
         vh.server_name.setText(mySkill.getCat_name());
         vh.server_type.setText(mySkill.getServer_type_name());

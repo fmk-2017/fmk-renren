@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
+import com.cfkj.dushikuaibang.Activity.ShoppingActivity;
 import com.cfkj.dushikuaibang.R;
 import com.cfkj.dushikuaibang.Utils.DialogShowUtils;
 import com.cfkj.dushikuaibang.Utils.HttpPostRequestUtils;
@@ -94,10 +95,10 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener, 
                 break;
             case R.id.tvSure://确定
                 api = WXAPIFactory.createWXAPI(getActivity(), "wx463580e9dd2620d1");
-                View view = LayoutInflater.from(v.getContext()).inflate(R.layout.getimagetype_dialog, null, false);
+                View view = LayoutInflater.from(v.getContext()).inflate(R.layout.getpaytype_dialog, null, false);
                 dsu = DialogShowUtils.getInstance(getContext()).SelectPaytype(view);
                 TextView alipay = (TextView) view.findViewById(R.id.alipay);
-                TextView weixin = (TextView) view.findViewById(R.id.weixin);
+                TextView weixin = (TextView) view.findViewById(R.id.wxpay);
                 TextView cancel = (TextView) view.findViewById(R.id.cancel);
 
                 alipay.setOnClickListener(this);
@@ -114,7 +115,7 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener, 
                 requestPay();
                 dsu.dismiss();
                 break;
-            case R.id.weixin:
+            case R.id.wxpay:
                 pay_type = "weixin";
                 requestPay();
                 dsu.dismiss();
@@ -196,6 +197,8 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener, 
         map.put("username", username);
         map.put("phone", phone);
         map.put("desc", remarks);
+        map.put("user_lon", ShoppingActivity.getInstance().user_lon);
+        map.put("user_lat", ShoppingActivity.getInstance().user_lat);
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
 

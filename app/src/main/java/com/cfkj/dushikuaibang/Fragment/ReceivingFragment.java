@@ -2,6 +2,7 @@ package com.cfkj.dushikuaibang.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -39,6 +40,7 @@ import com.cfkj.dushikuaibang.Utils.AppUtils;
 import com.cfkj.dushikuaibang.Utils.DebugLog;
 import com.cfkj.dushikuaibang.Utils.HttpPostRequestUtils;
 import com.cfkj.dushikuaibang.Utils.WindowsUtils;
+import com.cfkj.dushikuaibang.View.CircleImageView;
 import com.cfkj.dushikuaibang.View.MyListView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -242,12 +244,11 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
             if (TextUtils.isEmpty(demand.getServer_lon())) return;
             float v = Float.valueOf(demand.getServer_lat());
             float v1 = Float.valueOf(demand.getServer_lon());
-            ImageView imageView = new ImageView(getContext());
-            if (TextUtils.isEmpty(demand.getUser_photo()))
-                imageView.setImageResource(R.mipmap.home_07);
-            else
-                ImageLoader.getInstance().displayImage(AppUtils.getAvatarPath(demand.getUser_photo()), imageView);
-            aMap.addMarker(new MarkerOptions().position(new LatLng(v, v1)).title(demand.getNickname()).draggable(false).icon(BitmapDescriptorFactory.fromView(imageView)));
+            MarkerOptions mo = new MarkerOptions();
+            mo.position(new LatLng(v, v1));
+            mo.draggable(false);
+            mo.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getContext().getResources(), R.mipmap.zhen)));
+            aMap.addMarker(mo);
         }
     }
 

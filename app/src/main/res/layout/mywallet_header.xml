@@ -28,6 +28,7 @@
                 android:textSize="@dimen/text_normal" />
 
             <TextView
+                android:id="@+id/balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="120.05"
@@ -47,6 +48,7 @@
             android:text="充值"
             android:textColor="@color/black"
             android:textSize="@dimen/text_big"
+            android:visibility="gone"
             app:layout_paddingLeftPercent="3%h" />
 
         <View

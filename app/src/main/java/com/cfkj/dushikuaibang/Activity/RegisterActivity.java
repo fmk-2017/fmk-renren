@@ -1,22 +1,30 @@
 package com.cfkj.dushikuaibang.Activity;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cfkj.dushikuaibang.Layout.PercentRelativeLayout;
 import com.cfkj.dushikuaibang.R;
 import com.cfkj.dushikuaibang.Utils.AppUtils;
+import com.cfkj.dushikuaibang.Utils.Constant;
 import com.cfkj.dushikuaibang.Utils.HttpPostRequestUtils;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+
+import cn.sharesdk.tencent.qq.QQ;
 
 public class RegisterActivity extends BaseActivity implements HttpPostRequestUtils.HttpPostRequestCallback {
 
@@ -42,10 +50,25 @@ public class RegisterActivity extends BaseActivity implements HttpPostRequestUti
         }
     };
 
+    private boolean is_three = false;
+
+    private String nickname;
+    private String iconUri;
+    private String openid;
+    private String platName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        is_three = getIntent().getBooleanExtra("three", false);
+        if (is_three) {
+            initHeader("绑定手机");
+            nickname = getIntent().getStringExtra("nick");
+            iconUri = getIntent().getStringExtra("iconUri");
+            openid = getIntent().getStringExtra("openid");
+            platName = getIntent().getStringExtra("type");
+        } else initHeader("注册");
 
         initView();
 
@@ -60,10 +83,17 @@ public class RegisterActivity extends BaseActivity implements HttpPostRequestUti
         password = (EditText) this.findViewById(R.id.password);
 
         register = (Button) this.findViewById(R.id.register);
+        PercentRelativeLayout bottom = (PercentRelativeLayout) this.findViewById(R.id.bottom);
+        if (is_three) {
+            bottom.setVisibility(View.GONE);
+            register.setText("绑定");
+        }
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkparam()) Regist();
+                if (checkparam())
+                    if (is_three) Bind();
+                    else Regist();
             }
         });
         login_go.setOnClickListener(new View.OnClickListener() {
@@ -103,10 +133,6 @@ public class RegisterActivity extends BaseActivity implements HttpPostRequestUti
             Toast.makeText(getApplicationContext(), "请输入验证码", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (!"1234".equals(codes)) {
-            Toast.makeText(getApplicationContext(), "验证码不正确", Toast.LENGTH_SHORT).show();
-            return false;
-        }
         if (TextUtils.isEmpty(passwords)) {
             Toast.makeText(getApplicationContext(), "请输入密码", Toast.LENGTH_SHORT).show();
             return false;
@@ -121,7 +147,7 @@ public class RegisterActivity extends BaseActivity implements HttpPostRequestUti
     public void GetAcode() {
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("act", METHOD_GET_VERIFIY);
-        map.put("username", phones);
+        map.put("mobile", phones);
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
 
@@ -134,14 +160,40 @@ public class RegisterActivity extends BaseActivity implements HttpPostRequestUti
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
 
+    private void Bind() {
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("act", "register_openid");
+        map.put("openid", openid);
+        map.put("type", platName.equals(QQ.NAME) ? "qq" : "wechat");
+        map.put("nickname", nickname);
+        map.put("user_photo", iconUri);
+        map.put("username", phones);
+        map.put("password", passwords);
+        map.put("verify_code", codes);
+        HttpPostRequestUtils.getInstance(this).Post(map);
+    }
+
     @Override
-    public void Success(String method, JSONObject json) {
+    public void Success(String method, JSONObject json) throws JSONException {
         if (METHOD_GET_VERIFIY.equals(method)) {
             i = 60;
             get_auth_code.setText(i + "s");
             get_auth_code.setEnabled(false);
             mhandler.postDelayed(mrunnable, 1000);
         } else if (METHOD_REGISTER.equals(method)) {
+            finish();
+        } else if ("register_openid".equals(method)) {
+            Log.e("sssss", json.toString());
+            getSharedPreferences(Constant.SHARED_NAME, Context.MODE_PRIVATE).edit()
+                    .putString("username", json.getJSONObject("data").getString("username"))
+                    .putString("user_id", json.getJSONObject("data").getString("user_id"))
+                    .putString("user_photo", json.getJSONObject("data").getString("user_photo"))
+                    .putString("sex", json.getJSONObject("data").getString("sex"))
+                    .putString("email", json.getJSONObject("data").getString("email"))
+                    .commit();
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
             finish();
         }
     }

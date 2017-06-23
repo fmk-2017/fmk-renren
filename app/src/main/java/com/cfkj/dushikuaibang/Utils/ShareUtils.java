@@ -1,13 +1,20 @@
 package com.cfkj.dushikuaibang.Utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.cfkj.dushikuaibang.Activity.MainActivity;
+import com.cfkj.dushikuaibang.Activity.RegisterActivity;
 import com.mob.tools.utils.UIHandler;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -19,7 +26,7 @@ import cn.sharesdk.framework.ShareSDK;
  * Created by Administrator on 2017/4/20.
  */
 
-public class ShareUtils {
+public class ShareUtils implements HttpPostRequestUtils.HttpPostRequestCallback {
 
     private static Context mContext;
     private static ShareUtils shareUtils;
@@ -28,16 +35,14 @@ public class ShareUtils {
         public boolean handleMessage(Message msg) {
             Log.e("tag", "handleMessage");
             switch (msg.arg1) {
-                case 1: {
+                case 1:
                     // 成功
                     String str = (String) msg.obj;
                     Toast.makeText(mContext, "成功", Toast.LENGTH_SHORT).show();
-                }
                 break;
                 case 2: {
                     // 失败
                     Toast.makeText(mContext, "失败", Toast.LENGTH_SHORT).show();
-
                     String expName = msg.obj.getClass().getSimpleName();
                     if ("WechatClientNotExistException".equals(expName)
                             || "WechatTimelineNotSupportedException".equals(expName)
@@ -46,10 +51,8 @@ public class ShareUtils {
                     }
                 }
                 break;
-                case 3: {
-                    Toast.makeText(mContext, "取消····", Toast.LENGTH_SHORT)
-                            .show();
-                }
+                case 3:
+                    Toast.makeText(mContext, "取消····", Toast.LENGTH_SHORT).show();
                 break;
             }
             return false;
@@ -57,6 +60,10 @@ public class ShareUtils {
     };
     private int MSG_ACTION_CCALLBACK = 1;
     private Handler handler;
+    private String nickname;
+    private String iconUri;
+    private String openid;
+    private String platName;
 
     public static synchronized ShareUtils getInstance(Context context) {
         if (shareUtils == null) {
@@ -66,7 +73,8 @@ public class ShareUtils {
         return shareUtils;
     }
 
-    public void sharePlat(final String platName) {
+    public void sharePlat(String platName) {
+        this.platName = platName;
         handler = new Handler(Looper.getMainLooper(), callback);
         final Platform plat = ShareSDK.getPlatform(platName);
         //判断指定平台是否已经完成授权
@@ -80,7 +88,7 @@ public class ShareUtils {
             @Override
             public void onError(Platform platform, int action, Throwable t) {
                 t.printStackTrace();
-                Log.e("tag", "onError");
+                Log.e("tagsss", "onError");
                 Message msg = new Message();
                 msg.what = MSG_ACTION_CCALLBACK;
                 msg.arg1 = 2;
@@ -97,10 +105,10 @@ public class ShareUtils {
                 msg.arg2 = action;
                 System.out.println(res);
                 //获取资料
-                String nickname = platform.getDb().getUserName();//获取用户名字
-                String iconUri = platform.getDb().getUserIcon(); //获取用户头像
+                nickname = platform.getDb().getUserName();//获取用户名字
+                iconUri = platform.getDb().getUserIcon(); //获取用户头像
                 platform.getDb().get("openid");
-                String openid = platform.getDb().getUserId();
+                openid = platform.getDb().getUserId();
                 String token = platform.getDb().getToken();
                 String refresh_token111 = platform.getDb().get("refresh_token");
                 String toJSLogin = "{" +
@@ -108,9 +116,10 @@ public class ShareUtils {
                         + "  \"nickname\" : \"" + nickname + "\","
                         + "  \"openid\" :  \"" + openid + "\""
                         + "}";
-                Log.d("WXCHATLOGIN", toJSLogin);
+                Log.e("WXCHATLOGIN sss", toJSLogin);
                 msg.obj = toJSLogin;
                 UIHandler.sendMessage(msg, callback);
+                wxlogin(openid);
             }
 
             @Override
@@ -121,9 +130,54 @@ public class ShareUtils {
                 msg.arg2 = action;
                 msg.obj = platform;
                 UIHandler.sendMessage(msg, callback);
+                Log.e("tagsss", "onError");
             }
         });
         plat.showUser(null);//授权并获取用户信息
     }
 
+    public void wxlogin(String openid) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("act", "login_openid");
+        map.put("openid", openid);
+        map.put("type", "wechat");
+        HttpPostRequestUtils.getInstance(this).Post(map);
+    }
+
+    @Override
+    public void Success(String method, JSONObject json) throws JSONException {
+        Log.e("sssss", json.toString());
+        if ("login_openid".equals(method)) {
+            mContext.getSharedPreferences(Constant.SHARED_NAME, Context.MODE_PRIVATE).edit()
+                    .putString("username", json.getJSONObject("data").getString("username"))
+                    .putString("user_id", json.getJSONObject("data").getString("user_id"))
+                    .putString("user_photo", json.getJSONObject("data").getString("user_photo"))
+                    .putString("sex", json.getJSONObject("data").getString("sex"))
+                    .putString("email", json.getJSONObject("data").getString("email"))
+                    .commit();
+            Intent intent = new Intent(mContext, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            mContext.startActivity(intent);
+            ((Activity) mContext).finish();
+        }
+    }
+
+    @Override
+    public void Fail(String method, String error) {
+        Log.e("sssss", error.toString());
+        if ("login_openid".equals(method)) {
+            Intent intent = new Intent(mContext, RegisterActivity.class);
+            intent.putExtra("nick", nickname);
+            intent.putExtra("openid", openid);
+            intent.putExtra("iconUri", iconUri);
+            intent.putExtra("three", true);
+            intent.putExtra("type", platName);
+            mContext.startActivity(intent);
+        }
+    }
+
+    @Override
+    public Context getContext() {
+        return mContext;
+    }
 }

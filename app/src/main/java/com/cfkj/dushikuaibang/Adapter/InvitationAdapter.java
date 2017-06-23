@@ -1,6 +1,7 @@
 package com.cfkj.dushikuaibang.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cfkj.dushikuaibang.Activity.ImageActivity;
 import com.cfkj.dushikuaibang.Entity.Invitation;
 import com.cfkj.dushikuaibang.Interface.OnInvitedListener;
 import com.cfkj.dushikuaibang.R;
@@ -62,9 +64,9 @@ public class InvitationAdapter extends BaseAdapter implements View.OnClickListen
             vh.start_one = (ImageView) convertView.findViewById(R.id.start_one);
             vh.start_two = (ImageView) convertView.findViewById(R.id.start_two);
             vh.start_three = (ImageView) convertView.findViewById(R.id.start_three);
-            vh.image1 = (ImageView) convertView.findViewById(R.id.image1);
-            vh.image2 = (ImageView) convertView.findViewById(R.id.image2);
-            vh.image3 = (ImageView) convertView.findViewById(R.id.image3);
+            vh.image[0] = (ImageView) convertView.findViewById(R.id.image1);
+            vh.image[1] = (ImageView) convertView.findViewById(R.id.image2);
+            vh.image[2] = (ImageView) convertView.findViewById(R.id.image3);
             vh.auth1 = (ImageView) convertView.findViewById(R.id.auth1);
             vh.auth2 = (ImageView) convertView.findViewById(R.id.auth2);
             vh.auth3 = (ImageView) convertView.findViewById(R.id.auth3);
@@ -98,14 +100,28 @@ public class InvitationAdapter extends BaseAdapter implements View.OnClickListen
             vh.server_price.setVisibility(View.INVISIBLE);
         }
 
+
+        for (int i = 0; i < vh.image.length; i++) {
+            if (invi.getSkill_photos().size() == 0)
+                vh.image[i].setVisibility(View.GONE);
+            else vh.image[i].setVisibility(View.INVISIBLE);
+        }
+
+        for (int i = 0; i < invi.getSkill_photos().size(); i++) {
+            vh.image[i].setVisibility(View.VISIBLE);
+            vh.image[i].setTag(Constant.HOST + invi.getSkill_photos().get(i));
+            ImageLoader.getInstance().displayImage(Constant.HOST + invi.getSkill_photos().get(i), vh.image[i], AppUtils.getOptions());
+            vh.image[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    context.startActivity(new Intent(v.getContext(), ImageActivity.class).putExtra("url", (String) v.getTag()));
+                }
+            });
+        }
+
         vh.invitantion.setTag(position);
         vh.invitantion.setOnClickListener(onclick);
         return convertView;
-//        convertView = LayoutInflater.from(context).inflate(R.layout.serverinvitation_layout, null, false);
-//        TextView invitantion = (TextView) convertView.findViewById(R.id.invitantion);
-//        invitantion.setTag(position);
-//        invitantion.setOnClickListener(this);
-//        return  convertView;
     }
 
     @Override
@@ -120,7 +136,8 @@ public class InvitationAdapter extends BaseAdapter implements View.OnClickListen
     class ViewHolder {
         CircleImageView avatar;
         TextView server_name, server_type, textView3, content, server_price, server_time, invitantion;
-        ImageView start_one, start_two, start_three, image1, image2, image3, auth1, auth2, auth3, auth4, auth5;
+        ImageView start_one, start_two, start_three, auth1, auth2, auth3, auth4, auth5;
+        ImageView[] image = new ImageView[3];
     }
 
 }

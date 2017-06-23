@@ -19,9 +19,19 @@ public class MySkill {
     private String addtime;
     private String status;
     private String praisesum;
+    private String user_photo;
     private String score;
     private String cat_name;
     private String server_type_name;
+
+
+    public String getUser_photo() {
+        return user_photo;
+    }
+
+    public void setUser_photo(String user_photo) {
+        this.user_photo = user_photo;
+    }
 
     public String getScore() {
         return score;

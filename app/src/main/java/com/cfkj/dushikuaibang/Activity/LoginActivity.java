@@ -23,6 +23,7 @@ import java.util.HashMap;
 import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.wechat.friends.Wechat;
 
+
 public class LoginActivity extends BaseActivity implements HttpPostRequestUtils.HttpPostRequestCallback {
 
     private final String METHOD_LOGIN = "login";  //添加技能

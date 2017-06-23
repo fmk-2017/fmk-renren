@@ -3,6 +3,7 @@ package com.cfkj.dushikuaibang.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -32,6 +33,7 @@ import com.cfkj.dushikuaibang.Adapter.SectionsPagerAdapter;
 import com.cfkj.dushikuaibang.Entity.Home;
 import com.cfkj.dushikuaibang.Entity.Skill;
 import com.cfkj.dushikuaibang.R;
+import com.cfkj.dushikuaibang.Utils.AppUtils;
 import com.cfkj.dushikuaibang.Utils.HttpPostRequestUtils;
 import com.cfkj.dushikuaibang.Utils.LocationUtils;
 import com.cfkj.dushikuaibang.Utils.ScreenUtils;
@@ -39,6 +41,7 @@ import com.cfkj.dushikuaibang.Utils.TimeUtils;
 import com.cfkj.dushikuaibang.View.MyListView;
 import com.cfkj.dushikuaibang.View.Pull.PullToRefreshBase;
 import com.cfkj.dushikuaibang.View.Pull.PullToRefreshListView;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -245,11 +248,23 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                 homelistview.setAdapter(homeAdapter);
             }
             Log.e("sss", page + " hah " + home.getGet_server_list().size());
-            if (home.getHome_pic() != null && home.getHome_pic().getAd_photo().size() > 0) {
-                ImageView[] imageViews = new ImageView[home.getHome_pic().getAd_photo().size()];
-                for (int i = 0; i < home.getHome_pic().getAd_photo().size(); i++) {
+            if (home.getHome_pic() != null && home.getHome_pic().size() > 0) {
+                ImageView[] imageViews = new ImageView[home.getHome_pic().size()];
+                for (int i = 0; i < home.getHome_pic().size(); i++) {
                     imageViews[i] = new ImageView(getActivity());
-                    x.image().bind(imageViews[i], home.getHome_pic().getAd_photo().get(i));
+                    imageViews[i].setTag(home.getHome_pic().get(i).getUrl());
+                    ImageLoader.getInstance().displayImage(home.getHome_pic().get(i).getAd_photo(), imageViews[i], AppUtils.getOptions());
+                    imageViews[i].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String url = (String) v.getTag();
+                            Intent intent = new Intent();
+                            intent.setAction("android.intent.action.VIEW");
+                            Uri content_url = Uri.parse(url);
+                            intent.setData(content_url);
+                            startActivity(intent);
+                        }
+                    });
                 }
                 header_viewpager.setAdapter(new SectionsPagerAdapter(getActivity(), imageViews));
             } else {
@@ -275,6 +290,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
     @Override
     public void onLocationChanged(AMapLocation aMapLocation) {
+        if (String.valueOf(aMapLocation.getLatitude()).length() > 12) return;
         shared.edit().putString("lat", aMapLocation.getLatitude() + "").putString("lon", aMapLocation.getLongitude() + "").commit();
         Log.e("ssss", aMapLocation.getLatitude() + " " + aMapLocation.getLongitude());
         getHome(aMapLocation.getLatitude() + "", aMapLocation.getLongitude() + "");

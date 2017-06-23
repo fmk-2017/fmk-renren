@@ -64,6 +64,8 @@
                 android:background="@color/white"
                 android:gravity="right"
                 android:hint="请填写手机号码"
+                android:inputType="phone"
+                android:maxLength="11"
                 android:textColorHint="@color/deep_gray" />
 
         </LinearLayout>

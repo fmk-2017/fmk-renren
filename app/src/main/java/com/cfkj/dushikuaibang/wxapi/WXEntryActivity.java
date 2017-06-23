@@ -19,7 +19,9 @@ import android.widget.Toast;
 
 import org.xutils.x;
 
-public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
+import cn.sharesdk.wechat.utils.WechatHandlerActivity;
+
+public class WXEntryActivity extends WechatHandlerActivity implements IWXAPIEventHandler {
 
     private IWXAPI api;
 

@@ -10,10 +10,13 @@ import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationListener;
 import com.cfkj.dushikuaibang.Fragment.CityFragment;
 import com.cfkj.dushikuaibang.Fragment.ShoppingFragment;
 import com.cfkj.dushikuaibang.R;
 import com.cfkj.dushikuaibang.Utils.Constant;
+import com.cfkj.dushikuaibang.Utils.LocationUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +26,10 @@ import java.util.List;
  * 发布界面
  */
 
-public class ShoppingActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
+public class ShoppingActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener, AMapLocationListener {
 
     private static ShoppingActivity shoppingActivity;
+    public String user_lat, user_lon;
     protected SharedPreferences shared;
     private RadioGroup rgShopp;
     private RadioButton rbCity, rbShopp;
@@ -45,6 +49,8 @@ public class ShoppingActivity extends BaseActivity implements RadioGroup.OnCheck
         setContentView(R.layout.activity_shopping);
 
         shoppingActivity = this;
+
+        LocationUtils.getInstance(this).startLoaction(this);
 
         type = getIntent().getStringExtra("type");
 
@@ -115,5 +121,12 @@ public class ShoppingActivity extends BaseActivity implements RadioGroup.OnCheck
         if (keyCode == KeyEvent.KEYCODE_BACK)
             ShoppingActivity.this.finish();
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onLocationChanged(AMapLocation aMapLocation) {
+        if (String.valueOf(aMapLocation.getLatitude()).length() > 12) return;
+        user_lat = aMapLocation.getLatitude() + "";
+        user_lon = aMapLocation.getLongitude() + "";
     }
 }

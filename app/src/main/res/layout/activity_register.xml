@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.cfkj.dushikuaibang.Layout.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
@@ -8,208 +8,187 @@
     android:orientation="vertical"
     tools:context="com.cfkj.dushikuaibang.Activity.LoginActivity">
 
-    <RelativeLayout
+    <include layout="@layout/header_title" />
+
+    <com.cfkj.dushikuaibang.Layout.PercentLinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@color/white">
-
-        <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:scaleType="centerInside"
-            android:src="@drawable/left_black_24dp"
-            android:visibility="invisible" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/user_register"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_sbig" />
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_margin="1dp"
-        android:background="@color/thin_white" />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:paddingLeft="10dp"
-        android:paddingTop="15dp">
-
-        <EditText
-            android:id="@+id/phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="@android:color/transparent"
-            android:hint="@string/phone_tips"
-            android:inputType="number"
-            android:text="15814472484"
-            android:textColorHint="@color/gray" />
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/deep_gray" />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:paddingLeft="10dp">
-
-        <EditText
-            android:id="@+id/code"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:gravity="bottom"
-            android:hint="@string/auth_code_tips"
-            android:inputType="number"
-            android:text="1234"
-            android:textColorHint="@color/gray" />
-
-        <TextView
-            android:id="@+id/get_auth_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:background="@drawable/get_authcode_bg"
-            android:text="@string/get_auth_code"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_normal" />
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/deep_gray" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:paddingLeft="10dp"
-        android:paddingTop="15dp">
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="@android:color/transparent"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:text="123456"
-            android:textColorHint="@color/gray" />
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/deep_gray" />
-
-    <Button
-        android:id="@+id/register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:background="@drawable/theme_login_bg"
-        android:text="@string/user_register"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_sbig"
-        app:layout_marginTopPercent="10%h" />
-
-    <com.cfkj.dushikuaibang.Layout.PercentRelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
-            android:id="@+id/bottom_3login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:orientation="horizontal"
-            app:layout_marginBottomPercent="15%h"
-            app:layout_widthPercent="40%w">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:drawableTop="@mipmap/registered_11"
-                android:gravity="center"
-                android:text="QQ登录"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_normal" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:drawableTop="@mipmap/registered_13"
-                android:gravity="center"
-                android:text="QQ登录"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_normal" />
-
-        </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/bottom_3login"
-            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
             android:orientation="horizontal"
-            app:layout_marginBottomPercent="5%h">
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="15dp">
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@android:color/transparent"
+                android:hint="@string/phone_tips"
+                android:inputType="number"
+                android:text="15814472484"
+                android:textColorHint="@color/gray" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/deep_gray" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp">
+
+            <EditText
+                android:id="@+id/code"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="bottom"
+                android:hint="@string/auth_code_tips"
+                android:inputType="number"
+                android:text="1234"
+                android:textColorHint="@color/gray" />
 
             <TextView
+                android:id="@+id/get_auth_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="已有账号？"
-                android:textSize="@dimen/text_normal" />
-
-            <TextView
-                android:id="@+id/login_go"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="请登录"
-                android:textColor="@color/theme"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/get_authcode_bg"
+                android:text="@string/get_auth_code"
+                android:textColor="@color/black"
                 android:textSize="@dimen/text_normal" />
 
         </LinearLayout>
 
-    </com.cfkj.dushikuaibang.Layout.PercentRelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/deep_gray" />
 
-</com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="15dp">
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@android:color/transparent"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:text="123456"
+                android:textColorHint="@color/gray" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/deep_gray" />
+
+        <Button
+            android:id="@+id/register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@drawable/theme_login_bg"
+            android:text="@string/user_register"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_sbig"
+            app:layout_marginTopPercent="10%h" />
+
+        <com.cfkj.dushikuaibang.Layout.PercentRelativeLayout
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
+                android:id="@+id/bottom_3login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
+                app:layout_marginBottomPercent="15%h"
+                app:layout_widthPercent="40%w">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:drawableTop="@mipmap/registered_11"
+                    android:gravity="center"
+                    android:text="QQ登录"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_normal" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:drawableTop="@mipmap/registered_13"
+                    android:gravity="center"
+                    android:text="QQ登录"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_normal" />
+
+            </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/bottom_3login"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
+                app:layout_marginBottomPercent="5%h">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="已有账号？"
+                    android:textSize="@dimen/text_normal" />
+
+                <TextView
+                    android:id="@+id/login_go"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="请登录"
+                    android:textColor="@color/theme"
+                    android:textSize="@dimen/text_normal" />
+
+            </LinearLayout>
+
+        </com.cfkj.dushikuaibang.Layout.PercentRelativeLayout>
+
+    </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
+
+</LinearLayout>

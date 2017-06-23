@@ -155,7 +155,7 @@
                 android:layout_gravity="right"
                 android:drawableTop="@mipmap/registered_13"
                 android:gravity="center"
-                android:text="QQ登录"
+                android:text="微信登录"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_normal" />
 

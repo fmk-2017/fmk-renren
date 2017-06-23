@@ -140,7 +140,8 @@
         <activity android:name=".Activity.UpateInfoActivity" />
         <activity android:name=".Activity.CommentActivity" />
         <activity android:name=".Activity.EditTextActivity" />
-        <activity android:name=".Activity.ImageActivity"></activity>
+        <activity android:name=".Activity.ImageActivity" />
+        <activity android:name=".Activity.WithdrawActivity"></activity>
     </application>
 
 </manifest>

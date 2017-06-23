@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
 import com.cfkj.dushikuaibang.Activity.MainActivity;
+import com.cfkj.dushikuaibang.Activity.ShoppingActivity;
 import com.cfkj.dushikuaibang.R;
 import com.cfkj.dushikuaibang.Utils.DialogShowUtils;
 import com.cfkj.dushikuaibang.Utils.HttpPostRequestUtils;
@@ -141,10 +142,10 @@ public class CityFragment extends Fragment implements View.OnClickListener, Http
         switch (v.getId()) {
             case R.id.tvPay://前往支付
                 api = WXAPIFactory.createWXAPI(getActivity(), "wx463580e9dd2620d1");
-                View view = LayoutInflater.from(v.getContext()).inflate(R.layout.getimagetype_dialog, null, false);
+                View view = LayoutInflater.from(v.getContext()).inflate(R.layout.getpaytype_dialog, null, false);
                 dsu = DialogShowUtils.getInstance(getContext()).SelectPaytype(view);
                 TextView alipay = (TextView) view.findViewById(R.id.alipay);
-                TextView weixin = (TextView) view.findViewById(R.id.weixin);
+                TextView weixin = (TextView) view.findViewById(R.id.wxpay);
                 TextView cancel = (TextView) view.findViewById(R.id.cancel);
 
                 alipay.setOnClickListener(this);
@@ -161,7 +162,7 @@ public class CityFragment extends Fragment implements View.OnClickListener, Http
                 requestPay();
                 dsu.dismiss();
                 break;
-            case R.id.weixin:
+            case R.id.wxpay:
                 pay_type = "weixin";
                 requestPay();
                 dsu.dismiss();
@@ -212,6 +213,8 @@ public class CityFragment extends Fragment implements View.OnClickListener, Http
         map.put("delivery_phone", recePerPhone + "");
         map.put("remark", remarks + "");
         map.put("info", info + "");
+        map.put("user_lon", ShoppingActivity.getInstance().user_lon);
+        map.put("user_lat", ShoppingActivity.getInstance().user_lat);
         map.put("pay_type", pay_type);
         HttpPostRequestUtils.getInstance(this).Post(map);
     }

@@ -104,8 +104,7 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
         mylistview = (MyListView2) this.findViewById(R.id.mylistview2);
 
         mylistview.setFocusable(false);
-
-        //payali("app_id=2017010304811553&biz_content=%7B%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22total_amount%22%3A%220.01%22%2C%22subject%22%3A%22%E4%B8%87%E4%BA%8B%E9%80%9A%22%2C%22body%22%3A%22%E5%95%86%E5%93%81%E6%8F%8F%E8%BF%B0%22%2C%22out_trade_no%22%3A%22483054048429922789%22%7D&charset=utf-8&format=json&method=alipay.trade.app.pay&notify_url=http%3A%2F%2F112.74.35.236%2Fapi.php&timestamp=2017-05-04+13%3A47%3A20&version=1.0&sign_type=RSA&sign=RGzYPzNZI%2BRxS7yq5rRrC%2BRK2J2RSNTdAWe5TSpW4iGH0l8n0UBlenNrsKotgYq4XC%2FPjyDPI5Xb0ssyH8LTp%2FYVKKI9Zzr2fPKyGbieojvyvirm7rlA%2Fv%2FPkN4Tl5QyyJOC%2FRpbM7kPPMqHVUY9BhEOrLO7NTgn7Phu%2Fhjh3Ho%3D");
+//        payali("app_id=2017010304811553&biz_content=%7B%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22total_amount%22%3A%220.01%22%2C%22subject%22%3A%22%E4%B8%87%E4%BA%8B%E9%80%9A%22%2C%22body%22%3A%22%E5%95%86%E5%93%81%E6%8F%8F%E8%BF%B0%22%2C%22out_trade_no%22%3A%22483054048429922789%22%7D&charset=utf-8&format=json&method=alipay.trade.app.pay&notify_url=http%3A%2F%2F112.74.35.236%2Fapi.php&timestamp=2017-05-04+13%3A47%3A20&version=1.0&sign_type=RSA&sign=RGzYPzNZI%2BRxS7yq5rRrC%2BRK2J2RSNTdAWe5TSpW4iGH0l8n0UBlenNrsKotgYq4XC%2FPjyDPI5Xb0ssyH8LTp%2FYVKKI9Zzr2fPKyGbieojvyvirm7rlA%2Fv%2FPkN4Tl5QyyJOC%2FRpbM7kPPMqHVUY9BhEOrLO7NTgn7Phu%2Fhjh3Ho%3D");
 
         mySc = (ScrollView) this.findViewById(R.id.mySc);
         content = (TextView) this.findViewById(R.id.content);
@@ -300,7 +299,6 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
 
     private void paywx(JSONObject json) throws JSONException {
         PayReq req = new PayReq();
-        //req.appId = "wxf8b4f85f3a794e77";  // 测试用appId
         req.appId = json.getString("appid");
         req.partnerId = json.getString("partnerid");
         req.prepayId = json.getString("prepayid");
@@ -329,10 +327,10 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
         switch (v.getId()) {
             case R.id.invitantion:
                 final int position = (int) v.getTag();//暂时不用
-                View view = LayoutInflater.from(v.getContext()).inflate(R.layout.getimagetype_dialog, null, false);
+                View view = LayoutInflater.from(v.getContext()).inflate(R.layout.getpaytype_dialog, null, false);
                 dsu = DialogShowUtils.getInstance(this).SelectPaytype(view);
                 TextView alipay = (TextView) view.findViewById(R.id.alipay);
-                TextView weixin = (TextView) view.findViewById(R.id.weixin);
+                TextView weixin = (TextView) view.findViewById(R.id.wxpay);
                 TextView cancel = (TextView) view.findViewById(R.id.cancel);
                 alipay.setOnClickListener(new View.OnClickListener() {
                     @Override

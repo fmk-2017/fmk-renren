@@ -1,6 +1,7 @@
 package com.cfkj.dushikuaibang.Adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,11 +67,11 @@ public class CommentAdapter extends BaseAdapter {
             vh = (ViewHolder) convertView.getTag();
         }
         if (type == 0) {
-            vh.name.setText(comments.get(position).getUser_name());
+            vh.name.setText(TextUtils.isEmpty(comments.get(position).getNickname()) ? comments.get(position).getUser_name() : comments.get(position).getNickname());
             vh.time.setText(TimeUtils.getFormatTime(comments.get(position).getAdd_time()));
             vh.content.setText(comments.get(position).getEvaluate_content());
         } else {
-            vh.name.setText(messages.get(position).getUser_name());
+            vh.name.setText(TextUtils.isEmpty(comments.get(position).getNickname()) ? comments.get(position).getUser_name() : comments.get(position).getNickname());
             vh.time.setText(TimeUtils.getFormatTime(messages.get(position).getAdd_time()));
             vh.content.setText(messages.get(position).getContent());
         }

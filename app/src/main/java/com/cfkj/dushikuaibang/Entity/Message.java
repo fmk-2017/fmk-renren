@@ -12,7 +12,9 @@ public class Message {
     private String user_name;
     private String content;
     private String add_time;
+    private String nickname;
 
+    //{"message_id":"27","merchant_id":"33","user_id":"19","user_name":"15827991714","content":"OL肉筋肉","add_time":"1498241311","nickname":"15827991714"}
 
     public String getMessage_id() {
         return message_id;
@@ -60,5 +62,13 @@ public class Message {
 
     public void setAdd_time(String add_time) {
         this.add_time = add_time;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 }

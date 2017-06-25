@@ -92,12 +92,20 @@ public class HomeAdapter extends BaseAdapter {
         if (skill.getUser_photo().endsWith(".png") || skill.getUser_photo().endsWith(".jpg") || skill.getUser_photo().endsWith(".jpeg"))
             ImageLoader.getInstance().displayImage(AppUtils.getAvatarPath(skill.getUser_photo()), viewHolder.homeitem_avatar, AppUtils.getOptions());
         else viewHolder.homeitem_avatar.setImageResource(R.mipmap.home_07);
+
         viewHolder.homeitem_name.setText(skill.getCat_name());
+
         viewHolder.homeitem_works.setText(skill.getServer_type_name());
-        viewHolder.homeitem_time.setText(TimeUtils.getTime_difference(skill.getServer_time()) + "前");
+
+        viewHolder.homeitem_time.setText(TimeUtils.getTime_difference(skill.getAddtime()) + "前");
+
         viewHolder.homeitem_text.setText(skill.getSkill_info());
+
         viewHolder.homeitem_distance.setText(AppUtils.getdistance(Float.valueOf(skill.getRange())));
-        viewHolder.homeitem_zan.setText(skill.getPraisesum());
+
+        viewHolder.homeitem_zan.setText(skill.getPraisesum() + "");
+
+        viewHolder.homeitem_evaluate.setText(skill.getCommentNum() + "");// 评论
 
         List<String> strlist = skill.getSkill_photos();
         for (int i = 0; i < viewHolder.homeitem_image.length; i++) {
@@ -119,7 +127,7 @@ public class HomeAdapter extends BaseAdapter {
             });
         }
 
-        viewHolder.homeitem_zan.setTag(skill.getSkill_id());
+        viewHolder.homeitem_zan.setTag(position);
         viewHolder.homeitem_zan.setOnClickListener(onclick);
 
         return convertView;

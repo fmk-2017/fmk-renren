@@ -185,9 +185,12 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener, 
             ToastUtils.tipShort(getActivity(), "请选择");
             return;
         }
-
-        map.put("pay_type", pay_type);
-        map.put("act", ACTION);
+        if (ShoppingActivity.getInstance().no_change) {
+            map.put("act", "yuyue");
+            map.put("pay_type", pay_type);//#支付类型   zhifubao:支付宝   weixin:微信
+            map.put("server_id", ShoppingActivity.getInstance().skill_id);
+            map.put("type", "2");
+        } else map.put("act", ACTION);
         map.put("user_id", user_id);
         map.put("goods_name", goodName);
         map.put("ship_time", TimeUtils.getTime(time));

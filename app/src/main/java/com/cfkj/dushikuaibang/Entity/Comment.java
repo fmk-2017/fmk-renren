@@ -18,6 +18,7 @@ public class Comment {
     private String user_name;
     private String nickname;
 
+    //{"message_id":"27","merchant_id":"33","user_id":"19","user_name":"15827991714","content":"OL肉筋肉","add_time":"1498241311","nickname":"15827991714"}
     public String getUser_name() {
         return user_name;
     }

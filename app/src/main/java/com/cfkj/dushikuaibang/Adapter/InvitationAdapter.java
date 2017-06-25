@@ -102,7 +102,7 @@ public class InvitationAdapter extends BaseAdapter implements View.OnClickListen
 
 
         for (int i = 0; i < vh.image.length; i++) {
-            if (invi.getSkill_photos().size() == 0)
+            if (invi.getSkill_photos() != null && invi.getSkill_photos().size() == 0)
                 vh.image[i].setVisibility(View.GONE);
             else vh.image[i].setVisibility(View.INVISIBLE);
         }

@@ -23,7 +23,7 @@ public class GuideActivity extends BaseActivity {
     private ViewPager guide_viewpager;
 
     private ImageView[] imageViews;
-    private int[] images = new int[]{R.mipmap.guide, R.mipmap.guide1, R.mipmap.guide2, R.mipmap.guide3};
+    private int[] images = new int[]{R.mipmap.guide1, R.mipmap.guide2, R.mipmap.guide3, R.mipmap.guide};
     private int starxx;
     private String[] dpermissions;
 

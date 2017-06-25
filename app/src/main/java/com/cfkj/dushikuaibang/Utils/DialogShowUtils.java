@@ -1,7 +1,9 @@
 package com.cfkj.dushikuaibang.Utils;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -115,6 +117,4 @@ public class DialogShowUtils extends Dialog implements OnWheelChangedListener {
         dsu.show();
         return dsu;
     }
-
-
 }

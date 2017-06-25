@@ -34,24 +34,24 @@ public class CommentActivity extends BaseActivity implements HttpPostRequestUtil
         setContentView(R.layout.activity_comment);
 
         skill_id = getIntent().getStringExtra("skill_id");
-
-
         initHeader(TextUtils.isEmpty(skill_id) ? "留言" : "评论");
 
         userid = getIntent().getStringExtra("user_id");
 
         commentListView = (ListView) this.findViewById(R.id.commentListView);
-
         getData();
 
     }
 
     private void getData() {
         HashMap<String, String> map = new HashMap<>();
-        if (TextUtils.isEmpty(skill_id)) map.put("act", MESSAGE_LIST);
-        else map.put("act", COMMENT_LIST);
-        map.put("skill_id", skill_id);
-        map.put("user_id", userid);
+        if (TextUtils.isEmpty(skill_id)) {
+            map.put("act", MESSAGE_LIST);
+            map.put("user_id", userid);
+        } else {
+            map.put("act", COMMENT_LIST);
+            map.put("skill_id", skill_id);
+        }
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
 

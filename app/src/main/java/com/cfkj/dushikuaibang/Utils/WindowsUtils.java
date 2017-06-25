@@ -55,9 +55,9 @@ public class WindowsUtils {
         GridAdapter adapter = new GridAdapter(context, list);
         gridview.setAdapter(adapter);
         List<GoodsNameAndId> list2 = new ArrayList<>();
-        list2.add(new GoodsNameAndId("不限", 2));
-        list2.add(new GoodsNameAndId("男", 0));
-        list2.add(new GoodsNameAndId("女", 1));
+        list2.add(new GoodsNameAndId("不限", 0));
+        list2.add(new GoodsNameAndId("男", 1));
+        list2.add(new GoodsNameAndId("女", 2));
         GridAdapter adapter2 = new GridAdapter(context, list2);
         sexs.setAdapter(adapter2);
 

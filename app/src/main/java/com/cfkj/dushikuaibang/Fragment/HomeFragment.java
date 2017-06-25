@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.amap.api.location.AMapLocation;
@@ -90,6 +91,8 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
     private int page = 1;
     private boolean canload = true;
+    private int zanposition;
+    private String user_id;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -244,8 +247,11 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                 }
                 canload = true;
             } else {
-                homeAdapter = new HomeAdapter(getActivity(), skillList, this);
-                homelistview.setAdapter(homeAdapter);
+                if (homeAdapter != null) homeAdapter.notifyDataSetChanged();
+                else {
+                    homeAdapter = new HomeAdapter(getActivity(), skillList, this);
+                    homelistview.setAdapter(homeAdapter);
+                }
             }
             Log.e("sss", page + " hah " + home.getGet_server_list().size());
             if (home.getHome_pic() != null && home.getHome_pic().size() > 0) {
@@ -274,7 +280,14 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                 header_viewpager.setAdapter(new SectionsPagerAdapter(getActivity(), imageViews));
             }
         } else if (METHOD_PRAISE.equals(method)) {
-            getHome(lat, lon);
+            if (skillList.get(zanposition).getIs_praise() == 1) {
+                skillList.get(zanposition).setIs_praise(0);
+                skillList.get(zanposition).setPraisesum(skillList.get(zanposition).getPraisesum() - 1);
+            } else {
+                skillList.get(zanposition).setIs_praise(1);
+                skillList.get(zanposition).setPraisesum(skillList.get(zanposition).getPraisesum() + 1);
+            }
+            homeAdapter.notifyDataSetChanged();
             Log.e(METHOD_PRAISE, "赞成功or取消赞");
         }
     }
@@ -285,7 +298,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         if (METHOD_HOME.equals(method)) {
             if (page > 1) page--;
         }
-//        if (x.isDebug()) Toast.makeText(getApplicationContext(), this.getClass().getName() + ": " + method + " error: " + error, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -303,6 +315,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         map.put("user_lon", user_lon);
         map.put("page", page + "");
         map.put("category_id", "0");
+        map.put("user_id", getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("user_id", ""));
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
 
@@ -310,7 +323,13 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.homeitem_zan:
-                String skillid = (String) v.getTag();
+                zanposition = (int) v.getTag();
+                String skillid = skillList.get(zanposition).getSkill_id();
+                user_id = getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("user_id", "");
+                if (TextUtils.isEmpty(user_id)) {
+                    Toast.makeText(getContext(), "请先登录", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 zan(skillid);
                 break;
         }
@@ -320,7 +339,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("act", METHOD_PRAISE);
         map.put("skill_id", skillid);
-        map.put("userid", getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("user_id", ""));
+        map.put("userid", user_id);
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
 

@@ -70,6 +70,8 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
     private String server_type = "";
     private String category_id = "";
     private List<GoodsNameAndId> nameAndIds;
+    private double latitude, longitude;
+    private String sexs;
 
     public ReceivingFragment() {
     }
@@ -172,7 +174,9 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
             if (aMapLocation != null && aMapLocation.getErrorCode() == 0) {
                 mlocationClient.stopLocation();
                 mListener.onLocationChanged(aMapLocation);// 显示系统小蓝点
-                getdemand(aMapLocation.getLatitude(), aMapLocation.getLongitude());
+                latitude = aMapLocation.getLatitude();
+                longitude = aMapLocation.getLongitude();
+                getdemand(latitude, longitude);
             } else {
                 String errText = "定位失败," + aMapLocation.getErrorCode() + ": " + aMapLocation.getErrorInfo();
                 DebugLog.e("AmapErr", errText);
@@ -217,6 +221,7 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
         map.put("user_lat", user_lat + "");
         map.put("user_lon", user_lon + "");
         map.put("server_type", server_type);
+        map.put("server_sex", sexs);
         HttpPostRequestUtils.getInstance(this).Post(map);
     }
 
@@ -234,7 +239,7 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
                 receivingAdapter.notifyDataSetChanged();
             }
             addmarket();
-        } else if (APPOINTMENT_SERVIER.equals(mode)) {
+        } else if (APPOINTMENT_SERVIER.equals(method)) {
 
         }
     }
@@ -270,6 +275,8 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
                     @Override
                     public void onStringItemClick(int position, int sex) {
                         category_id = position + "";
+                        sexs = sex + "";
+                        getdemand(latitude, longitude);
                     }
                 });
                 break;
@@ -278,11 +285,13 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
                 nameAndIds.add(new GoodsNameAndId("Ta来找我", 1));
                 nameAndIds.add(new GoodsNameAndId("我去找TA", 2));
                 nameAndIds.add(new GoodsNameAndId("线上服务", 3));
-                nameAndIds.add(new GoodsNameAndId("邮寄", 4));
+//                nameAndIds.add(new GoodsNameAndId("邮寄", 4));
                 WindowsUtils.showStringListPopupWindow(v, nameAndIds, new WindowsUtils.OnStringItemClickListener() {
                     @Override
                     public void onStringItemClick(int position, int sex) {
-                        server_type = position + "";
+                        server_type = (position + 1) + "";
+                        sexs = sex + "";
+                        getdemand(latitude, longitude);
                     }
                 });
                 break;

@@ -1,7 +1,9 @@
 package com.cfkj.dushikuaibang.Activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 
 import android.util.Log;
@@ -226,6 +228,12 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
                 release_comment.setVisibility(View.GONE);
                 comment.setEnabled(false);
                 break;
+            case "10":
+                if (shared.getString("user_id", "").equals(order_info.getUser_id())) {
+                    op = "等待接单";
+                    textView4.setEnabled(false);
+                } else op = "确认接单";
+                break;
             default:
                 textView4.setVisibility(View.GONE);
                 break;
@@ -274,6 +282,9 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
             getInfo();
         } else if (USER_ORDER_ADD.equals(method)) {
             Toast.makeText(getApplicationContext(), "抢单成功", Toast.LENGTH_SHORT).show();
+            getInfo();
+        } else if ("orders".equals(method)) {
+            Toast.makeText(getApplicationContext(), "已成功接单", Toast.LENGTH_SHORT).show();
             getInfo();
         }
     }
@@ -360,14 +371,26 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
                     case "0"://立即抢单
                         bid(order_info.getId());
                         break;
-                    case "1":
-                        verify(order_info.getId());
+                    case "1"://完成任务
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getContext());
+                        alertDialog.setMessage("完成任务？");
+                        alertDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                verify(order_info.getId());
+                            }
+                        });
+                        alertDialog.setNegativeButton("取消", null);
+                        alertDialog.create().show();
                         break;
-                    case "2"://完成任务
+                    case "2"://确认完成
                         consent(order_info.getId());
                         break;
-                    case "3"://确认完成
-                        verify(order_info.getId());
+                    case "3"://品论
+//                        verify(order_info.getId());
+                        break;
+                    case "10":
+                        receiving(order_info.getId());
                         break;
                     default:
                         textView4.setVisibility(View.GONE);
@@ -386,9 +409,22 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
     }
 
     /**
+     * 接单
+     * @param order_id      需求订单id
+     */
+    public void receiving(String order_id) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("act", "orders");
+        map.put("user_id", shared.getString("user_id", ""));
+        map.put("id", order_id);
+        map.put("cat_id", category_id);
+        HttpPostRequestUtils.getInstance(this).Post(map);
+    }
+
+    /**
      * 完成任务
      *
-     * @param deli_id
+     * @param deli_id   需求订单id
      */
     public void verify(String deli_id) {
         HashMap<String, String> map = new HashMap<>();
@@ -402,7 +438,7 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
     /**
      * 确认完成
      *
-     * @param deli_id
+     * @param deli_id   需求订单id
      */
     public void consent(String deli_id) {
         HashMap<String, String> map = new HashMap<>();
@@ -416,7 +452,7 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
     /**
      * 立即抢单
      *
-     * @param deli_id
+     * @param deli_id   需求订单id
      */
     public void bid(String deli_id) {
         HashMap<String, String> map = new HashMap<>();

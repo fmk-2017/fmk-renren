@@ -114,9 +114,9 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                if ((firstVisibleItem + visibleItemCount) >= (orderBeanList.size() - 4) && canload) {
+                if (orderBeanList.size() > 0 && (firstVisibleItem + visibleItemCount) >= (orderBeanList.size() - 4) && canload) {
                     canload = false;
-                    ++page;
+                    page++;
                     getOrder(server_type, server_status);
                 }
             }
@@ -130,7 +130,6 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
                 buyer.setSelected(true);
                 servant.setSelected(false);
                 server_type = "1";
-                textviews[1].setVisibility(View.VISIBLE);
                 select(0);
                 server_status = "";
                 break;
@@ -138,8 +137,8 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
                 buyer.setSelected(false);
                 servant.setSelected(true);
                 server_type = "2";
-                textviews[1].setVisibility(View.GONE);
                 select(0);
+                textviews[1].setText("待接单");
                 server_status = "";
                 break;
             case R.id.textview1:
@@ -148,7 +147,9 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
                 break;
             case textview2:
                 select(1);
-                server_status = "0";
+                if ("1".equals(server_type))
+                    server_status = "0";
+                else server_status = "10";
                 break;
             case R.id.textview3:
                 select(2);

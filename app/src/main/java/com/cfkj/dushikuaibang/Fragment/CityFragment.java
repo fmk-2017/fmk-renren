@@ -201,7 +201,11 @@ public class CityFragment extends Fragment implements View.OnClickListener, Http
             return;
         }
         HashMap<String, String> map = new HashMap<>();
-        map.put("act", ACTION);
+        if (ShoppingActivity.getInstance().no_change) {
+            map.put("act", "yuyue");
+            map.put("server_id", ShoppingActivity.getInstance().skill_id);
+            map.put("type", "10");
+        } else map.put("act", ACTION);
         map.put("user_id", shared.getString("user_id", ""));
         map.put("delivery_price", prices);
         map.put("delivery_username", mName);

@@ -33,8 +33,13 @@ public class MyWalletActivity extends BaseActivity implements View.OnClickListen
 
         initView();
 
-        getData();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getData();
     }
 
     private void getData() {
@@ -66,7 +71,7 @@ public class MyWalletActivity extends BaseActivity implements View.OnClickListen
 
                 break;
             case R.id.mywallet_withdraw_deposit:
-                startActivity(new Intent(v.getContext(), WithdrawActivity.class));
+                startActivity(new Intent(v.getContext(), WithdrawActivity.class).putExtra("money", balance));
                 break;
         }
     }

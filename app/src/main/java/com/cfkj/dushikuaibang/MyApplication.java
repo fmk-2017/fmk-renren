@@ -43,7 +43,7 @@ public class MyApplication extends Application {
         ImageLoader.getInstance().init(ilc);
 
         x.Ext.init(this);
-
+        x.Ext.setDebug(true);
         ShareSDK.initSDK(this);
     }
 }

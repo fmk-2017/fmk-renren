@@ -24,7 +24,7 @@ public class MyWalletUseAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 0;
     }
 
     @Override

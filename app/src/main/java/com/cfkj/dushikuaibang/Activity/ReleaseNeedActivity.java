@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -12,16 +13,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.alipay.sdk.app.PayTask;
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
 import com.cfkj.dushikuaibang.Adapter.ReleaseNeedActivityAdapter;
 import com.cfkj.dushikuaibang.Adapter.TextItemAdapter;
 import com.cfkj.dushikuaibang.Entity.Need_Cat;
 import com.cfkj.dushikuaibang.R;
+import com.cfkj.dushikuaibang.Utils.DialogShowUtils;
 import com.cfkj.dushikuaibang.Utils.HttpPostRequestUtils;
 import com.cfkj.dushikuaibang.Utils.LocationUtils;
 import com.cfkj.dushikuaibang.View.MyGridView;
 import com.cfkj.dushikuaibang.View.MyListView2;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,6 +58,12 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
     private String[] times, sexs, types;
     private Map<String, Boolean> timemap = new HashMap<String, Boolean>(), sexmap = new HashMap<String, Boolean>(), typemap = new HashMap<String, Boolean>();
 
+    private String server_id;
+    private DialogShowUtils dsu;
+    private String pay_type;
+    private String user_lat, user_lon;
+    private IWXAPI api;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,11 +74,17 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
         name = getIntent().getStringExtra("name");
         selet = getIntent().getBooleanExtra("selet", true);
 
+        if (!selet) {
+            server_id = getIntent().getStringExtra("skill_id");
+        }
+
         initView();
 
         skill_type.setEnabled(selet);
 
         LocationUtils.getInstance(this).startLoaction(this);
+
+        api = WXAPIFactory.createWXAPI(this, "wx463580e9dd2620d1");
 
         getItem();
     }
@@ -123,7 +141,6 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
         }
     }
 
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (parent.getId() == R.id.server_type_gridview) {
@@ -156,26 +173,68 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
 
                 break;
             case R.id.release:
-                String info = skill_content.getText().toString().trim();
-                if (TextUtils.isEmpty(server_day) || TextUtils.isEmpty(server_sex) || TextUtils.isEmpty(server_type) || TextUtils.isEmpty(info)) {
-                    Toast.makeText(getApplicationContext(), "所有选项都为必填", Toast.LENGTH_SHORT).show();
+                if (selet) {
+                    Release();
+                    return;
                 }
-                map.put("act", METHOD_ADD_DEMEND);
-                map.put("user_id", shared.getString("user_id", ""));
-                map.put("info", info);
-                if (releaseneed != null) {
-                    List<String> list = releaseneed.list;
-                    for (String str : list)
-                        strs += "," + str;
-                    map.put("server_tag", strs.substring(1));
-                }
-                map.put("category_id", id);
-                map.put("server_day", server_day);
-                map.put("server_sex", server_sex);
-                map.put("server_type", server_type);
-                HttpPostRequestUtils.getInstance(this).Post(map);
+                View view = LayoutInflater.from(v.getContext()).inflate(R.layout.getpaytype_dialog, null, false);
+                dsu = DialogShowUtils.getInstance(this).SelectPaytype(view);
+                TextView alipay = (TextView) view.findViewById(R.id.alipay);
+                TextView weixin = (TextView) view.findViewById(R.id.wxpay);
+                TextView cancel = (TextView) view.findViewById(R.id.cancel);
+                alipay.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        pay_type = "zhifubao";
+                        Release();
+                        dsu.dismiss();
+                    }
+                });
+                weixin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        pay_type = "weixin";
+                        Release();
+                        dsu.dismiss();
+                    }
+                });
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dsu.dismiss();
+                    }
+                });
+
                 break;
         }
+    }
+
+    public void Release() {
+        String info = skill_content.getText().toString().trim();
+        if (TextUtils.isEmpty(server_day) || TextUtils.isEmpty(server_sex) || TextUtils.isEmpty(server_type) || TextUtils.isEmpty(info)) {
+            Toast.makeText(getApplicationContext(), "所有选项都为必填", Toast.LENGTH_SHORT).show();
+        }
+        if (!selet) {
+            map.put("act", "yuyue");
+            map.put("type", server_id);
+            map.put("pay_type", pay_type);//#支付类型   zhifubao:支付宝   weixin:微信
+            map.put("server_id", server_id);//技能id
+        } else map.put("act", METHOD_ADD_DEMEND);
+        map.put("user_id", shared.getString("user_id", ""));
+        map.put("info", info);
+        if (releaseneed != null) {
+            List<String> list = releaseneed.list;
+            for (String str : list)
+                strs += "," + str;
+            map.put("server_tag", strs.substring(1));
+        }
+        map.put("category_id", id);
+        map.put("server_day", server_day);
+        map.put("server_sex", server_sex);
+        map.put("user_lat", user_lat);
+        map.put("user_lon", user_lon);
+        map.put("server_type", server_type);
+        HttpPostRequestUtils.getInstance(this).Post(map);
     }
 
     @Override
@@ -203,9 +262,10 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
                 map.put("category_id", cat_id);
             }
         } else if (METHOD_ADD_DEMEND.equals(method)) {
-            if (!selet) {
-
-            } else finish();
+            finish();
+        } else if ("yuyue".equals(method)) {
+            if ("zhifubao".equals(pay_type)) payali(json.getString("data"));
+            else paywx(json.getJSONObject("data"));
         }
     }
 
@@ -222,7 +282,45 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void onLocationChanged(AMapLocation aMapLocation) {
         if (String.valueOf(aMapLocation.getLatitude()).length() > 12) return;
-        map.put("user_lat", aMapLocation.getLatitude() + "");
-        map.put("user_lon", aMapLocation.getLongitude() + "");
+        user_lat = aMapLocation.getLatitude() + "";
+        user_lon = aMapLocation.getLongitude() + "";
     }
+
+    private void payali(final String orderInfo) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                PayTask alipay = new PayTask(ReleaseNeedActivity.this);
+                Map<String, String> result = alipay.payV2(orderInfo, true);
+                Log.e("支付宝支付返回", result.toString());
+                if ("9000".equals(result.get("resultStatus"))) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(ReleaseNeedActivity.this, MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                }
+            }
+        }).start();
+    }
+
+    private void paywx(JSONObject json) throws JSONException {
+        PayReq req = new PayReq();
+        req.appId = json.getString("appid");
+        req.partnerId = json.getString("partnerid");
+        req.prepayId = json.getString("prepayid");
+        req.nonceStr = json.getString("noncestr");
+        req.timeStamp = json.getString("timestamp");
+        req.packageValue = json.getString("package");
+        req.sign = json.getString("sign");
+        req.extData = "app data"; // optional
+        Toast.makeText(getApplicationContext(), "正常调起支付", Toast.LENGTH_SHORT).show();
+        // 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
+        api.sendReq(req);
+    }
+
 }

@@ -31,7 +31,9 @@ public class Skill {
     private String cat_name;
     private String server_type_name;
     private String range;
-    private String praisesum;
+    private String commentNum;
+    private int praisesum;
+    private int is_praise;
 
     public Skill() {
     }
@@ -45,6 +47,22 @@ public class Skill {
     public static Skill getNewInstance() {
         skill = new Skill();
         return skill;
+    }
+
+    public int getIs_praise() {
+        return is_praise;
+    }
+
+    public void setIs_praise(int is_praise) {
+        this.is_praise = is_praise;
+    }
+
+    public String getCommentNum() {
+        return commentNum;
+    }
+
+    public void setCommentNum(String commentNum) {
+        this.commentNum = commentNum;
     }
 
     public List<String> getSkill_photos() {
@@ -206,11 +224,11 @@ public class Skill {
         this.range = range;
     }
 
-    public String getPraisesum() {
+    public int getPraisesum() {
         return praisesum;
     }
 
-    public void setPraisesum(String praisesum) {
+    public void setPraisesum(int praisesum) {
         this.praisesum = praisesum;
     }
 }

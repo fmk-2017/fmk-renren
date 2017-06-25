@@ -30,6 +30,8 @@ public class ShoppingActivity extends BaseActivity implements RadioGroup.OnCheck
 
     private static ShoppingActivity shoppingActivity;
     public String user_lat, user_lon;
+    public boolean no_change = false;
+    public String skill_id;
     protected SharedPreferences shared;
     private RadioGroup rgShopp;
     private RadioButton rbCity, rbShopp;
@@ -53,6 +55,8 @@ public class ShoppingActivity extends BaseActivity implements RadioGroup.OnCheck
         LocationUtils.getInstance(this).startLoaction(this);
 
         type = getIntent().getStringExtra("type");
+        no_change = getIntent().getBooleanExtra("no_change", false);
+        skill_id = getIntent().getStringExtra("skill_id");
 
         intiView();
         initData();
@@ -91,6 +95,10 @@ public class ShoppingActivity extends BaseActivity implements RadioGroup.OnCheck
         rgShopp = (RadioGroup) findViewById(R.id.rgShopp);
         rbCity = (RadioButton) findViewById(R.id.rbCity);
         rbShopp = (RadioButton) findViewById(R.id.rbShopp);
+        if (no_change) {
+            rbCity.setEnabled(false);
+            rbShopp.setEnabled(false);
+        }
         fl_contain = (FrameLayout) findViewById(R.id.fl_contain);
     }
 

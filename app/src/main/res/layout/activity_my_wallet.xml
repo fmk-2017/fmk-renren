@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context="com.cfkj.dushikuaibang.Activity.MyWalletActivity">
+    tools:context="com.example.dushikuaibang.Activity.MyWalletActivity">
 
     <include layout="@layout/header_title" />
 

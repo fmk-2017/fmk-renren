@@ -6,11 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.cfkj.dushikuaibang.Activity.LoginActivity">
+    tools:context="com.example.dushikuaibang.Activity.LoginActivity">
 
     <include layout="@layout/header_title" />
 
-    <com.cfkj.dushikuaibang.Layout.PercentLinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <com.example.dushikuaibang.Layout.PercentLinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -120,12 +120,12 @@
             android:textSize="@dimen/text_sbig"
             app:layout_marginTopPercent="10%h" />
 
-        <com.cfkj.dushikuaibang.Layout.PercentRelativeLayout
+        <com.example.dushikuaibang.Layout.PercentRelativeLayout
             android:id="@+id/bottom"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
+            <com.example.dushikuaibang.Layout.PercentLinearLayout
                 android:id="@+id/bottom_3login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -161,7 +161,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_normal" />
 
-            </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
+            </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -187,8 +187,8 @@
 
             </LinearLayout>
 
-        </com.cfkj.dushikuaibang.Layout.PercentRelativeLayout>
+        </com.example.dushikuaibang.Layout.PercentRelativeLayout>
 
-    </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
+    </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
 </LinearLayout>

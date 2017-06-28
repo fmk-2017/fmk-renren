@@ -16,7 +16,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion '25.0.0'
     defaultConfig {
-        applicationId "com.cfkj.dushikuaibang"
+        applicationId "com.example.dushikuaibang"
         minSdkVersion 19
         targetSdkVersion 24
         versionCode 1

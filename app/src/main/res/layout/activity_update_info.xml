@@ -6,7 +6,7 @@
 
     <include layout="@layout/header_title" />
 
-    <com.cfkj.dushikuaibang.View.CircleImageView
+    <com.example.dushikuaibang.View.CircleImageView
         android:id="@+id/ivShowHead"
         android:layout_width="80dp"
         android:layout_height="80dp"

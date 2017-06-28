@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.cfkj.dushikuaibang.Layout.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.dushikuaibang.Layout.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_my_wallet_deposit"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.cfkj.dushikuaibang.Activity.MyWalletDepositActivity">
+    tools:context="com.example.dushikuaibang.Activity.MyWalletDepositActivity">
 
     <include layout="@layout/header_title" />
 
-    <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
+    <com.example.dushikuaibang.Layout.PercentLinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -52,7 +52,7 @@
             android:textSize="@dimen/text_big"
             app:layout_paddingLeftPercent="5%w" />
 
-        <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
+        <com.example.dushikuaibang.Layout.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -84,8 +84,8 @@
                 android:text="银行卡充值"
                 app:layout_marginPercent="5%w" />
 
-        </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
+        </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
-    </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
+    </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
-</com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
+</com.example.dushikuaibang.Layout.PercentLinearLayout>

@@ -6,14 +6,14 @@
     android:orientation="vertical"
     android:padding="8dp">
 
-    <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
+    <com.example.dushikuaibang.Layout.PercentLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:gravity="bottom"
         android:orientation="horizontal">
 
-        <com.cfkj.dushikuaibang.View.CircleImageView
+        <com.example.dushikuaibang.View.CircleImageView
             android:id="@+id/avatar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_normal" />
 
-                <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
+                <com.example.dushikuaibang.Layout.PercentLinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="8dp"
@@ -79,7 +79,7 @@
                         app:layout_heightPercent="100%h"
                         app:layout_widthPercent="100%h" />
 
-                </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
+                </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
             </LinearLayout>
 
@@ -104,9 +104,9 @@
             android:text="29.3公里"
             android:visibility="invisible" />
 
-    </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
+    </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
-    <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
+    <com.example.dushikuaibang.Layout.PercentLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -148,7 +148,7 @@
             app:layout_heightPercent="25%w"
             app:layout_widthPercent="33%w" />
 
-    </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
+    </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -209,7 +209,7 @@
 
     </LinearLayout>
 
-    <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
+    <com.example.dushikuaibang.Layout.PercentLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
@@ -222,7 +222,7 @@
             android:src="@drawable/credit_auth_dleft"
             app:layout_widthPercent="25%w" />
 
-    </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
+    </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

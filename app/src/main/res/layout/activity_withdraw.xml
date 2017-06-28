@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.cfkj.dushikuaibang.Activity.WithdrawActivity">
+    tools:context="com.example.dushikuaibang.Activity.WithdrawActivity">
 
     <include layout="@layout/header_title" />
 
@@ -166,7 +166,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
+        <com.example.dushikuaibang.Layout.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom"
@@ -183,7 +183,7 @@
                 android:textSize="@dimen/text_sbig"
                 app:layout_marginTopPercent="10%h" />
 
-        </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
+        </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
     </LinearLayout>
 

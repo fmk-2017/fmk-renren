@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.cfkj.dushikuaibang.Fragment.SkillFragment">
+    tools:context="com.example.dushikuaibang.Fragment.SkillFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
         android:layout_margin="1dp"
         android:background="@color/thin_white" />
 
-    <com.cfkj.dushikuaibang.View.MyListView
+    <com.example.dushikuaibang.View.MyListView
         android:id="@+id/skilllistview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

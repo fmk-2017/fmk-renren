@@ -20,7 +20,7 @@
         android:textColor="@color/black"
         android:textSize="@dimen/text_big" />
 
-    <com.cfkj.dushikuaibang.View.MyGridView
+    <com.example.dushikuaibang.View.MyGridView
         android:id="@+id/need_gridview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

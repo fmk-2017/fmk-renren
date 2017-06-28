@@ -87,6 +87,7 @@
         <item>女</item>
     </string-array>
     <string-array name="service_time">
+        <item>不限</item>
         <item>周一</item>
         <item>周二</item>
         <item>周三</item>

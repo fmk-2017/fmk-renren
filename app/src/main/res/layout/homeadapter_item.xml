@@ -21,13 +21,13 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_big" />
 
-        <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
+        <com.example.dushikuaibang.Layout.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="5dp">
 
-            <com.cfkj.dushikuaibang.View.CircleImageView
+            <com.example.dushikuaibang.View.CircleImageView
                 android:id="@+id/homeitem_avatar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -108,9 +108,9 @@
 
             </LinearLayout>
 
-        </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
+        </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
-        <com.cfkj.dushikuaibang.Layout.PercentLinearLayout
+        <com.example.dushikuaibang.Layout.PercentLinearLayout
             android:id="@+id/imagelayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -146,7 +146,7 @@
                 android:src="@mipmap/home_14"
                 app:layout_heightPercent="25%w" />
 
-        </com.cfkj.dushikuaibang.Layout.PercentLinearLayout>
+        </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
         <TextView
             android:id="@+id/homeitem_text"

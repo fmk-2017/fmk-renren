@@ -18,7 +18,6 @@ public class Constant {
     public static final String HOST = "http://112.74.35.236/";
 //    public static final String HOST = "http://sunyan.xn--6qq986b3xl/";
 
-
     public static final String SHARED_NAME = "user";
 
     public static final String appid = "wx3dd3865f1adf4c71";

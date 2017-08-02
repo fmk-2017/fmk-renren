@@ -99,6 +99,7 @@ public class SingleServerActivity extends BaseActivity implements HttpPostReques
         intent.putExtra("xid", demandList.get(position).getId());
         intent.putExtra("title", demandList.get(position).getCat_name());
         intent.putExtra("category_id", demandList.get(position).getCategory_id());
+        intent.putExtra("avatar", demandList.get(position).getUser_photo());
         startActivity(intent);
     }
 }

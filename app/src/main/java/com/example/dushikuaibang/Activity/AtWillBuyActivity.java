@@ -35,6 +35,7 @@ import com.example.dushikuaibang.Utils.TimeUtils;
 import com.example.dushikuaibang.Utils.ToastUtils;
 import com.example.dushikuaibang.View.CircleImageView;
 import com.example.dushikuaibang.View.MyListView2;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -57,7 +58,7 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
     private final String USER_AFFIRM = "user_affirm";
     private final String Alipay = "zhifubao";
     private final String Weixin = "weixin";
-    String names, avatar;
+    private String sk_names, avatar;
     private String demand_id, category_id;
     private MyListView2 mylistview;
     private Order_Info order_info;
@@ -69,10 +70,12 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
     private boolean is_self;
     private PercentLinearLayout bottom;
     private LinearLayout no_city, city, contact, buyaddress_linear;
+    private PercentLinearLayout topview;
     private TextView address_buy,/*随意购的购买地址*/
             address_receving; //其他的和随意购的收货地址
     private TextView shipper, shipper_phone, shipper_address;
     private TextView consignee, consignee_phone, consignee_address, sk_name;
+    private TextView yyz;
     private IWXAPI api;
     private DialogShowUtils dsu;
     private String pay_type;
@@ -82,13 +85,13 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_at_will_buy);
-        String title = getIntent().getStringExtra("title");
-        initHeader(title);
+        sk_names = getIntent().getStringExtra("title");
+//        initHeader(sk_names);
+        initHeader("需求详情");
 
         demand_id = getIntent().getStringExtra("xid");
         category_id = getIntent().getStringExtra("category_id");
 
-        names = getIntent().getStringExtra("name");
         avatar = getIntent().getStringExtra("avatar");
 
         initView();
@@ -118,8 +121,10 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
 
         sk_avatar = (CircleImageView) this.findViewById(R.id.sk_avatar);
         sk_name = (TextView) this.findViewById(R.id.sk_name);
-        sk_name.setText(names);
-        x.image().bind(sk_avatar, avatar, MyApplication.io);
+        sk_name.setText(sk_names);
+        if (!TextUtils.isEmpty(avatar))
+            ImageLoader.getInstance().displayImage(avatar, sk_avatar);
+//        x.image().bind(sk_avatar, avatar, MyApplication.io);
 
         mySc = (ScrollView) this.findViewById(R.id.mySc);
         content = (TextView) this.findViewById(R.id.content);
@@ -135,10 +140,13 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
         release_comment = (TextView) this.findViewById(R.id.release_comment);
         bottom = (PercentLinearLayout) this.findViewById(R.id.bottom);
 
+        topview = (PercentLinearLayout) this.findViewById(R.id.topview);
         no_city = (LinearLayout) this.findViewById(R.id.no_city);
         city = (LinearLayout) this.findViewById(R.id.city);
         contact = (LinearLayout) this.findViewById(R.id.contact);
         buyaddress_linear = (LinearLayout) this.findViewById(R.id.buyaddress_linear);
+
+        yyz = (TextView) this.findViewById(R.id.yyz);
 
         shipper = (TextView) this.findViewById(R.id.shipper);
         shipper_phone = (TextView) this.findViewById(R.id.shipper_phone);
@@ -171,35 +179,39 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
         if ("10".equals(order_info.getCategory_id())) {
             no_city.setVisibility(View.GONE);
             contact.setVisibility(View.GONE);
+            topview.setVisibility(View.GONE);
             city.setVisibility(View.VISIBLE);
             shipper.setText(String.format("发货人：%s", order_info.getDelivery_userName()));
             shipper_phone.setText(String.format("联系电话：%s", order_info.getDelivery_phone()));
-            shipper_address.setText(order_info.getGoods_address());
+            shipper_address.setText(String.format("发货地址：%s", order_info.getGoods_address()));
 
             consignee.setText(String.format("收货人：%s", order_info.getConsignee()));
             consignee_phone.setText(String.format("联系电话：%s", order_info.getPhone()));
-            consignee_address.setText(order_info.getShipping_address());
+            consignee_address.setText(String.format("收货地址：%s", order_info.getShipping_address()));
         } else if ("2".equals(order_info.getCategory_id())) {
             city.setVisibility(View.GONE);
+            topview.setVisibility(View.GONE);
             no_city.setVisibility(View.VISIBLE);
             buyaddress_linear.setVisibility(View.VISIBLE);
             contacts.setText(String.format("收货人：%s", order_info.getUsername() + " "));
             contacts_phone.setText(String.format("联系电话：%s", order_info.getPhone()));
-            address_receving.setText(order_info.getShipping_address() + " ");
+            address_receving.setText(String.format("收货地址：%s", order_info.getShipping_address()));
             address_buy.setText(order_info.getGoods_address());
-            price.setText("服务费：" + order_info.getGoods_price());
             content.setText(order_info.getGoods_name());
         } else {
-            no_city.setVisibility(View.VISIBLE);
+            topview.setVisibility(View.VISIBLE);
+            no_city.setVisibility(View.GONE);
             city.setVisibility(View.GONE);
             contact.setVisibility(View.GONE);
             buyaddress_linear.setVisibility(View.GONE);
-            address_receving.setText(order_info.getAddress());
+            address_receving.setVisibility(View.GONE);
             contacts.setText(String.format("联系人：%s", order_info.getConsignee()));
             contacts_phone.setText(String.format("联系电话：%s", order_info.getTel()));
         }
 
-        time.setText(TimeUtils.getFormatTime(order_info.getAddtime()));
+        price.setText("服务费：" + (TextUtils.isEmpty(order_info.getServer_price()) ? "详聊" : order_info.getServer_price()));
+
+        time.setText(String.format("发布时间：%s", TimeUtils.getFormatTime(order_info.getAddtime())));
         order_no.setText("订单号：" + order_info.getD_order());
         remark.setText("备注：" + order_info.getRemark());
         textView4.setEnabled(true);
@@ -279,7 +291,9 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
                 else is_self = false;
                 ia = new InvitationAdapter(this, invitations, this, is_self);
                 mylistview.setAdapter(ia);
+                yyz.setVisibility(View.GONE);
             } else {
+                yyz.setVisibility(View.VISIBLE);
                 mylistview.setVisibility(View.GONE);
             }
         } else if (APPOINTMENT_SERVER.equals(method)) {
@@ -296,8 +310,9 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
             Toast.makeText(getApplicationContext(), "已评价", Toast.LENGTH_SHORT).show();
             getInfo();
         } else if (USER_ORDER_ADD.equals(method)) {
-            Toast.makeText(getApplicationContext(), "抢单成功", Toast.LENGTH_SHORT).show();
-            getInfo();
+            Toast.makeText(getApplicationContext(), "抢单成功,请关注【我的订单】", Toast.LENGTH_SHORT).show();
+//            getInfo();
+            finish();
         } else if ("orders".equals(method)) {
             Toast.makeText(getApplicationContext(), "已成功接单", Toast.LENGTH_SHORT).show();
             getInfo();

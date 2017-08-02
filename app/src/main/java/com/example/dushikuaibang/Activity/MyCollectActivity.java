@@ -1,6 +1,7 @@
 package com.example.dushikuaibang.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -75,7 +76,11 @@ public class MyCollectActivity extends BaseActivity implements HttpPostRequestUt
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.invitation: //应邀
-
+                int position = (int) v.getTag();
+                Intent intent = new Intent(this, MyInfoActivity.class);
+                intent.putExtra("user_id", mySkills.get(position).getUser_id());
+                intent.putExtra("skill_id", mySkills.get(position).getSkill_id());
+                startActivity(intent);
                 break;
         }
     }

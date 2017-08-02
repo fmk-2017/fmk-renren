@@ -1,13 +1,16 @@
 package com.example.dushikuaibang.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.alibaba.fastjson.JSON;
+import com.example.dushikuaibang.Activity.EditSkillActivity;
 import com.example.dushikuaibang.Adapter.SkillAdapter;
 import com.example.dushikuaibang.Entity.Skill;
 import com.example.dushikuaibang.R;
@@ -51,6 +54,13 @@ public class SkillFragment extends Fragment implements HttpPostRequestUtils.Http
         skilllistview = (MyListView) view.findViewById(R.id.skilllistview);
         int bottom = (int) ((float) ScreenUtils.getScreenWidth(getActivity()) * 0.18f) - DensityUtil.dip2px(45);
         skilllistview.setbottom(bottom);
+        ImageView right_img = (ImageView) view.findViewById(R.id.right_img);
+        right_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), EditSkillActivity.class));
+            }
+        });
         return view;
     }
 

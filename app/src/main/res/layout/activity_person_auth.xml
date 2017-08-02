@@ -56,7 +56,7 @@
                     android:gravity="center_vertical"
                     android:padding="2dp"
                     android:text="官方认证"
-                    android:textColor="@color/auth_green"
+                    android:textColor="@color/auto_text"
                     android:textSize="@dimen/text_normal" />
 
                 <TextView
@@ -109,7 +109,7 @@
                     android:gravity="center_vertical"
                     android:padding="2dp"
                     android:text="未认证"
-                    android:textColor="@color/deep_gray"
+                    android:textColor="@color/auto_text"
                     android:textSize="@dimen/text_normal" />
 
                 <TextView
@@ -156,6 +156,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/phone_auto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/green_or_gray"
@@ -163,7 +164,7 @@
                     android:gravity="center_vertical"
                     android:padding="2dp"
                     android:text="未认证"
-                    android:textColor="@color/deep_gray"
+                    android:textColor="@color/auto_text"
                     android:textSize="@dimen/text_normal" />
 
                 <TextView

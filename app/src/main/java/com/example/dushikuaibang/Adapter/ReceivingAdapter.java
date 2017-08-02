@@ -95,7 +95,7 @@ public class ReceivingAdapter extends BaseAdapter {
             viewHolder.work_address.setVisibility(View.VISIBLE);
             viewHolder.work_price.setVisibility(View.VISIBLE);
 //            DecimalFormat decimalFormat = new DecimalFormat("######0.00");
-            String goods_price = /*decimalFormat.format(Double.valueOf(*/TextUtils.isEmpty(demand.getGoods_price()) ? "0" : demand.getGoods_price();//));
+            String goods_price = /*decimalFormat.format(Double.valueOf(*/TextUtils.isEmpty(demand.getDelivery_price()) ? "0" : demand.getDelivery_price();//));
             String tip_price = /*decimalFormat.format(Double.valueOf(*/TextUtils.isEmpty(demand.getTip_price()) ? "0" : demand.getTip_price();//));
             viewHolder.work_price.setText(String.format("配送费%s元 + %s", goods_price, tip_price));
             viewHolder.work_address.setText(String.format("收货地址：%s", demand.getShipping_address()));

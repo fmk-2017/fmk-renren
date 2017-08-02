@@ -180,6 +180,7 @@ public class RegisterActivity extends BaseActivity implements HttpPostRequestUti
             get_auth_code.setEnabled(false);
             mhandler.postDelayed(mrunnable, 1000);
         } else if (METHOD_REGISTER.equals(method)) {
+            Toast.makeText(this, "注册成功，请登录", Toast.LENGTH_LONG).show();
             finish();
         } else if ("register_openid".equals(method)) {
             Log.e("sssss", json.toString());

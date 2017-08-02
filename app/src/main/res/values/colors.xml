@@ -9,6 +9,7 @@
     <color name="table_bg">#6DBAB4</color>
     <color name="white">#FFFFFF</color>
     <color name="thin_white">#EFEFEF</color>
+    <color name="deep_gray1">#FAFAFA</color>
     <color name="listview_divider_bg">#EDEDED</color>
     <color name="black">#666666</color>
     <color name="gray">#BBBBBB</color>

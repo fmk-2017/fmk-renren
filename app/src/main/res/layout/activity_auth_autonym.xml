@@ -10,57 +10,101 @@
 
     <include layout="@layout/header_title" />
 
-    <com.example.dushikuaibang.Layout.PercentLinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <com.example.dushikuaibang.Layout.PercentRelativeLayout
+        <com.example.dushikuaibang.Layout.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/fram_auth_bg"
-            app:layout_heightPercent="50%w"
-            app:layout_marginPercent="10%w"
-            app:layout_widthPercent="80%w">
+            android:orientation="vertical">
+
+            <com.example.dushikuaibang.Layout.PercentRelativeLayout
+                android:id="@+id/image_lz"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/fram_auth_bg"
+                app:layout_heightPercent="50%w"
+                app:layout_marginLeftPercent="10%w"
+                app:layout_marginRightPercent="10%w"
+                app:layout_marginTopPercent="10%w"
+                app:layout_widthPercent="80%w">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:drawableTop="@drawable/ic_add_black_100dp"
+                    android:text="上传手持身份证正面照"
+                    android:textColor="@color/theme"
+                    android:textSize="@dimen/text_normal" />
+
+                <ImageView
+                    android:id="@+id/image_z"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+
+            </com.example.dushikuaibang.Layout.PercentRelativeLayout>
+
+            <com.example.dushikuaibang.Layout.PercentRelativeLayout
+                android:id="@+id/image_lf"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/fram_auth_bg"
+                app:layout_heightPercent="50%w"
+                app:layout_marginLeftPercent="10%w"
+                app:layout_marginRightPercent="10%w"
+                app:layout_marginTopPercent="5%w"
+                app:layout_widthPercent="80%w">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:drawableTop="@drawable/ic_add_black_100dp"
+                    android:text="上传手持身份证反面照"
+                    android:textColor="@color/theme"
+                    android:textSize="@dimen/text_normal" />
+
+                <ImageView
+                    android:id="@+id/image_f"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+
+            </com.example.dushikuaibang.Layout.PercentRelativeLayout>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:drawableTop="@drawable/ic_add_black_100dp"
-                android:text="上传手持身份证正面照"
-                android:textColor="@color/theme"
-                android:textSize="@dimen/text_normal" />
+                android:text="1.拍摄清晰的本人身份证正面照"
+                app:layout_marginLeftPercent="10%w"
+                app:layout_marginRightPercent="10%w" />
 
-        </com.example.dushikuaibang.Layout.PercentRelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2.港澳台及海外用户可上传通行证或护照正面照"
+                app:layout_marginLeftPercent="10%w"
+                app:layout_marginRightPercent="10%w" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="1.拍摄清晰的本人身份证正面照"
-            app:layout_marginLeftPercent="10%w"
-            app:layout_marginRightPercent="10%w" />
+            <TextView
+                android:id="@+id/commit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/skill_item_orange1"
+                android:gravity="center"
+                android:text="提价认证"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_sbig"
+                app:layout_marginBottomPercent="15%w"
+                app:layout_marginLeftPercent="20%w"
+                app:layout_marginRightPercent="20%w"
+                app:layout_marginTopPercent="5%w" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="2.港澳台及海外用户可上传通行证或护照正面照"
-            app:layout_marginLeftPercent="10%w"
-            app:layout_marginRightPercent="10%w" />
+        </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/skill_item_orange1"
-            android:gravity="center"
-            android:text="提价认证"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_sbig"
-            app:layout_marginPercent="20%w" />
-
-
-    </com.example.dushikuaibang.Layout.PercentLinearLayout>
-
+    </ScrollView>
 
 </LinearLayout>

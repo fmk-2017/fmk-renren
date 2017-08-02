@@ -30,6 +30,7 @@ public class SystemSettingActivity extends BaseActivity implements View.OnClickL
         tvExit = (TextView) this.findViewById(R.id.tvExit);
         addr_manager.setOnClickListener(this);
         tvExit.setOnClickListener(this);
+        about.setOnClickListener(this);
     }
 
     @Override
@@ -43,6 +44,9 @@ public class SystemSettingActivity extends BaseActivity implements View.OnClickL
                 shared.edit().clear().commit();
                 startActivity(new Intent(SystemSettingActivity.this, LoginActivity.class));
                 finish();
+                break;
+            case R.id.about:
+                startActivity(new Intent(SystemSettingActivity.this, AboutActivity.class));
                 break;
         }
     }

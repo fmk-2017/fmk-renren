@@ -18,6 +18,15 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_sbig" />
 
+        <ImageView
+            android:id="@+id/right_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/appbar_padding_top"
+            android:src="@mipmap/skills_management_03" />
+
     </RelativeLayout>
 
     <View

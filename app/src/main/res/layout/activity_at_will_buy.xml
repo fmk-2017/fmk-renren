@@ -14,7 +14,8 @@
     <ScrollView
         android:id="@+id/mySc"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
         <com.example.dushikuaibang.Layout.PercentLinearLayout
             android:layout_width="match_parent"
@@ -23,17 +24,18 @@
             android:orientation="vertical">
 
             <com.example.dushikuaibang.Layout.PercentLinearLayout
+                android:id="@+id/topview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                app:layout_heightPercent="15%sh">
+                app:layout_heightPercent="16%sh">
 
                 <com.example.dushikuaibang.View.CircleImageView
                     android:id="@+id/sk_avatar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/home_07"
+                    android:src="@mipmap/jz"
                     app:layout_heightPercent="20%w"
                     app:layout_widthPercent="20%w" />
 
@@ -41,6 +43,7 @@
                     android:id="@+id/sk_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:text="name"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -80,17 +83,10 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="送达时间："
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_normal" />
-
-                <TextView
                     android:id="@+id/time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="2017-01-10"
+                    android:text="送达时间：2017-01-10"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_normal" />
 
@@ -116,17 +112,10 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="购买地址："
-                        android:textColor="@color/deep_gray"
-                        android:textSize="@dimen/text_normal" />
-
-                    <TextView
                         android:id="@+id/address_buy"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="龙东副业文具玩具批发城3楼"
+                        android:text="购买地址：龙东副业文具玩具批发城3楼"
                         android:textColor="@color/deep_gray"
                         android:textSize="@dimen/text_normal" />
 
@@ -139,17 +128,10 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="收货地址："
-                        android:textColor="@color/deep_gray"
-                        android:textSize="@dimen/text_normal" />
-
-                    <TextView
                         android:id="@+id/address_receving"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="义乌小商品批发城4楼"
+                        android:text="收货地址：义乌小商品批发城4楼"
                         android:textColor="@color/deep_gray"
                         android:textSize="@dimen/text_normal" />
 
@@ -201,17 +183,10 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="发货地址："
-                            android:textColor="@color/deep_gray"
-                            android:textSize="@dimen/text_normal" />
-
-                        <TextView
                             android:id="@+id/shipper_address"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="义乌小商品批发城4楼"
+                            android:text="发货地址：义乌小商品批发城4楼"
                             android:textColor="@color/deep_gray"
                             android:textSize="@dimen/text_normal" />
 
@@ -261,18 +236,10 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/textView8"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="收货地址："
-                            android:textColor="@color/deep_gray"
-                            android:textSize="@dimen/text_normal" />
-
-                        <TextView
                             android:id="@+id/consignee_address"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="义乌小商品批发城4楼"
+                            android:text="收货地址：义乌小商品批发城4楼"
                             android:textColor="@color/deep_gray"
                             android:textSize="@dimen/text_normal" />
 
@@ -324,14 +291,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/contact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
                     <TextView
                         android:id="@+id/contacts"
@@ -364,21 +331,23 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/yyz"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/theme_login_bg"
                     android:gravity="center"
-                    android:text="货已送到，请确认付款"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_big"
-                    app:layout_marginLeftPercent="20%w"
-                    app:layout_marginRightPercent="20%w"
-                    app:layout_marginTopPercent="6%w" />
+                    android:padding="10dp"
+                    android:text="应邀服务者"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_normal"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/thin_white" />
 
             </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
@@ -390,5 +359,21 @@
         </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
     </ScrollView>
+
+    <!--theme_login_bg-->
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/table_bg"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="货已送到，请确认付款"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_big"
+        app:layout_marginLeftPercent="20%w"
+        app:layout_marginRightPercent="20%w"
+        app:layout_marginTopPercent="6%w" />
 
 </LinearLayout>

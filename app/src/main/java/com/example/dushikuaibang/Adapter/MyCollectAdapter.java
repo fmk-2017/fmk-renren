@@ -73,6 +73,8 @@ public class MyCollectAdapter extends BaseAdapter {
             vh.image1[i].setVisibility(View.INVISIBLE);
         }
 
+        vh.invitation.setText("立即预约");
+
         MySkill mySkill = mySkills.get(position);
 
         ImageLoader.getInstance().displayImage(mySkill.getUser_photo(), vh.avatar, AppUtils.getOptions());
@@ -91,6 +93,7 @@ public class MyCollectAdapter extends BaseAdapter {
         vh.server_content.setText(mySkill.getSkill_info());
         vh.server_price.setText(String.format("价格：%s次", mySkill.getSkill_price()));
         vh.server_time.setText(TimeUtils.getFormatTime(mySkill.getAddtime()));
+        vh.invitation.setTag(position);
         vh.invitation.setOnClickListener(clickListener);
         return convertView;
     }

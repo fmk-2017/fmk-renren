@@ -1,5 +1,10 @@
 package com.example.dushikuaibang.Utils;
 
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+
+import com.example.dushikuaibang.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 
@@ -54,5 +59,16 @@ public class AppUtils {
         return options;
     }
 
+    public static String getVersion(Context context) {
+        try {
+            PackageManager manager = context.getPackageManager();
+            PackageInfo info = manager.getPackageInfo(context.getPackageName(), 0);
+            String version = info.versionName;
+            return "V" + version;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "V1.0";
+        }
+    }
 
 }

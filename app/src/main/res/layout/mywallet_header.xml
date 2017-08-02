@@ -80,7 +80,8 @@
             android:padding="10dp"
             android:text="收支明细"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_big" />
+            android:textSize="@dimen/text_big"
+            android:visibility="gone" />
 
     </com.example.dushikuaibang.Layout.PercentLinearLayout>
 

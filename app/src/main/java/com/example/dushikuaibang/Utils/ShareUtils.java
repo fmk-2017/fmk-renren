@@ -88,7 +88,7 @@ public class ShareUtils implements HttpPostRequestUtils.HttpPostRequestCallback 
             @Override
             public void onError(Platform platform, int action, Throwable t) {
                 t.printStackTrace();
-                Log.e("tagsss", "onError");
+                Log.e("1111tagsss", "onError" + t.toString());
                 Message msg = new Message();
                 msg.what = MSG_ACTION_CCALLBACK;
                 msg.arg1 = 2;
@@ -116,7 +116,7 @@ public class ShareUtils implements HttpPostRequestUtils.HttpPostRequestCallback 
                         + "  \"nickname\" : \"" + nickname + "\","
                         + "  \"openid\" :  \"" + openid + "\""
                         + "}";
-                Log.e("WXCHATLOGIN sss", toJSLogin);
+                Log.e("1111WXCHATLOGIN sss", toJSLogin);
                 msg.obj = toJSLogin;
                 UIHandler.sendMessage(msg, callback);
                 wxlogin(openid);
@@ -130,7 +130,7 @@ public class ShareUtils implements HttpPostRequestUtils.HttpPostRequestCallback 
                 msg.arg2 = action;
                 msg.obj = platform;
                 UIHandler.sendMessage(msg, callback);
-                Log.e("tagsss", "onError");
+                Log.e("1111tagsss", "onError onCancel");
             }
         });
         plat.showUser(null);//授权并获取用户信息

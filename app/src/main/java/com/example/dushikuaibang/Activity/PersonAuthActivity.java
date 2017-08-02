@@ -3,6 +3,8 @@ package com.example.dushikuaibang.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dushikuaibang.Layout.PercentLinearLayout;
 import com.example.dushikuaibang.R;
@@ -10,6 +12,8 @@ import com.example.dushikuaibang.R;
 public class PersonAuthActivity extends BaseActivity implements View.OnClickListener {
 
     private PercentLinearLayout auth_credit, auth_phone, auth_autonym;
+
+    private TextView phone_auto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,19 +30,30 @@ public class PersonAuthActivity extends BaseActivity implements View.OnClickList
         auth_credit = (PercentLinearLayout) this.findViewById(R.id.auth_credit);
         auth_phone = (PercentLinearLayout) this.findViewById(R.id.auth_phone);
 
+        phone_auto = (TextView) this.findViewById(R.id.phone_auto);
+        phone_auto.setText("已认证");
+        auth_phone.setSelected(true);
+
         auth_autonym.setOnClickListener(this);
         auth_phone.setOnClickListener(this);
-        auth_autonym.setSelected(true);
+        auth_credit.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+        if (v.isSelected()) {
+            Toast.makeText(this, "已认证", Toast.LENGTH_LONG).show();
+            return;
+        }
         switch (v.getId()) {
             case R.id.auth_autonym:
                 startActivity(new Intent(this, AuthAutonymActivity.class));
                 break;
             case R.id.auth_phone:
                 startActivity(new Intent(this, AuthPhoneActivity.class));
+                break;
+            case R.id.auth_credit:
+                Toast.makeText(this, "交易成功完成达到50次会自动认证哦！", Toast.LENGTH_LONG).show();
                 break;
         }
     }

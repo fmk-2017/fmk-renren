@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.everyoneassist.Activity.AddressManagerActivity">
+    tools:context="com.example.dushikuaibang.Activity.AddressManagerActivity">
 
     <include layout="@layout/header_title" />
 

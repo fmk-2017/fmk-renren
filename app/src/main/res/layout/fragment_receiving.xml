@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.everyoneassist.Fragment.ReceivingFragment">
+    tools:context="com.example.dushikuaibang.Fragment.ReceivingFragment">
 
-    <com.example.everyoneassist.Layout.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.example.dushikuaibang.Layout.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -29,7 +29,7 @@
             android:layout_alignParentBottom="true"
             android:background="@color/gray" />
 
-    </com.example.everyoneassist.Layout.PercentRelativeLayout>
+    </com.example.dushikuaibang.Layout.PercentRelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,7 +57,7 @@
 
     </LinearLayout>
 
-    <com.example.everyoneassist.Layout.PercentLinearLayout
+    <com.example.dushikuaibang.Layout.PercentLinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -68,7 +68,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
-        <com.example.everyoneassist.View.MyListView
+        <com.example.dushikuaibang.View.MyListView
             android:id="@+id/receiving_listview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -78,5 +78,5 @@
             android:scrollingCache="false"
             app:layout_heightPercent="35%sh" />
 
-    </com.example.everyoneassist.Layout.PercentLinearLayout>
+    </com.example.dushikuaibang.Layout.PercentLinearLayout>
 </LinearLayout>

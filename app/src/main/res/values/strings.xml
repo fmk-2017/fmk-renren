@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">人人帮</string>
+    <string name="app_name">都市快帮</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
@@ -24,7 +24,7 @@
     </string-array>
 
     <!--homefragment-->
-    <string name="nearby_store">附近商家</string>
+    <string name="nearby_store">附近技能</string>
     <string name="minute_old">%s分钟前</string>
     <string name="kilometer">%s公里</string>
 
@@ -87,6 +87,7 @@
         <item>女</item>
     </string-array>
     <string-array name="service_time">
+        <item>不限</item>
         <item>周一</item>
         <item>周二</item>
         <item>周三</item>

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context="com.example.everyoneassist.Activity.EditSkillActivity">
+    tools:context="com.example.dushikuaibang.Activity.EditSkillActivity">
 
     <include layout="@layout/header_title" />
 
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.example.everyoneassist.Layout.PercentLinearLayout
+        <com.example.dushikuaibang.Layout.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
@@ -37,7 +37,7 @@
                 android:layout_height="6dp"
                 android:background="@color/thin_white" />
 
-            <com.example.everyoneassist.Layout.PercentLinearLayout
+            <com.example.dushikuaibang.Layout.PercentLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -53,7 +53,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_normal" />
 
-                <com.example.everyoneassist.View.MyGridView
+                <com.example.dushikuaibang.View.MyGridView
                     android:id="@+id/type_gridview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
                     android:textSize="@dimen/text_normal" />
 
                 <!--android:listSelector="@drawable/skill_item_orange"-->
-                <com.example.everyoneassist.View.MyGridView
+                <com.example.dushikuaibang.View.MyGridView
                     android:id="@+id/time_gridview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -125,14 +125,14 @@
                     android:textColor="@color/deep_gray"
                     android:textSize="@dimen/text_small" />
 
-            </com.example.everyoneassist.Layout.PercentLinearLayout>
+            </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="6dp"
                 android:background="@color/thin_white" />
 
-            <com.example.everyoneassist.Layout.PercentLinearLayout
+            <com.example.dushikuaibang.Layout.PercentLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -148,30 +148,30 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_normal" />
 
-            </com.example.everyoneassist.Layout.PercentLinearLayout>
+            </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
-            <com.example.everyoneassist.Layout.PercentLinearLayout
+            <com.example.dushikuaibang.Layout.PercentLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
-                <com.example.everyoneassist.View.MyHorizontalScrollView
+                <com.example.dushikuaibang.View.MyHorizontalScrollView
                     android:id="@+id/imagelist"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scrollbars="none"
                     app:layout_heightPercent="30%w" />
 
-            </com.example.everyoneassist.Layout.PercentLinearLayout>
+            </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="6dp"
                 android:background="@color/thin_white" />
 
-            <com.example.everyoneassist.Layout.PercentLinearLayout
+            <com.example.dushikuaibang.Layout.PercentLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -203,7 +203,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_normal" />
 
-            </com.example.everyoneassist.Layout.PercentLinearLayout>
+            </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
             <TextView
                 android:id="@+id/skill_pay"
@@ -211,7 +211,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/skill_item_orange1"
                 android:gravity="center"
-                android:text="立即支付"
+                android:text="立即添加"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_big"
                 app:layout_marginBottomPercent="12%w"
@@ -220,7 +220,7 @@
                 app:layout_marginTopPercent="8%w"
                 app:layout_widthPercent="50%w" />
 
-        </com.example.everyoneassist.Layout.PercentLinearLayout>
+        </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
     </ScrollView>
 </LinearLayout>

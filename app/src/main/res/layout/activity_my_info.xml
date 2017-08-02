@@ -16,11 +16,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.example.everyoneassist.Layout.PercentRelativeLayout
+            <com.example.dushikuaibang.Layout.PercentRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
+                <android.support.v4.view.ViewPager
                     android:id="@+id/header_bg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -28,18 +28,18 @@
                     android:src="@mipmap/home_10"
                     app:layout_heightPercent="60%w" />
 
-                <com.example.everyoneassist.Layout.PercentLinearLayout
+                <com.example.dushikuaibang.Layout.PercentLinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     app:layout_marginTopPercent="52%w">
 
-                    <com.example.everyoneassist.View.CircleImageView
+                    <com.example.dushikuaibang.View.CircleImageView
                         android:id="@+id/ivMeHead"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/home_10"
+                        android:src="@mipmap/home_07"
                         app:border_color="@color/white_transparent"
                         app:border_width="5dp"
                         app:layout_heightPercent="25%w"
@@ -62,16 +62,39 @@
                             android:textColor="#000000"
                             android:textSize="@dimen/text_big" />
 
-                        <ImageView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/home_32" />
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/start1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/home_32"
+                                android:visibility="invisible" />
+
+                            <ImageView
+                                android:id="@+id/start2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/home_32"
+                                android:visibility="invisible" />
+
+                            <ImageView
+                                android:id="@+id/start3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/home_32"
+                                android:visibility="invisible" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                </com.example.everyoneassist.Layout.PercentLinearLayout>
+                </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
-            </com.example.everyoneassist.Layout.PercentRelativeLayout>
+            </com.example.dushikuaibang.Layout.PercentRelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -90,7 +113,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -123,7 +146,7 @@
 
                 </LinearLayout>
 
-                <com.example.everyoneassist.Layout.PercentLinearLayout
+                <com.example.dushikuaibang.Layout.PercentLinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
@@ -136,7 +159,7 @@
                         android:src="@drawable/credit_auth_dleft"
                         app:layout_widthPercent="25%w" />
 
-                </com.example.everyoneassist.Layout.PercentLinearLayout>
+                </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -145,65 +168,11 @@
                     android:layout_marginTop="12dp"
                     android:background="@color/thin_white" />
 
-                <LinearLayout
+                <com.example.dushikuaibang.View.MyListView2
+                    android:id="@+id/mylistview2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="兼职厨师"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_big" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="费用：100元、次"
-                        android:textColor="@color/orange"
-                        android:textSize="@dimen/text_normal" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="服务方式：线下服务"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_normal" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="服务时间：周一、周二"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_normal" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@color/thin_white" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="服务介绍："
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_normal" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="5dp"
-                    android:text="菜系：家常菜、粤菜、川菜、湘菜、北京菜、鲁菜、东北菜"
-                    android:textColor="@color/gray"
-                    android:textSize="@dimen/text_normal" />
             </LinearLayout>
 
             <View
@@ -214,6 +183,7 @@
                 android:background="@color/thin_white" />
 
             <TextView
+                android:id="@+id/num"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="10dp"
@@ -231,6 +201,7 @@
                 android:background="@color/thin_white" />
 
             <TextView
+                android:id="@+id/leaves"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="10dp"
@@ -243,7 +214,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <com.example.everyoneassist.Layout.PercentLinearLayout
+    <com.example.dushikuaibang.Layout.PercentLinearLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -252,6 +223,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/leave"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -268,6 +240,7 @@
             android:background="@color/deep_gray" />
 
         <TextView
+            android:id="@+id/collect"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -287,9 +260,11 @@
             android:text="聊一聊"
             android:textColor="@color/white"
             android:textSize="@dimen/text_normal"
+            android:visibility="gone"
             app:layout_heightPercent="12%w" />
 
         <TextView
+            android:id="@+id/subscribe"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="3"
@@ -300,6 +275,6 @@
             android:textSize="@dimen/text_normal"
             app:layout_heightPercent="12%w" />
 
-    </com.example.everyoneassist.Layout.PercentLinearLayout>
+    </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
 </LinearLayout>

@@ -6,16 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.everyoneassist.Activity.AuthAutonymActivity">
+    tools:context="com.example.dushikuaibang.Activity.AuthAutonymActivity">
 
     <include layout="@layout/header_title" />
 
-    <com.example.everyoneassist.Layout.PercentLinearLayout
+    <com.example.dushikuaibang.Layout.PercentLinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.example.everyoneassist.Layout.PercentRelativeLayout
+        <com.example.dushikuaibang.Layout.PercentRelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/fram_auth_bg"
@@ -32,7 +32,7 @@
                 android:textColor="@color/theme"
                 android:textSize="@dimen/text_normal" />
 
-        </com.example.everyoneassist.Layout.PercentRelativeLayout>
+        </com.example.dushikuaibang.Layout.PercentRelativeLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -60,7 +60,7 @@
             app:layout_marginPercent="20%w" />
 
 
-    </com.example.everyoneassist.Layout.PercentLinearLayout>
+    </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
 
 </LinearLayout>

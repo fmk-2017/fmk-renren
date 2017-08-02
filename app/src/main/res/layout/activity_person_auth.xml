@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.everyoneassist.Activity.PersonAuthActivity">
+    tools:context="com.example.dushikuaibang.Activity.PersonAuthActivity">
 
     <include layout="@layout/header_title" />
 
@@ -27,7 +27,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_big" />
 
-        <com.example.everyoneassist.Layout.PercentLinearLayout
+        <com.example.dushikuaibang.Layout.PercentLinearLayout
             android:id="@+id/auth_autonym"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
 
             </LinearLayout>
 
-        </com.example.everyoneassist.Layout.PercentLinearLayout>
+        </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -80,7 +80,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_big" />
 
-        <com.example.everyoneassist.Layout.PercentLinearLayout
+        <com.example.dushikuaibang.Layout.PercentLinearLayout
             android:id="@+id/auth_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
 
             </LinearLayout>
 
-        </com.example.everyoneassist.Layout.PercentLinearLayout>
+        </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
         <TextView
             android:id="@+id/textView2"
@@ -134,7 +134,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_big" />
 
-        <com.example.everyoneassist.Layout.PercentLinearLayout
+        <com.example.dushikuaibang.Layout.PercentLinearLayout
             android:id="@+id/auth_credit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -175,7 +175,7 @@
 
             </LinearLayout>
 
-        </com.example.everyoneassist.Layout.PercentLinearLayout>
+        </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
     </LinearLayout>
 

@@ -22,13 +22,13 @@
         android:layout_height="1dp"
         android:background="@color/thin_white" />
 
-    <com.example.everyoneassist.Layout.PercentLinearLayout
+    <com.example.dushikuaibang.Layout.PercentLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="15dp">
 
-        <com.example.everyoneassist.View.CircleImageView
+        <com.example.dushikuaibang.View.CircleImageView
             android:id="@+id/avatar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
 
         </LinearLayout>
 
-    </com.example.everyoneassist.Layout.PercentLinearLayout>
+    </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -131,6 +131,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
+            android:gravity="center"
             android:orientation="vertical">
 
             <TextView

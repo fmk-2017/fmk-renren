@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.everyoneassist.Layout.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.dushikuaibang.Layout.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -36,7 +36,7 @@
 
     </LinearLayout>
 
-    <com.example.everyoneassist.Layout.PercentLinearLayout
+    <com.example.dushikuaibang.Layout.PercentLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -122,7 +122,7 @@
             </LinearLayout>
 
         </LinearLayout>
-    </com.example.everyoneassist.Layout.PercentLinearLayout>
+    </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -182,23 +182,23 @@
             android:text="本着热情周到的服务去对待每一个客人，力求完美"
             android:textColor="@color/gray" />
 
-        <com.example.everyoneassist.Layout.PercentLinearLayout
+        <com.example.dushikuaibang.Layout.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
-            <com.example.everyoneassist.View.MyHorizontalScrollView
+            <com.example.dushikuaibang.View.MyHorizontalScrollView
                 android:id="@+id/imagelist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 app:layout_heightPercent="30%w" />
 
-        </com.example.everyoneassist.Layout.PercentLinearLayout>
+        </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
-        <com.example.everyoneassist.Layout.PercentLinearLayout
+        <com.example.dushikuaibang.Layout.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="3dp"
@@ -243,8 +243,8 @@
                 android:textSize="@dimen/text_normal"
                 app:layout_widthPercent="25%w" />
 
-        </com.example.everyoneassist.Layout.PercentLinearLayout>
+        </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
     </LinearLayout>
 
-</com.example.everyoneassist.Layout.PercentLinearLayout>
+</com.example.dushikuaibang.Layout.PercentLinearLayout>

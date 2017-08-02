@@ -6,7 +6,7 @@
 
     <include layout="@layout/header_title" />
 
-    <com.example.everyoneassist.View.CircleImageView
+    <com.example.dushikuaibang.View.CircleImageView
         android:id="@+id/ivShowHead"
         android:layout_width="80dp"
         android:layout_height="80dp"
@@ -31,17 +31,17 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
             android:gravity="center_vertical"
-            android:textSize="@dimen/text_normal"
-            android:text="用户：" />
+            android:text="用户："
+            android:textSize="@dimen/text_normal" />
 
         <TextView
             android:id="@+id/etUser"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
             android:text="13886298512"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:textSize="@dimen/text_normal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:textSize="@dimen/text_normal" />
 
     </LinearLayout>
 
@@ -55,62 +55,63 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
-            android:textSize="@dimen/text_normal"
-            android:gravity="center_vertical"
-            android:text="性别：" />
-
-
-        <TextView
-            android:id="@+id/tvSex"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:background="@null"
-            android:text="请选择性别"
-            android:textSize="@dimen/text_normal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/gray" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tvEmail"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginLeft="20dp"
-            android:textSize="@dimen/text_normal"
             android:gravity="center_vertical"
-            android:text="邮箱：" />
-
+            android:text="昵称："
+            android:textSize="@dimen/text_normal" />
 
         <EditText
             android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:background="@null"
-            android:textSize="@dimen/text_normal"
-            android:hint="请输入邮箱"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:hint="请输入昵称"
+            android:textSize="@dimen/text_normal" />
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/gray"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_vertical"
+            android:text="性别："
+            android:textSize="@dimen/text_normal" />
+
+
+        <TextView
+            android:id="@+id/tvSex"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:text="请选择性别"
+            android:textSize="@dimen/text_normal" />
+
+    </LinearLayout>
+
 
     <View
         android:layout_width="match_parent"
@@ -120,15 +121,15 @@
         android:background="@color/gray" />
 
     <TextView
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:id="@+id/tvEdSure"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:gravity="center"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/pay_str_bg"
+        android:gravity="center"
         android:text="确定"
         android:textColor="@color/white"
         android:textSize="@dimen/text_normal" />

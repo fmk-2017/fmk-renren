@@ -5,13 +5,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.example.everyoneassist.View.MyListView2
+    <com.example.dushikuaibang.View.MyListView2
         android:id="@+id/mylistview2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone" />
 
-    <com.example.everyoneassist.Layout.PercentLinearLayout
+    <com.example.dushikuaibang.Layout.PercentLinearLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,6 +55,6 @@
             app:layout_marginRightPercent="20%w"
             app:layout_marginTopPercent="5%w" />
 
-    </com.example.everyoneassist.Layout.PercentLinearLayout>
+    </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
 </LinearLayout>

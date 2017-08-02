@@ -21,13 +21,13 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_big" />
 
-        <com.example.everyoneassist.Layout.PercentLinearLayout
+        <com.example.dushikuaibang.Layout.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="5dp">
 
-            <com.example.everyoneassist.View.CircleImageView
+            <com.example.dushikuaibang.View.CircleImageView
                 android:id="@+id/homeitem_avatar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -108,9 +108,9 @@
 
             </LinearLayout>
 
-        </com.example.everyoneassist.Layout.PercentLinearLayout>
+        </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
-        <com.example.everyoneassist.Layout.PercentLinearLayout
+        <com.example.dushikuaibang.Layout.PercentLinearLayout
             android:id="@+id/imagelayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -122,6 +122,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/home_10"
                 app:layout_heightPercent="25%w" />
 
@@ -131,6 +132,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/home_12"
                 app:layout_heightPercent="25%w" />
 
@@ -140,10 +142,11 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/home_14"
                 app:layout_heightPercent="25%w" />
 
-        </com.example.everyoneassist.Layout.PercentLinearLayout>
+        </com.example.dushikuaibang.Layout.PercentLinearLayout>
 
         <TextView
             android:id="@+id/homeitem_text"

@@ -3,9 +3,12 @@ package com.example.dushikuaibang.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +18,7 @@ import com.alibaba.fastjson.JSON;
 import com.example.dushikuaibang.Adapter.InfoAdapter;
 import com.example.dushikuaibang.Entity.MySkill;
 import com.example.dushikuaibang.Interface.MyOnClickListener;
+import com.example.dushikuaibang.MyApplication;
 import com.example.dushikuaibang.R;
 import com.example.dushikuaibang.Utils.Constant;
 import com.example.dushikuaibang.Utils.HttpPostRequestUtils;
@@ -24,6 +28,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.xutils.x;
 
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +39,7 @@ public class MyInfoActivity extends BaseActivity implements HttpPostRequestUtils
     private final String METHOD_MERCHANT = "enshrine_merchant";
     private final String METHOD_MESSAGE = "send_message";
     private final int REQUEST_LIUYAN = 123;
+    ImageView[] images;
     private CircleImageView ivMeHead;
     private TextView tvUserName, num;
     private MyListView2 mylistview2;
@@ -42,6 +48,7 @@ public class MyInfoActivity extends BaseActivity implements HttpPostRequestUtils
     private String skill_id, userid;
     private ImageView[] start = new ImageView[3];
     private String cat_name = "", cat_id = "";
+    private ViewPager header_bg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +92,8 @@ public class MyInfoActivity extends BaseActivity implements HttpPostRequestUtils
         num = (TextView) this.findViewById(R.id.num);
         num.setOnClickListener(this);
 
+        header_bg = (ViewPager) this.findViewById(R.id.header_bg);
+
         start[0] = (ImageView) this.findViewById(R.id.start1);
         start[1] = (ImageView) this.findViewById(R.id.start2);
         start[2] = (ImageView) this.findViewById(R.id.start3);
@@ -118,11 +127,47 @@ public class MyInfoActivity extends BaseActivity implements HttpPostRequestUtils
             cat_id = json.getJSONObject("data").getJSONArray("skill_info").getJSONObject(0).getString("category_id");
             mySkills = JSON.parseArray(json.getJSONObject("data").getString("skill_info"), MySkill.class);
             mylistview2.setAdapter(new InfoAdapter(this, mySkills));
+
+            setViewPager();
+
         } else if (METHOD_MERCHANT.equals(method)) {
             Toast.makeText(getApplicationContext(), "收藏成功", Toast.LENGTH_SHORT).show();
         } else if (METHOD_MESSAGE.equals(method)) {
             Toast.makeText(getApplicationContext(), "留言成功", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void setViewPager() {
+        images = new ImageView[mySkills.get(0).getSkill_photos().size()];
+        for (int i = 0; i < images.length; i++) {
+            ImageView image = new ImageView(this);
+            image.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            x.image().bind(image, mySkills.get(0).getSkill_photos().get(i), MyApplication.io);
+            images[i] = image;
+        }
+
+        header_bg.setAdapter(new PagerAdapter() {
+            @Override
+            public int getCount() {
+                return mySkills.get(0).getSkill_photos().size();
+            }
+
+            @Override
+            public boolean isViewFromObject(View view, Object object) {
+                return view == object;
+            }
+
+            @Override
+            public Object instantiateItem(ViewGroup container, int position) {
+                container.addView(images[position]);
+                return images[position];
+            }
+
+            @Override
+            public void destroyItem(ViewGroup container, int position, Object object) {
+                container.removeView((View) object);
+            }
+        });
     }
 
     @Override
@@ -164,6 +209,7 @@ public class MyInfoActivity extends BaseActivity implements HttpPostRequestUtils
             case R.id.num:
                 intent = new Intent(this, CommentActivity.class);
                 intent.putExtra("skill_id", skill_id);
+                intent.putExtra("user_id", userid);
                 startActivity(intent);
                 break;
             case R.id.leaves:

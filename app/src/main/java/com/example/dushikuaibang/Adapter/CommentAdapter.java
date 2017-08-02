@@ -39,7 +39,6 @@ public class CommentAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-
         return type == 0 ? comments.size() : messages.size();
     }
 
@@ -71,7 +70,7 @@ public class CommentAdapter extends BaseAdapter {
             vh.time.setText(TimeUtils.getFormatTime(comments.get(position).getAdd_time()));
             vh.content.setText(comments.get(position).getEvaluate_content());
         } else {
-            vh.name.setText(TextUtils.isEmpty(comments.get(position).getNickname()) ? comments.get(position).getUser_name() : comments.get(position).getNickname());
+            vh.name.setText(TextUtils.isEmpty(messages.get(position).getNickname()) ? messages.get(position).getUser_name() : messages.get(position).getNickname());
             vh.time.setText(TimeUtils.getFormatTime(messages.get(position).getAdd_time()));
             vh.content.setText(messages.get(position).getContent());
         }

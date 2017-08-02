@@ -24,7 +24,7 @@
     </string-array>
 
     <!--homefragment-->
-    <string name="nearby_store">附近商家</string>
+    <string name="nearby_store">附近技能</string>
     <string name="minute_old">%s分钟前</string>
     <string name="kilometer">%s公里</string>
 

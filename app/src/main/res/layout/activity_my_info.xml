@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
+                <android.support.v4.view.ViewPager
                     android:id="@+id/header_bg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/home_10"
+                        android:src="@mipmap/home_07"
                         app:border_color="@color/white_transparent"
                         app:border_width="5dp"
                         app:layout_heightPercent="25%w"

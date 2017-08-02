@@ -131,7 +131,7 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
         shipper_phone = (TextView) this.findViewById(R.id.shipper_phone);
         shipper_address = (TextView) this.findViewById(R.id.shipper_address);
 
-        consignee = (TextView) this.findViewById(R.id.shipper);
+        consignee = (TextView) this.findViewById(R.id.consignee);
         consignee_phone = (TextView) this.findViewById(R.id.consignee_phone);
         consignee_address = (TextView) this.findViewById(R.id.consignee_address);
 
@@ -154,7 +154,6 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
     }
 
     public void setviewData() {
-
         content.setText(order_info.getInfo());
         if ("10".equals(order_info.getCategory_id())) {
             no_city.setVisibility(View.GONE);
@@ -162,10 +161,11 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
             city.setVisibility(View.VISIBLE);
             shipper.setText(String.format("发货人：%s", order_info.getDelivery_userName()));
             shipper_phone.setText(String.format("联系电话：%s", order_info.getDelivery_phone()));
-            shipper_address.setText(String.format("发货地址：%s", order_info.getGoods_address()));
+            shipper_address.setText(order_info.getGoods_address());
+
             consignee.setText(String.format("收货人：%s", order_info.getConsignee()));
             consignee_phone.setText(String.format("联系电话：%s", order_info.getPhone()));
-            consignee_address.setText(String.format("收货地址：%s", order_info.getShipping_address()));
+            consignee_address.setText(order_info.getShipping_address());
         } else if ("2".equals(order_info.getCategory_id())) {
             city.setVisibility(View.GONE);
             no_city.setVisibility(View.VISIBLE);
@@ -253,10 +253,12 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
     public void Success(String method, JSONObject json) throws JSONException {
         if (DEMAND_INFO.equals(method)) {
             order_info = JSON.parseObject(json.getJSONObject("data").getString("order_info"), Order_Info.class);
-            invitations = JSON.parseArray(json.getJSONObject("data").getString("user_info"), Invitation.class);
-            for (Invitation invitation : invitations) {
-                if (shared.getString("user_id", "").equals(invitation.getUser_id()))
-                    textView4.setEnabled(false);
+            if (json.getJSONObject("data").has("user_info")) {
+                invitations = JSON.parseArray(json.getJSONObject("data").getString("user_info"), Invitation.class);
+                for (Invitation invitation : invitations) {
+                    if (shared.getString("user_id", "").equals(invitation.getUser_id()))
+                        textView4.setEnabled(false);
+                }
             }
             setviewData();
             if (invitations != null && invitations.size() > 0) {

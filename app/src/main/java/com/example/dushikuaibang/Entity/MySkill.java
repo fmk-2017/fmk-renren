@@ -1,5 +1,12 @@
 package com.example.dushikuaibang.Entity;
 
+import android.text.TextUtils;
+
+import com.example.dushikuaibang.Utils.Constant;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by fengm on 2017-4-27.
  */
@@ -23,6 +30,8 @@ public class MySkill {
     private String score;
     private String cat_name;
     private String server_type_name;
+
+    private List<String> skill_photos;//images/201708/1501682880125266093.png,images/201708/1501682880800450571.png,images/201708/1501682880803969866.png
 
 
     public String getUser_photo() {
@@ -105,12 +114,23 @@ public class MySkill {
         this.skill_info = skill_info;
     }
 
+    public List<String> getSkill_photos() {
+        return skill_photos;
+    }
+
     public String getSkill_photo() {
         return skill_photo;
     }
 
     public void setSkill_photo(String skill_photo) {
         this.skill_photo = skill_photo;
+
+        if (TextUtils.isEmpty(skill_photo)) return;
+        String skillps[] = skill_photo.split(",");
+        skill_photos = new ArrayList<>();
+        for (String str : skillps) {
+            skill_photos.add(Constant.HOST + str);
+        }
     }
 
     public String getSkill_price() {

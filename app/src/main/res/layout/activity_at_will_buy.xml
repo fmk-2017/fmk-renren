@@ -23,6 +23,20 @@
             android:orientation="vertical">
 
             <com.example.dushikuaibang.Layout.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_heightPercent="35%h">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_heightPercent="35%h"
+                    app:layout_widthPercent="35%h" />
+
+            </com.example.dushikuaibang.Layout.PercentLinearLayout>
+
+            <com.example.dushikuaibang.Layout.PercentLinearLayout
                 android:id="@+id/other"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -81,7 +95,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:id="@+id/buyaddress_linear"
@@ -135,7 +150,8 @@
                 android:id="@+id/city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"

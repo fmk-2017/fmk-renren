@@ -3,6 +3,7 @@ package com.example.dushikuaibang.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.JSON;
@@ -50,6 +51,7 @@ public class CommentActivity extends BaseActivity implements HttpPostRequestUtil
             map.put("user_id", userid);
         } else {
             map.put("act", COMMENT_LIST);
+            map.put("user_id", userid);
             map.put("skill_id", skill_id);
         }
         HttpPostRequestUtils.getInstance(this).Post(map);
@@ -68,7 +70,7 @@ public class CommentActivity extends BaseActivity implements HttpPostRequestUtil
 
     @Override
     public void Fail(String method, String error) {
-
+        Log.e("Fail", "Fail: ");
     }
 
     @Override

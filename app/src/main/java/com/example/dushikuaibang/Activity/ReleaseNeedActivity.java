@@ -227,8 +227,9 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
             for (String str : list)
                 strs += "," + str;
             map.put("server_tag", strs.substring(1));
-        }
+        }// server_price    category_Name
         map.put("category_id", id);
+        map.put("category_Name", name);
         map.put("server_day", server_day);
         map.put("server_sex", server_sex);
         map.put("user_lat", user_lat);
@@ -271,6 +272,10 @@ public class ReleaseNeedActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void Fail(String method, String error) {
+        if ("请您设置您的姓名在来".equals(error)) {
+            Toast.makeText(this, "请先添加地址", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, AddressManagerActivity.class));
+        }
         Log.e("xxxxxxxxxxxx", "sssssssssssssssss");
     }
 

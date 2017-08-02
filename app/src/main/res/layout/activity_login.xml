@@ -63,8 +63,8 @@
             android:background="@android:color/transparent"
             android:hint="@string/phone_tips"
             android:inputType="number"
-            android:text="15827991714"
             android:textColorHint="@color/gray" />
+        <!--android:text="15827991714"-->
 
     </LinearLayout>
 
@@ -97,8 +97,8 @@
             android:background="@android:color/transparent"
             android:hint="@string/password_tips"
             android:inputType="textPassword"
-            android:text="123456"
             android:textColorHint="@color/gray" />
+        <!--android:text="123456"-->
 
     </LinearLayout>
 

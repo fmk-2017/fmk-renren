@@ -309,6 +309,8 @@ public class ReceivingFragment extends Fragment implements LocationSource, AMapL
                 intent.putExtra("xid", demandList.get(position).getId());
                 intent.putExtra("title", demandList.get(position).getCat_name());
                 intent.putExtra("category_id", demandList.get(position).getCategory_id());
+                intent.putExtra("name", demandList.get(position).getNickname());
+                intent.putExtra("avatar", demandList.get(position).getUser_photo());
                 startActivity(intent);
                 break;
         }

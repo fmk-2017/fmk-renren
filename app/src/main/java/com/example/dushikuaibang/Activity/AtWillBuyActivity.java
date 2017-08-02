@@ -27,11 +27,13 @@ import com.example.dushikuaibang.Entity.Order_Info;
 
 import com.example.dushikuaibang.Layout.PercentLinearLayout;
 
+import com.example.dushikuaibang.MyApplication;
 import com.example.dushikuaibang.R;
 import com.example.dushikuaibang.Utils.DialogShowUtils;
 import com.example.dushikuaibang.Utils.HttpPostRequestUtils;
 import com.example.dushikuaibang.Utils.TimeUtils;
 import com.example.dushikuaibang.Utils.ToastUtils;
+import com.example.dushikuaibang.View.CircleImageView;
 import com.example.dushikuaibang.View.MyListView2;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
@@ -39,6 +41,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.xutils.x;
 
 import java.util.HashMap;
 import java.util.List;
@@ -54,6 +57,7 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
     private final String USER_AFFIRM = "user_affirm";
     private final String Alipay = "zhifubao";
     private final String Weixin = "weixin";
+    String names, avatar;
     private String demand_id, category_id;
     private MyListView2 mylistview;
     private Order_Info order_info;
@@ -68,10 +72,11 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
     private TextView address_buy,/*随意购的购买地址*/
             address_receving; //其他的和随意购的收货地址
     private TextView shipper, shipper_phone, shipper_address;
-    private TextView consignee, consignee_phone, consignee_address;
+    private TextView consignee, consignee_phone, consignee_address, sk_name;
     private IWXAPI api;
     private DialogShowUtils dsu;
     private String pay_type;
+    private CircleImageView sk_avatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +87,9 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
 
         demand_id = getIntent().getStringExtra("xid");
         category_id = getIntent().getStringExtra("category_id");
+
+        names = getIntent().getStringExtra("name");
+        avatar = getIntent().getStringExtra("avatar");
 
         initView();
         initListener();
@@ -107,6 +115,11 @@ public class AtWillBuyActivity extends BaseActivity implements HttpPostRequestUt
 
         mylistview.setFocusable(false);
 //        payali("app_id=2017010304811553&biz_content=%7B%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22total_amount%22%3A%220.01%22%2C%22subject%22%3A%22%E4%B8%87%E4%BA%8B%E9%80%9A%22%2C%22body%22%3A%22%E5%95%86%E5%93%81%E6%8F%8F%E8%BF%B0%22%2C%22out_trade_no%22%3A%22483054048429922789%22%7D&charset=utf-8&format=json&method=alipay.trade.app.pay&notify_url=http%3A%2F%2F112.74.35.236%2Fapi.php&timestamp=2017-05-04+13%3A47%3A20&version=1.0&sign_type=RSA&sign=RGzYPzNZI%2BRxS7yq5rRrC%2BRK2J2RSNTdAWe5TSpW4iGH0l8n0UBlenNrsKotgYq4XC%2FPjyDPI5Xb0ssyH8LTp%2FYVKKI9Zzr2fPKyGbieojvyvirm7rlA%2Fv%2FPkN4Tl5QyyJOC%2FRpbM7kPPMqHVUY9BhEOrLO7NTgn7Phu%2Fhjh3Ho%3D");
+
+        sk_avatar = (CircleImageView) this.findViewById(R.id.sk_avatar);
+        sk_name = (TextView) this.findViewById(R.id.sk_name);
+        sk_name.setText(names);
+        x.image().bind(sk_avatar, avatar, MyApplication.io);
 
         mySc = (ScrollView) this.findViewById(R.id.mySc);
         content = (TextView) this.findViewById(R.id.content);
